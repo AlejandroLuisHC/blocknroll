@@ -4,6 +4,12 @@
   "version": "0.1.0",
   "description": "Block n' Roll - Club de Voleibol de Playa en San Sebastián",
   "type": "module",
+  "author": "Alejandro L. Herrero <alejandrolhc@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AlejandroLuisHC/blocknroll"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

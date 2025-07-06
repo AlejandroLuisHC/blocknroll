@@ -1,0 +1,43 @@
+name: Build
+
+on:
+  workflow_call:
+    inputs:
+      upload-artifacts:
+        description: "Whether to upload build artifacts"
+        required: false
+        type: boolean
+        default: false
+      artifact-name:
+        description: "Name for the build artifacts"
+        required: false
+        type: string
+        default: "build-files"
+      retention-days:
+        description: "Number of days to retain artifacts"
+        required: false
+        type: number
+        default: 30
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js and pnpm
+        uses: ./.github/actions/setup-node-pnpm
+
+      - name: Build project
+        run: pnpm build
+
+      - name: Upload build artifacts
+        if: inputs.upload-artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.artifact-name }}
+          path: ./dist
+          retention-days: ${{ inputs.retention-days }}
