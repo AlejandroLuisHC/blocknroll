@@ -1,0 +1,8 @@
+/* =============================================
+   GLOBAL STYLES INDEX
+   ============================================= */
+
+/* Import all global styles in order */
+@import "./design-tokens.css";
+@import "./base.css";
+@import "./typography.css";

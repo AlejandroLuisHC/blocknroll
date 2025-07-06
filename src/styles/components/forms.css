@@ -1,0 +1,181 @@
+/* =============================================
+   FORM COMPONENT STYLES
+   ============================================= */
+
+/* Modern Form Elements */
+.form-modern {
+  background: white;
+  border-radius: var(--radius-xl);
+  padding: var(--space-2xl);
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--neutral-200);
+}
+
+.form-control-modern {
+  border: 1px solid var(--neutral-200);
+  border-radius: var(--radius-md);
+  padding: 0.875rem 1rem;
+  font-size: 0.875rem;
+  transition: all var(--transition-fast);
+  background: var(--neutral-50);
+}
+
+.form-control-modern:focus {
+  outline: none;
+  border-color: var(--primary-500);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  background: white;
+}
+
+/* Enhanced Form Controls */
+.form-control-enhanced {
+  border: 2px solid var(--neutral-300);
+  border-radius: var(--radius-md);
+  padding: 0.875rem 1rem;
+  font-size: 1rem;
+  transition: all var(--transition-fast);
+  background: white;
+}
+
+.form-control-enhanced:focus {
+  border-color: var(--block-main);
+  box-shadow: 0 0 0 0.2rem rgba(255, 165, 45, 0.15);
+}
+
+.form-label-enhanced {
+  font-weight: var(--font-weight-semibold);
+  color: var(--neutral-800);
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+/* Contact Form Modern */
+.contact-form-modern {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  transition: all var(--transition-normal);
+}
+
+.contact-form-modern:hover {
+  box-shadow: var(--shadow-2xl);
+  transform: translateY(-2px);
+}
+
+.contact-form-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.contact-form-icon {
+  width: 56px;
+  height: 56px;
+  background: var(--gradient-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+}
+
+.contact-form-submit-btn {
+  background: var(--gradient-primary);
+  border: none;
+  border-radius: var(--radius-lg);
+  padding: 1rem 2rem;
+  font-weight: var(--font-weight-semibold);
+  font-size: 1.1rem;
+  transition: all var(--transition-normal);
+  box-shadow: var(--shadow-primary);
+  color: white;
+}
+
+.contact-form-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+  color: white;
+}
+
+/* Form Section Spacing */
+.form-section-spacing {
+  padding-top: 6rem;
+  padding-bottom: 8rem;
+  margin-bottom: 4rem;
+}
+
+.space-y-3 > * + * {
+  margin-top: 1rem;
+}
+
+/* Responsive Form Styles */
+@media (max-width: 991.98px) {
+  .form-section-spacing {
+    padding-top: 4rem;
+    padding-bottom: 6rem;
+    margin-bottom: 3rem;
+  }
+
+  .contact-form-modern,
+  .contact-info-modern {
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .form-section-spacing {
+    padding-top: 3rem;
+    padding-bottom: 4rem;
+    margin-bottom: 2rem;
+  }
+
+  .contact-form-modern {
+    padding: 1.5rem !important;
+  }
+
+  .btn-contact-primary {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .contact-form .row .col-md-6 {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-label {
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-control {
+    font-size: 1rem;
+    padding: 0.875rem;
+  }
+
+  textarea.form-control {
+    min-height: 120px;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .form-control-modern {
+    min-height: 44px;
+  }
+
+  .form-control-enhanced {
+    min-height: 44px;
+  }
+
+  /* Better form interaction on touch */
+  .form-control-modern:focus {
+    transform: scale(1.02);
+  }
+
+  .form-control-enhanced:focus {
+    transform: scale(1.02);
+  }
+}

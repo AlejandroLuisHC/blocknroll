@@ -1,0 +1,155 @@
+/* =============================================
+   DESIGN TOKENS - Block n' Roll Brand System
+   ============================================= */
+
+:root {
+  /* ===== BRAND COLOR PALETTE ===== */
+  --block-main: #ffa52d;
+  --block-main-dark: #ee811e;
+  --block-main-light: #ffb85c;
+  --block-main-lighter: #ffca8b;
+
+  --block-red: #9b2915;
+  --block-red-light: #b8543f;
+  --block-red-lighter: #d4806d;
+
+  --block-blue: #1b9aaa;
+  --block-blue-light: hsl(187, 49%, 53%);
+  --block-blue-lighter: #7fc7d1;
+
+  --block-cream: #edf4ed;
+  --block-black: #131719;
+
+  /* ===== FUNCTIONAL COLOR MAPPING ===== */
+  --primary-50: #fff8f0;
+  --primary-100: #ffca8b;
+  --primary-500: var(--block-main);
+  --primary-600: var(--block-main-dark);
+  --primary-700: #d66a0a;
+  --primary-900: var(--block-black);
+
+  --accent-50: #f0f9fa;
+  --accent-100: #c2e9ed;
+  --accent-500: var(--block-blue);
+  --accent-600: #16858a;
+  --accent-700: #12707a;
+
+  --danger-500: var(--block-red);
+  --danger-600: #7a1f10;
+  --danger-700: #5a180c;
+
+  --neutral-50: var(--block-cream);
+  --neutral-100: #f8faf8;
+  --neutral-200: #e8ede8;
+  --neutral-300: #d1dad1;
+  --neutral-400: #a8b8a8;
+  --neutral-500: #7a8a7a;
+  --neutral-600: #5c6c5c;
+  --neutral-700: #434343;
+  --neutral-800: #2a2a2a;
+
+  /* ===== GRADIENTS ===== */
+  --gradient-primary: linear-gradient(
+    135deg,
+    var(--block-main-light) 0%,
+    var(--block-main-dark) 100%
+  );
+  --gradient-primary-inverse: linear-gradient(
+    135deg,
+    var(--block-main-dark) 0%,
+    var(--block-main-light) 100%
+  );
+  --gradient-accent: linear-gradient(
+    135deg,
+    var(--block-blue-light) 0%,
+    var(--accent-700) 100%
+  );
+  --gradient-accent-inverse: linear-gradient(
+    135deg,
+    var(--accent-700) 0%,
+    var(--block-blue-light) 100%
+  );
+  --gradient-hero: linear-gradient(
+    135deg,
+    var(--block-cream) 0%,
+    #fff8f0 25%,
+    var(--block-cream) 50%,
+    #fff8f0 75%,
+    var(--block-cream) 100%
+  );
+  --gradient-card: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(237, 244, 237, 0.8) 100%
+  );
+  --gradient-cta: linear-gradient(
+    135deg,
+    var(--block-red) 0%,
+    var(--block-red-light) 100%
+  );
+
+  /* ===== SHADOWS ===== */
+  --shadow-sm: 0 1px 2px 0 rgba(19, 23, 25, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(19, 23, 25, 0.1),
+    0 2px 4px -1px rgba(19, 23, 25, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(19, 23, 25, 0.1),
+    0 4px 6px -2px rgba(19, 23, 25, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(19, 23, 25, 0.1),
+    0 10px 10px -5px rgba(19, 23, 25, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(19, 23, 25, 0.25);
+  --shadow-primary: 0 10px 25px -5px rgba(255, 165, 45, 0.2);
+  --shadow-accent: 0 10px 25px -5px rgba(27, 154, 170, 0.2);
+
+  /* ===== SPACING SCALE ===== */
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --space-4xl: 6rem;
+
+  /* ===== BORDER RADIUS ===== */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+
+  /* ===== TRANSITIONS ===== */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ===== TYPOGRAPHY SYSTEM ===== */
+  --font-family-base: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-family-heading: "Space Grotesk", "Inter", system-ui, sans-serif;
+  --font-family-brand: "Outfit", "Space Grotesk", system-ui, sans-serif;
+  --font-family-mono: "JetBrains Mono", "Fira Code", Consolas, "Liberation Mono",
+    Menlo, Courier, monospace;
+  --font-family-title: "Feast of Flesh BB", "Space Grotesk", "Impact",
+    "Arial Black", system-ui, sans-serif;
+  --font-family-subtitle: "Amatic SC", cursive, system-ui, sans-serif;
+
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 900;
+
+  --letter-spacing-tight: -0.025em;
+  --letter-spacing-normal: 0em;
+  --letter-spacing-wide: 0.025em;
+  --letter-spacing-wider: 0.05em;
+
+  --line-height-none: 1;
+  --line-height-tight: 1.25;
+  --line-height-snug: 1.375;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+  --line-height-loose: 2;
+}
