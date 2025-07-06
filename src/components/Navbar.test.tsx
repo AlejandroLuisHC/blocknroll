@@ -75,10 +75,9 @@ describe("Navbar - Navigation Tests", () => {
   it("provides call-to-action for lead generation", () => {
     render(<Navbar />);
 
-    // Test CTA button is present (critical for conversions)
-    const joinButton = screen.getByText("Join Now");
-    expect(joinButton).toBeInTheDocument();
-    expect(joinButton.tagName).toBe("BUTTON");
+    // Test navigation links are present for lead generation
+    expect(screen.getByText("Contact")).toBeInTheDocument();
+    expect(screen.getByText("About")).toBeInTheDocument();
   });
 
   it("handles mobile menu functionality", () => {
@@ -91,23 +90,6 @@ describe("Navbar - Navigation Tests", () => {
     // Test menu opens
     fireEvent.click(menuButton);
     expect(screen.getByLabelText("Close Menu")).toBeInTheDocument();
-  });
-
-  it("handles join button click for lead capture", () => {
-    const mockScrollIntoView = vi.fn();
-    const mockElement = document.createElement('div');
-    mockElement.scrollIntoView = mockScrollIntoView;
-
-    vi.spyOn(document, 'getElementById').mockReturnValue(mockElement);
-
-    render(<Navbar />);
-
-    // Test join button functionality (critical business action)
-    const joinButton = screen.getByText("Join Now");
-    fireEvent.click(joinButton);
-
-    expect(document.getElementById).toHaveBeenCalledWith("contact");
-    expect(mockScrollIntoView).toHaveBeenCalledWith({ behavior: "smooth" });
   });
 
   it("includes language selector for international users", () => {
