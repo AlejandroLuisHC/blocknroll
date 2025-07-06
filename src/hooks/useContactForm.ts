@@ -47,7 +47,7 @@ This message was sent from the Block n' Roll contact form.`;
     const tryEmailClient = () => {
       try {
         // Method 1: Try native mailto
-        const mailWindow = window.open(mailtoUrl, "_self");
+        window.open(mailtoUrl, "_self");
 
         // If that doesn't work, offer alternatives
         setTimeout(() => {

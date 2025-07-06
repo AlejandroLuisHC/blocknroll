@@ -30,6 +30,7 @@ const customRender = (
 };
 
 // Re-export everything
+// eslint-disable-next-line react-refresh/only-export-components
 export * from "@testing-library/react";
 export { customRender as render };
 
@@ -54,7 +55,7 @@ export const waitForNextTick = () =>
   new Promise((resolve) => setTimeout(resolve, 0));
 
 // Helper to create mock component props
-export const createMockProps = <T extends Record<string, any>>(
+export const createMockProps = <T extends Record<string, unknown>>(
   overrides: Partial<T> = {}
 ): T =>
   ({
