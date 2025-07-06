@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Menu, X } from "lucide-react";
 import { LanguageSelector } from "./";
 import logoImage from "../assets/img/logo-no-bg-gpt.png";
+import "../styles/components/navbar.css";
 
 // Navigation items configuration
 const NAV_SECTIONS = [
@@ -26,7 +27,7 @@ const Navbar = () => {
   // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 15);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -40,12 +41,6 @@ const Navbar = () => {
   const closeMenu = useCallback(() => {
     setIsOpen(false);
   }, []);
-
-  const handleJoinClick = useCallback(() => {
-    const contactSection = document.getElementById("contact");
-    contactSection?.scrollIntoView({ behavior: "smooth" });
-    closeMenu();
-  }, [closeMenu]);
 
   return (
     <nav
@@ -71,9 +66,9 @@ const Navbar = () => {
               src={logoImage}
               alt="Block n' Roll Logo"
               style={{
-                width: "clamp(60px, 8vw, 80px)",
-                height: "clamp(60px, 8vw, 80px)",
-                marginTop: "10px",
+                width: "clamp(40px, 8vw, 50px)",
+                height: "clamp(40px, 8vw, 50px)",
+                marginTop: "6px",
                 objectFit: "contain",
               }}
             />
@@ -95,22 +90,21 @@ const Navbar = () => {
         </a>
 
         {/* Mobile Controls */}
-        <div className="d-flex align-items-center d-lg-none">
-          <div className="me-3">
+        <div className="d-flex align-items-center d-lg-none mobile-controls">
+          <div className="me-2">
             <LanguageSelector />
           </div>
           <button
-            className="btn btn-modern btn-ghost-modern p-2"
+            className="btn btn-modern btn-ghost-modern hamburger-btn"
             type="button"
             onClick={toggleMenu}
             aria-label={isOpen ? t("nav.closeMenu") : t("nav.openMenu")}
             aria-expanded={isOpen}
-            style={{ width: "40px", height: "40px" }}
           >
             {isOpen ? (
-              <X size={20} aria-hidden="true" />
+              <X size={18} aria-hidden="true" />
             ) : (
-              <Menu size={20} aria-hidden="true" />
+              <Menu size={18} aria-hidden="true" />
             )}
           </button>
         </div>
@@ -133,17 +127,6 @@ const Navbar = () => {
             {/* Language Selector - Desktop */}
             <li className="nav-item d-none d-lg-block ms-3">
               <LanguageSelector />
-            </li>
-
-            {/* CTA Button */}
-            <li className="nav-item ms-3">
-              <button
-                className="btn btn-modern btn-primary-modern"
-                onClick={handleJoinClick}
-                aria-label={t("nav.joinNow")}
-              >
-                {t("nav.joinNow")}
-              </button>
             </li>
           </ul>
         </div>

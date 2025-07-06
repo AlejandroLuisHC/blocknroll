@@ -20,14 +20,19 @@ export interface TranslationSchema {
 
   hero: {
     title: string;
+    motto: string;
     subtitle: string;
     description: string;
+    description2: string;
     joinButton: string;
     videoButton: string;
     stats: {
+      completeTraining: string;
       players: string;
+      sessions: string;
+      freeTrial: string;
+      privateTraining: string;
       experience: string;
-      tournaments: string;
     };
   };
 
@@ -36,6 +41,8 @@ export interface TranslationSchema {
     title: string;
     description1: string;
     description2: string;
+    trainer1: string;
+    trainer2: string;
     features: {
       excellence: {
         title: string;

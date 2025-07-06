@@ -11,14 +11,19 @@
   },
   "hero": {
     "title": "Block n' Roll",
+    "motto": "We will Block n' Roll!",
     "subtitle": "Club de Vòlei Platja · Barcelona",
-    "description": "Entrenaments dinàmics, comunitat activa i molta sorra",
+    "description": "Entrenaments dinàmics, comunitat activa... i molta sorra",
+    "description2": "Vols millorar el teu vòlei platja, trobar gent amb bon rollo i gaudir entrenant a Barcelona?\n\nVés a provar una sessió gratuïta i comenceu a viure el vòlei platja d'una altra manera!",
     "joinButton": "Uneix-te a la família",
     "videoButton": "Coneix més",
     "stats": {
-      "players": "Màx. per pista",
-      "experience": "Anys d'experiència",
-      "tournaments": "Sessió gratuïta"
+      "completeTraining": "Entrenaments complets",
+      "players": "Màx. 8 persones",
+      "sessions": "Sessions 1h30",
+      "freeTrial": "Sessió gratuïta",
+      "privateTraining": "Opció entrenaments privats",
+      "experience": "6+ anys experiència"
     }
   },
   "about": {
@@ -26,6 +31,8 @@
     "title": "Qui som?",
     "description1": "Hola a tothom! Som la Sara, el Jesús i el David, apassionats del vòlei platja i del rock 🎸. Després d'anys entrenant i competint, hem decidit crear el Block n' Roll Club de Vòlei Platja: un espai on aprendre, millorar, gaudir i construir una comunitat.",
     "description2": "Volem compartir la nostra passió per aquest esport amb entrenaments dinàmics, intensos i adaptats a cada persona, tot en un ambient proper, divertit i ple de sorra!",
+    "trainer1": "Jesús García",
+    "trainer2": "David Bardina",
     "features": {
       "excellence": {
         "title": "Entrenaments dinàmics",
