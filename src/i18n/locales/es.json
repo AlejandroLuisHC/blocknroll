@@ -1,0 +1,210 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Nosotros",
+    "services": "Entrenamientos",
+    "gallery": "Galería",
+    "contact": "Contacto",
+    "joinNow": "Únete",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú"
+  },
+  "hero": {
+    "title": "Block n' Roll",
+    "subtitle": "Club de Vóley Playa · Barcelona",
+    "description": "Entrenamientos dinámicos, comunidad activa y mucha arena",
+    "joinButton": "Únete a la familia",
+    "videoButton": "Conoce más",
+    "stats": {
+      "players": "Máx. por pista",
+      "experience": "Años de experiencia",
+      "tournaments": "Sesión gratuita"
+    }
+  },
+  "about": {
+    "badge": "¿Quiénes somos?",
+    "title": "¿Quiénes somos?",
+    "description1": "¡Hola a todxs! Somos Sara, Jesús y David, apasionadxs del vóley playa y del rock 🎸. Tras años entrenando y compitiendo, hemos decidido crear el Block n' Roll Club de Vóley Playa: un espacio donde aprender, mejorar, disfrutar y construir una comunidad.",
+    "description2": "Queremos compartir nuestra pasión por este deporte con entrenamientos dinámicos, intensos y adaptados a cada persona, ¡todo en un ambiente cercano, divertido y lleno de arena!",
+    "features": {
+      "excellence": {
+        "title": "Entrenamientos dinámicos",
+        "description": "Sesiones intensas y personalizadas que optimizan cada minuto en la pista."
+      },
+      "community": {
+        "title": "Comunidad activa",
+        "description": "Más que un club, somos una familia con buen rollo y mucha arena."
+      },
+      "goals": {
+        "title": "Para todos los niveles",
+        "description": "Desde iniciación hasta avanzado, adaptamos cada entrenamiento a tu ritmo."
+      },
+      "passion": {
+        "title": "Pasión rock & volley",
+        "description": "Combinamos nuestra amor por el vóley playa con la energía del rock."
+      }
+    },
+    "visualTitle": "Rock & Vóley",
+    "visualSubtitle": "Donde la arena se encuentra con la música"
+  },
+  "services": {
+    "badge": "Entrenamientos",
+    "title": "Nuestros Entrenamientos",
+    "subtitle": "Grupos reducidos, entrenadores acreditados y metodología propia para optimizar tu experiencia.",
+    "programs": {
+      "basic": {
+        "title": "1 Entreno/Semana",
+        "description": "Perfecto para empezar o mantener tu nivel con un entrenamiento semanal.",
+        "features": [
+          "Grupos máx. 8 personas",
+          "Sesiones de 1h30",
+          "Entrenadores acreditados",
+          "Sesión de prueba gratuita"
+        ],
+        "price": "35€/mes"
+      },
+      "competitive": {
+        "title": "2 Entrenos/Semana",
+        "description": "Para quienes buscan progresar más rápidamente con entrenamientos regulares.",
+        "features": [
+          "Grupos máx. 8 personas",
+          "Sesiones de 1h30",
+          "Seguimiento personalizado",
+          "Entrenamientos dinámicos"
+        ],
+        "price": "65€/mes"
+      },
+      "elite": {
+        "title": "Entrenamientos Privados",
+        "description": "Sesiones personalizadas para objetivos específicos y grupos reducidos.",
+        "features": [
+          "Horarios flexibles",
+          "Metodología personalizada",
+          "Grupos super reducidos",
+          "Consulta disponibilidad"
+        ],
+        "price": "Consultar"
+      }
+    },
+    "popular": "Más Popular",
+    "joinButton": "Información",
+    "downloadInfo": "Descargar info detallada",
+    "additionalTitle": "¿Qué incluimos?",
+    "additional": {
+      "tournaments": {
+        "title": "Licencia Federativa",
+        "description": "35€/año incluye seguro deportivo. Te la tramitamos sin coste adicional."
+      },
+      "clinics": {
+        "title": "Metodología Propia",
+        "description": "Enfoque integral: capacidades físicas, técnicas y tácticas adaptadas."
+      },
+      "schedule": {
+        "title": "Instalaciones Premium",
+        "description": "Pistas outdoor, iluminación nocturna, vestuarios y bar en CEM Vall d'Hebron."
+      }
+    }
+  },
+  "gallery": {
+    "badge": "Galería",
+    "title": "Nuestra Comunidad",
+    "subtitle": "Momentos especiales, entrenamientos y la energía que compartimos en Block n' Roll.",
+    "categories": {
+      "all": "Todos",
+      "training": "Entrenamientos",
+      "competition": "Competición",
+      "celebration": "Celebración",
+      "events": "Eventos"
+    },
+    "images": {
+      "training1": "Entrenamiento en acción",
+      "training2": "Grupos reducidos",
+      "competition1": "Competición de verano",
+      "competition2": "Equipo en torneos",
+      "celebration1": "Celebrando juntos",
+      "events1": "Eventos del club"
+    },
+    "noImages": "Próximamente más fotos",
+    "noImagesDescription": "Estamos preparando una galería increíble para compartir contigo.",
+    "loading": "Cargando contenido de Instagram...",
+    "refresh": "Actualizar",
+    "lastUpdate": "Última actualización",
+    "error": "Error",
+    "filters": "Filtros de galería",
+    "viewMore": "Ver más en Instagram",
+    "status": {
+      "instagram": "Contenido desde Instagram",
+      "fallback": "Galería de muestra"
+    }
+  },
+  "contact": {
+    "badge": "Contacto",
+    "title": "¿Te interesa unirte?",
+    "subtitle": "¡Nos encantaría tenerte en la familia Block n' Roll! Rellena el formulario sin compromiso o escríbenos.",
+    "form": {
+      "title": "Formulario sin compromiso",
+      "name": "Nombre completo",
+      "email": "Email",
+      "phone": "Teléfono",
+      "program": "Interés",
+      "message": "Cuéntanos",
+      "send": "Enviar",
+      "namePlaceholder": "Tu nombre",
+      "emailPlaceholder": "tu@email.com",
+      "phonePlaceholder": "+34 600 000 000",
+      "messagePlaceholder": "Cuéntanos tu nivel, disponibilidad o cualquier pregunta...",
+      "required": "*",
+      "programs": {
+        "basic": "1 Entreno/Semana",
+        "competitive": "2 Entrenos/Semana",
+        "elite": "Entrenamientos Privados",
+        "other": "Solo información"
+      },
+      "successMessage": "¡Gracias! Te contactaremos pronto para coordinar tu sesión gratuita."
+    },
+    "info": {
+      "title": "Información de contacto",
+      "description": "Estamos aquí para resolver todas tus dudas. ¡Escríbenos y te contamos todo!",
+      "location": {
+        "title": "Dónde entrenamos",
+        "content": "CEM Eurofitness Vall d'Hebron, Barcelona",
+        "description": "Pg. de la Vall d'Hebron, 178, Horta-Guinardó"
+      },
+      "phone": {
+        "title": "WhatsApp",
+        "content": "Contacta por redes sociales",
+        "description": "Respuesta rápida por Instagram o email"
+      },
+      "email": {
+        "title": "Email",
+        "content": "blocknroll.bcnclub@gmail.com",
+        "description": "Te respondemos en menos de 24 horas"
+      },
+      "schedule": {
+        "title": "Horarios",
+        "content": "Lun-Vie: 18:00-22:30",
+        "description": "Inicio oficial: Septiembre 2025"
+      }
+    }
+  },
+  "footer": {
+    "description": "Club de Vóley Playa en Barcelona. Entrenamientos dinámicos, comunidad activa y mucha arena. ¡We will Block n' Roll! 🎸",
+    "followUs": "Síguenos en",
+    "quickLinks": "Enlaces rápidos",
+    "contactInfo": "Contacto",
+    "newsletter": {
+      "title": "Mantente al día",
+      "description": "Recibe noticias sobre entrenamientos y eventos",
+      "placeholder": "Tu email",
+      "subscribe": "Suscribirse"
+    },
+    "copyright": "Todos los derechos reservados.",
+    "privacy": "Privacidad",
+    "terms": "Términos"
+  },
+  "common": {
+    "years": "Años",
+    "titles": "Prueba",
+    "month": "mes"
+  }
+}
