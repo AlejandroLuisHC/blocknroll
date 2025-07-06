@@ -33,7 +33,6 @@ describe("HomePage", () => {
   it("renders sections in correct order", () => {
     render(<HomePage />);
 
-    const sections = screen.getAllByRole("generic"); // React fragments render as generic
     const hero = screen.getByTestId("hero");
     const about = screen.getByTestId("about");
     const services = screen.getByTestId("services");
