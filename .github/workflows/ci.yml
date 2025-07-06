@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+# Cancel previous runs on new pushes to the same branch
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Quality checks job (lint, type check, tests)
+  quality:
+    name: Quality Checks
+    uses: ./.github/workflows/quality.yml
+    with:
+      upload-coverage: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    secrets:
+      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+  # Build job
+  build:
+    name: Build
+    needs: quality
+    uses: ./.github/workflows/build.yml
+    with:
+      upload-artifacts: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+      artifact-name: build-files-${{ github.sha }}
+      retention-days: 30
