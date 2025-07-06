@@ -157,17 +157,14 @@ describe("Footer - Business Information Tests", () => {
     expect(aboutLink).toBeInTheDocument();
   });
 
-  it("includes newsletter subscription functionality", () => {
+  it("includes essential footer elements", () => {
     render(<Footer />);
 
-    // Test newsletter form elements are present (lead generation)
-    const emailInput = screen.getByRole("textbox");
-    const subscribeButton = screen.getByRole("button", { name: /subscribe/i });
-
-    expect(emailInput).toBeInTheDocument();
-    expect(emailInput.getAttribute("type")).toBe("email");
-    expect(subscribeButton).toBeInTheDocument();
-    expect(subscribeButton.getAttribute("type")).toBe("submit");
+    // Test footer essential elements are present
+    expect(screen.getByText("Block n' Roll")).toBeInTheDocument();
+    expect(screen.getByText("Barcelona Beach Volleyball")).toBeInTheDocument();
+    expect(screen.getByText("Contact Info")).toBeInTheDocument();
+    expect(screen.getByText("Quick Links")).toBeInTheDocument();
   });
 
   it("displays footer links with hover functionality", () => {

@@ -1,14 +1,13 @@
 /// <reference types="vitest" />
 import { defineConfig } from "vitest/config";
 import react from "@vitejs/plugin-react";
-import path from "path";
 
 export default defineConfig({
   plugins: [react()],
   test: {
     globals: true,
     environment: "jsdom",
-    setupFiles: [path.resolve(__dirname, "src/test/vitest-setup.ts")],
+    setupFiles: ["./src/test/vitest-setup.ts"],
     css: true,
     coverage: {
       provider: "v8",
@@ -25,9 +24,12 @@ export default defineConfig({
         "src/i18n/**", // Internationalization config
         "src/types/**", // Type definitions
         "src/assets/**", // Static assets
+        "src/constants/**", // Constants
         "src/components/index.ts", // Re-export file
         "src/components/ui/index.ts", // Re-export file
         "src/vite-env.d.ts", // Vite type definitions
+        "src/layouts/index.ts", // Layout index file
+        "src/pages/index.ts", // Pages index file
         // Exclude simple UI components with no business logic
         "src/components/ui/GalleryImage.tsx", // Simple image component
         "src/components/ui/StatCard.tsx", // Simple display component

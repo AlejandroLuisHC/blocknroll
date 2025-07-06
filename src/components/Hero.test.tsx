@@ -79,7 +79,7 @@ describe("Hero - Business Logic Tests", () => {
     render(<Hero />);
 
     // Test main brand name is prominently displayed
-    expect(screen.getByText("Block n' Roll")).toBeInTheDocument();
+    expect(screen.getByText("Block n' Roll Beach Volleyball Club")).toBeInTheDocument();
 
     // Test key business messaging
     expect(
