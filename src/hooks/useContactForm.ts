@@ -18,12 +18,12 @@ export const useContactForm = () => {
     // Create email content
     const emailTo = "blocknroll.bcnclub@gmail.com";
     const subject = `Contact Form: ${formData.name} - ${t(
-      `contact.form.programs.${formData.program}`
+      `contact.form.programs.${formData.program}` as string
     )}`;
     const emailContent = `Name: ${formData.name}
 Email: ${formData.email}
 Phone: ${formData.phone || "Not provided"}
-Program Interest: ${t(`contact.form.programs.${formData.program}`)}
+Program Interest: ${t(`contact.form.programs.${formData.program}` as string)}
 
 Message:
 ${formData.message}
@@ -105,7 +105,7 @@ This message was sent from the Block n' Roll contact form.`;
     tryEmailClient();
 
     // Show success message
-    alert(t("contact.form.successMessage"));
+    alert(t("contact.form.successMessage" as string));
 
     // Reset form
     setFormData({

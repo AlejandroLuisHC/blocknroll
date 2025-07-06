@@ -43,7 +43,7 @@ export const mockEvent = (name: string, value: string) =>
 export const mockFormEvent = (preventDefault = vi.fn()) =>
   ({
     preventDefault,
-  } as React.FormEvent);
+  } as unknown as React.FormEvent);
 
 export const mockKeyboardEvent = (key: string) =>
   ({
@@ -114,7 +114,7 @@ export const setupTest = () => {
 
   // Setup console mocks
   vi.spyOn(console, "log").mockImplementation(mockConsoleLog);
-  vi.spyOn(global, "alert").mockImplementation(mockAlert);
+  vi.spyOn(window, "alert").mockImplementation(mockAlert);
 
   return {
     mockConsoleLog,

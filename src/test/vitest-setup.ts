@@ -34,18 +34,24 @@ Object.defineProperty(window, "scrollTo", {
 });
 
 // Mock IntersectionObserver
-global.IntersectionObserver = vi.fn().mockImplementation(() => ({
-  observe: vi.fn(),
-  unobserve: vi.fn(),
-  disconnect: vi.fn(),
-}));
+Object.defineProperty(window, "IntersectionObserver", {
+  writable: true,
+  value: vi.fn().mockImplementation(() => ({
+    observe: vi.fn(),
+    unobserve: vi.fn(),
+    disconnect: vi.fn(),
+  })),
+});
 
 // Mock ResizeObserver
-global.ResizeObserver = vi.fn().mockImplementation(() => ({
-  observe: vi.fn(),
-  unobserve: vi.fn(),
-  disconnect: vi.fn(),
-}));
+Object.defineProperty(window, "ResizeObserver", {
+  writable: true,
+  value: vi.fn().mockImplementation(() => ({
+    observe: vi.fn(),
+    unobserve: vi.fn(),
+    disconnect: vi.fn(),
+  })),
+});
 
 // Mock window.URL.createObjectURL
 if (typeof window !== "undefined" && window.URL) {
@@ -55,16 +61,22 @@ if (typeof window !== "undefined" && window.URL) {
   });
 }
 
-// Mock alert using global instead of window
-global.alert = vi.fn();
+// Mock alert
+Object.defineProperty(window, "alert", {
+  writable: true,
+  value: vi.fn(),
+});
 
 // Mock console methods to avoid noise in tests
-global.console = {
-  ...console,
-  // Uncomment below to silence specific console methods during tests
-  // log: vi.fn(),
-  // debug: vi.fn(),
-  // info: vi.fn(),
-  // warn: vi.fn(),
-  // error: vi.fn(),
-};
+Object.defineProperty(window, "console", {
+  writable: true,
+  value: {
+    ...console,
+    // Uncomment below to silence specific console methods during tests
+    // log: vi.fn(),
+    // debug: vi.fn(),
+    // info: vi.fn(),
+    // warn: vi.fn(),
+    // error: vi.fn(),
+  },
+});

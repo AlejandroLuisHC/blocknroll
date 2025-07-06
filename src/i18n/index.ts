@@ -15,7 +15,10 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    resources,
+    resources: resources as Record<
+      string,
+      { translation: Record<string, unknown> }
+    >,
     fallbackLng: "es",
     debug: import.meta.env.DEV,
     interpolation: {
