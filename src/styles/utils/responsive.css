@@ -1,0 +1,625 @@
+/* =============================================
+   RESPONSIVE DESIGN SYSTEM
+   ============================================= */
+
+/* ===== EXTRA SMALL DEVICES (Phones, 320px - 575px) ===== */
+@media (max-width: 575.98px) {
+  /* Typography */
+  .display-1 {
+    font-size: clamp(2rem, 8vw, 2.5rem);
+    line-height: 1.1;
+  }
+  .display-2 {
+    font-size: clamp(1.75rem, 7vw, 2rem);
+  }
+  .display-3 {
+    font-size: clamp(1.5rem, 6vw, 1.75rem);
+  }
+  .display-4 {
+    font-size: clamp(1.25rem, 5vw, 1.5rem);
+  }
+
+  /* Hero Title - Better mobile scaling */
+  .hero-title {
+    font-size: clamp(3rem, 12vw, 4.5rem) !important;
+    transform: perspective(300px) rotateX(-15deg);
+    line-height: 0.85 !important;
+  }
+
+  /* Hero Descriptions - Improved readability */
+  .hero-descriptions {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+
+  .hero-description-primary {
+    font-size: clamp(1rem, 4vw, 1.25rem);
+    line-height: 1.5;
+    margin-bottom: 1rem !important;
+  }
+
+  .hero-description-primary::after {
+    width: 40px;
+    bottom: -0.25rem;
+  }
+
+  .hero-description-secondary {
+    font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+    line-height: 1.4;
+  }
+
+  /* Layout improvements */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    max-width: 100%;
+  }
+
+  .section-modern {
+    padding: 2.5rem 0;
+  }
+
+  .hero-section-bg {
+    min-height: 85vh;
+    padding: 1.5rem 0;
+  }
+
+  /* Grid improvements */
+  .grid-modern {
+    gap: 1rem;
+  }
+
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  /* Cards - Better mobile spacing */
+  .card-modern {
+    margin: 0;
+    padding: 1.25rem;
+    border-radius: var(--radius-lg);
+  }
+
+  .pricing-card-modern {
+    padding: 1.5rem 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .pricing-card-featured {
+    transform: none;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Buttons - Full width on mobile */
+  .btn-modern {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.875rem;
+    width: 100%;
+    justify-content: center;
+    min-height: 48px;
+  }
+
+  /* Navigation improvements */
+  .navbar-brand {
+    font-size: 1.125rem;
+  }
+
+  .nav-link-modern {
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 1px solid var(--neutral-200);
+    font-size: 1rem;
+  }
+
+  /* Floating elements - hide on small screens */
+  .floating-card {
+    display: none !important;
+  }
+
+  /* Stats adjustments */
+  .stat-number {
+    font-size: clamp(1.75rem, 6vw, 2rem);
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+  }
+
+  /* Form adjustments */
+  .form-control-modern {
+    padding: 0.875rem;
+    font-size: 1rem;
+    min-height: 48px;
+  }
+
+  /* Hero specific improvements */
+  .hero-actions {
+    margin-bottom: 2rem;
+  }
+
+  .hero-stats-grid {
+    margin-top: 2rem;
+  }
+
+  .hero-motto {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+
+  .hero-motto-text {
+    font-size: clamp(1.25rem, 5vw, 1.75rem);
+    line-height: 1.3;
+  }
+
+  /* Scroll indicator - smaller on mobile */
+  .hero-scroll-indicator {
+    width: 28px;
+    height: 42px;
+    margin-bottom: 0.75rem;
+  }
+
+  .hero-scroll-dot {
+    width: 3px;
+    height: 12px;
+  }
+
+  /* Contact form improvements */
+  .contact-form-modern {
+    padding: 1.5rem;
+  }
+
+  .contact-form-card {
+    padding: 1.25rem;
+  }
+
+  /* Gallery improvements */
+  .gallery-grid {
+    gap: 0.75rem;
+  }
+
+  .gallery-item-modern {
+    border-radius: var(--radius-md);
+  }
+}
+
+/* ===== SMALL DEVICES (Landscape Phones, 576px - 767px) ===== */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .display-1 {
+    font-size: clamp(2.5rem, 9vw, 3rem);
+  }
+
+  .hero-title {
+    font-size: clamp(4rem, 14vw, 5.5rem) !important;
+    transform: perspective(350px) rotateX(-18deg);
+  }
+
+  .hero-descriptions {
+    max-width: 90%;
+  }
+
+  .hero-description-primary {
+    font-size: clamp(1.125rem, 4.5vw, 1.375rem);
+  }
+
+  .hero-description-secondary {
+    font-size: clamp(1rem, 4vw, 1.2rem);
+  }
+
+  .hero-section-bg {
+    min-height: 90vh;
+    padding: 2rem 0;
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .btn-modern {
+    width: auto;
+    min-width: 200px;
+    padding: 1rem 1.5rem;
+  }
+
+  .pricing-card-featured {
+    transform: scale(1.02);
+  }
+
+  .hero-motto-text {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .section-modern {
+    padding: 3rem 0;
+  }
+}
+
+/* ===== MEDIUM DEVICES (Tablets, 768px - 991px) ===== */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .display-1 {
+    font-size: clamp(3rem, 10vw, 3.5rem);
+  }
+
+  .hero-title {
+    font-size: clamp(5rem, 16vw, 6.5rem) !important;
+    transform: perspective(380px) rotateX(-20deg);
+  }
+
+  .hero-descriptions {
+    max-width: 80%;
+  }
+
+  .hero-description-primary {
+    font-size: clamp(1.25rem, 5vw, 1.5rem);
+  }
+
+  .hero-description-secondary {
+    font-size: clamp(1.1rem, 4.5vw, 1.3rem);
+  }
+
+  .section-modern {
+    padding: 4rem 0;
+  }
+
+  .hero-section-bg {
+    min-height: 85vh;
+    padding: 2.5rem 0;
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-3 > *:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    max-width: 50%;
+    margin: 0 auto;
+  }
+
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .floating-card {
+    display: block;
+    transform: scale(0.8);
+  }
+
+  .pricing-card-featured {
+    transform: scale(1.03);
+  }
+
+  .hero-motto-text {
+    font-size: clamp(1.75rem, 7vw, 2.25rem);
+  }
+
+  /* Navbar improvements */
+  .navbar-collapse {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius-lg);
+    margin-top: 1rem;
+    padding: 1rem;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* ===== LARGE DEVICES (Desktops, 992px - 1199px) ===== */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .display-1 {
+    font-size: clamp(3.5rem, 11vw, 4rem);
+  }
+
+  .hero-title {
+    font-size: clamp(6rem, 18vw, 7.5rem) !important;
+    transform: perspective(400px) rotateX(-20deg);
+  }
+
+  .hero-descriptions {
+    max-width: 70%;
+  }
+
+  .hero-description-primary {
+    font-size: clamp(1.375rem, 5.5vw, 1.625rem);
+  }
+
+  .hero-description-secondary {
+    font-size: clamp(1.2rem, 5vw, 1.4rem);
+  }
+
+  .section-modern {
+    padding: 5rem 0;
+  }
+
+  .hero-section-bg {
+    min-height: 90vh;
+    padding: 3rem 0;
+  }
+
+  .grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .floating-card {
+    transform: scale(0.9);
+  }
+
+  .hero-motto-text {
+    font-size: clamp(2rem, 8vw, 2.5rem);
+  }
+
+  .container {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+/* ===== EXTRA LARGE DEVICES (Large Desktops, 1200px - 1399px) ===== */
+@media (min-width: 1200px) and (max-width: 1399.98px) {
+  .container {
+    max-width: 1140px;
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
+  .section-modern {
+    padding: 6rem 0;
+  }
+
+  .hero-section-bg {
+    min-height: 95vh;
+    padding: 3.5rem 0;
+  }
+
+  .floating-card {
+    transform: scale(0.95);
+  }
+
+  .hero-title {
+    font-size: clamp(7rem, 20vw, 8rem) !important;
+  }
+
+  .hero-descriptions {
+    max-width: 65%;
+  }
+
+  .hero-description-primary {
+    font-size: clamp(1.5rem, 6vw, 1.75rem);
+  }
+
+  .hero-description-secondary {
+    font-size: clamp(1.3rem, 5.5vw, 1.5rem);
+  }
+
+  .hero-motto-text {
+    font-size: clamp(2.25rem, 9vw, 2.75rem);
+  }
+}
+
+/* ===== ULTRA LARGE DEVICES (1400px+) ===== */
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1320px;
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
+  }
+
+  .section-modern {
+    padding: 7rem 0;
+  }
+
+  .display-1 {
+    font-size: clamp(4rem, 12vw, 4.5rem);
+  }
+
+  .display-2 {
+    font-size: clamp(3.5rem, 11vw, 4rem);
+  }
+
+  .display-3 {
+    font-size: clamp(3rem, 10vw, 3.5rem);
+  }
+
+  .hero-section-bg {
+    min-height: 100vh;
+    padding: 4rem 0;
+  }
+
+  .grid-modern {
+    gap: 2rem;
+  }
+
+  .card-modern {
+    padding: 2.5rem;
+  }
+
+  .floating-card {
+    transform: scale(1);
+  }
+
+  .pricing-card-modern {
+    padding: 3rem 2.5rem;
+  }
+
+  .hero-title {
+    font-size: clamp(8rem, 22vw, 8.5rem) !important;
+  }
+
+  .hero-descriptions {
+    max-width: 60%;
+  }
+
+  .hero-description-primary {
+    font-size: clamp(1.625rem, 6.5vw, 1.875rem);
+  }
+
+  .hero-description-secondary {
+    font-size: clamp(1.4rem, 6vw, 1.6rem);
+  }
+
+  .hero-motto-text {
+    font-size: clamp(2.5rem, 10vw, 3rem);
+  }
+}
+
+/* ===== LANDSCAPE ORIENTATION ADJUSTMENTS ===== */
+@media (orientation: landscape) and (max-height: 500px) {
+  .hero-section-bg {
+    min-height: 100vh;
+    padding: 1.5rem 0;
+  }
+
+  .display-1 {
+    font-size: clamp(2rem, 6vw, 2.5rem);
+  }
+
+  .section-modern {
+    padding: 2rem 0;
+  }
+
+  .hero-title {
+    font-size: clamp(3rem, 10vw, 4rem) !important;
+  }
+
+  .hero-descriptions {
+    max-width: 100%;
+  }
+
+  .hero-description-primary {
+    font-size: clamp(1rem, 3vw, 1.25rem);
+  }
+
+  .hero-description-secondary {
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+  }
+
+  .hero-motto-text {
+    font-size: clamp(1.25rem, 4vw, 1.75rem);
+  }
+}
+
+/* ===== HIGH DPI DISPLAYS ===== */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .hero-pattern-modern {
+    background-size: 200px 200px;
+  }
+
+  .card-modern::before {
+    background-size: 100px 100px;
+  }
+}
+
+/* ===== REDUCED MOTION PREFERENCES ===== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .hero-pattern-modern {
+    animation: none;
+  }
+
+  .floating-card {
+    animation: none;
+  }
+
+  .hover-spin,
+  .hover-spin-continuous {
+    transition: none;
+  }
+
+  button:hover .hover-spin,
+  button:hover .hover-spin-continuous {
+    transform: none;
+    animation: none;
+  }
+}
+
+/* ===== TOUCH DEVICE OPTIMIZATIONS ===== */
+@media (hover: none) and (pointer: coarse) {
+  .btn-modern {
+    min-height: 44px;
+    padding: 0.75rem 1.5rem;
+  }
+
+  .nav-link-modern {
+    padding: 1.25rem 1rem;
+    min-height: 44px;
+  }
+
+  .card-modern:hover {
+    transform: none;
+  }
+
+  .pricing-card-modern:hover {
+    transform: none;
+  }
+
+  .btn-primary-modern:hover,
+  .btn-secondary-modern:hover,
+  .btn-accent-modern:hover {
+    transform: none;
+  }
+
+  /* Increase touch targets */
+  .form-control-modern {
+    min-height: 44px;
+  }
+
+  .navbar-toggler {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Better touch feedback */
+  .btn-modern:active {
+    transform: scale(0.98);
+  }
+
+  .nav-link-modern:active {
+    background-color: rgba(var(--block-main-rgb), 0.2);
+  }
+
+  /* Improve scrolling on touch devices */
+  .hero-section-bg {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Better form interaction on touch */
+  .form-control-modern:focus {
+    transform: scale(1.02);
+  }
+}

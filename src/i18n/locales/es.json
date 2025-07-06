@@ -11,14 +11,19 @@
   },
   "hero": {
     "title": "Block n' Roll",
+    "motto": "We will Block n' Roll!",
     "subtitle": "Club de Vóley Playa · Barcelona",
-    "description": "Entrenamientos dinámicos, comunidad activa y mucha arena",
+    "description": "Entrenamientos dinámicos, comunidad activa... y mucha arena",
+    "description2": "¿Buscas mejorar tu vóley playa, conocer gente con buen rollo y disfrutar entrenando en Barcelona?\n\n¡Ven a probar una clase gratis y empieza a vivir el vóley playa de otra forma!",
     "joinButton": "Únete a la familia",
     "videoButton": "Conoce más",
     "stats": {
-      "players": "Máx. por pista",
-      "experience": "Años de experiencia",
-      "tournaments": "Sesión gratuita"
+      "completeTraining": "Entrenamientos completos",
+      "players": "Máx. 8 personas",
+      "sessions": "Sesiones 1h30",
+      "freeTrial": "Sesión gratuita",
+      "privateTraining": "Opción entrenos privados",
+      "experience": "6+ años experiencia"
     }
   },
   "about": {
@@ -26,6 +31,8 @@
     "title": "¿Quiénes somos?",
     "description1": "¡Hola a todxs! Somos Sara, Jesús y David, apasionadxs del vóley playa y del rock 🎸. Tras años entrenando y compitiendo, hemos decidido crear el Block n' Roll Club de Vóley Playa: un espacio donde aprender, mejorar, disfrutar y construir una comunidad.",
     "description2": "Queremos compartir nuestra pasión por este deporte con entrenamientos dinámicos, intensos y adaptados a cada persona, ¡todo en un ambiente cercano, divertido y lleno de arena!",
+    "trainer1": "Jesús García",
+    "trainer2": "David Bardina",
     "features": {
       "excellence": {
         "title": "Entrenamientos dinámicos",

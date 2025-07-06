@@ -11,14 +11,19 @@
   },
   "hero": {
     "title": "Block n' Roll",
+    "motto": "We will Block n' Roll!",
     "subtitle": "Beach Volleyball Club · Barcelona",
-    "description": "Dynamic training, active community and lots of sand",
+    "description": "Dynamic training, active community... and lots of sand",
+    "description2": "Looking to improve your beach volleyball, meet people with good vibes and enjoy training in Barcelona?\n\nCome try a free class and start living beach volleyball in a different way!",
     "joinButton": "Join the family",
     "videoButton": "Learn more",
     "stats": {
-      "players": "Max. per court",
-      "experience": "Years of experience",
-      "tournaments": "Free trial"
+      "completeTraining": "Complete training",
+      "players": "Max. 8 people",
+      "sessions": "1h30 sessions",
+      "freeTrial": "Free trial option",
+      "privateTraining": "Private training",
+      "experience": "6+ years experience"
     }
   },
   "about": {
@@ -26,6 +31,8 @@
     "title": "Who are we?",
     "description1": "Hello everyone! We are Sara, Jesús and David, passionate about beach volleyball and rock 🎸. After years of training and competing, we decided to create the Block n' Roll Beach Volleyball Club: a space to learn, improve, enjoy and build a community.",
     "description2": "We want to share our passion for this sport with dynamic, intense training adapted to each person, all in a close, fun environment full of sand!",
+    "trainer1": "Jesús García",
+    "trainer2": "David Bardina",
     "features": {
       "excellence": {
         "title": "Dynamic training",

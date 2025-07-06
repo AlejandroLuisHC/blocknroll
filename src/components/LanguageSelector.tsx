@@ -78,7 +78,8 @@ const LanguageSelector = () => {
             style={{ fontSize: "1.2em" }}
             aria-hidden="true"
           ></span>
-          <span className="d-none d-sm-inline">{currentLanguage.name}</span>
+          <span className="d-none d-md-inline d-lg-none">{currentLanguage.code.toUpperCase()}</span>
+          <span className="d-none d-lg-inline">{currentLanguage.name}</span>
         </span>
         <ChevronDown
           size={16}
@@ -89,7 +90,7 @@ const LanguageSelector = () => {
 
       {isOpen && (
         <div
-          className="language-dropdown mt-1"
+          className="language-dropdown"
           role="menu"
           aria-label="Language options"
         >
