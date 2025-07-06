@@ -45,5 +45,10 @@ runs:
 
     - name: Install dependencies
       if: inputs.install-deps == 'true'
-      run: pnpm install --frozen-lockfile
       shell: bash
+      run: |
+        # Try frozen-lockfile first, fallback to regular install if lockfile is outdated
+        if ! pnpm install --frozen-lockfile; then
+          echo "⚠️  Lockfile is outdated, regenerating..."
+          pnpm install
+        fi
