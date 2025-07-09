@@ -41,8 +41,18 @@ export interface TranslationSchema {
     title: string;
     description1: string;
     description2: string;
+    trainersTitle: string;
     trainer1: string;
     trainer2: string;
+    trainersCredentials: string;
+    trainersExperience: string;
+    trainersPassion: string;
+    stats: {
+      experience: string;
+      experienceLabel: string;
+      players: string;
+      playersLabel: string;
+    };
     features: {
       excellence: {
         title: string;
@@ -130,6 +140,16 @@ export interface TranslationSchema {
     };
     noImages: string;
     noImagesDescription: string;
+    loading: string;
+    refresh: string;
+    lastUpdate: string;
+    error: string;
+    filters: string;
+    viewMore: string;
+    status: {
+      instagram: string;
+      fallback: string;
+    };
   };
 
   contact: {
@@ -201,7 +221,7 @@ export interface TranslationSchema {
 
   common: {
     years: string;
-    titles: string;
+    players: string;
     month: string;
   };
 }

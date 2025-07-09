@@ -3,6 +3,7 @@
    ============================================= */
 
 /* Import all global styles in order */
+@import "./fonts.css";
 @import "./design-tokens.css";
-@import "./base.css";
 @import "./typography.css";
+@import "./base.css";

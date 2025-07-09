@@ -293,8 +293,7 @@
 
 /* ===== SECTION LAYOUTS ===== */
 .section-modern {
-  padding: var(--space-4xl) 0;
-  position: relative;
+  padding: 0;
 }
 
 .section-alt {

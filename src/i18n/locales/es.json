@@ -31,8 +31,18 @@
     "title": "¿Quiénes somos?",
     "description1": "¡Hola a todxs! Somos Sara, Jesús y David, apasionadxs del vóley playa y del rock 🎸. Tras años entrenando y compitiendo, hemos decidido crear el Block n' Roll Club de Vóley Playa: un espacio donde aprender, mejorar, disfrutar y construir una comunidad.",
     "description2": "Queremos compartir nuestra pasión por este deporte con entrenamientos dinámicos, intensos y adaptados a cada persona, ¡todo en un ambiente cercano, divertido y lleno de arena!",
+    "trainersTitle": "Nuestros entrenadores",
     "trainer1": "Jesús García",
     "trainer2": "David Bardina",
+    "trainersCredentials": "Certificación oficial de Vóley Playa Nivel 1",
+    "trainersExperience": "Más de 6 años compitiendo, entrenando y creciendo en el deporte",
+    "trainersPassion": "Amantes del vóley y del buen ambiente, dentro y fuera de la pista",
+    "stats": {
+      "experience": "6+",
+      "experienceLabel": "Años Experiencia",
+      "players": "50+",
+      "playersLabel": "Jugadores Felices"
+    },
     "features": {
       "excellence": {
         "title": "Entrenamientos dinámicos",
@@ -210,8 +220,8 @@
     "terms": "Términos"
   },
   "common": {
-    "years": "Años",
-    "titles": "Prueba",
+    "years": "Años Experiencia",
+    "players": "Jugadores Felices",
     "month": "mes"
   }
 }
