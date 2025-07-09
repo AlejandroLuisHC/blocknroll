@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.3.0] (2025-07-09)
+
+### Features
+
+- Improve about section:
+  - Add trainers information
+- Improve sections layout
+
+### Fixes
+
+- Improve font loading
+
 ## [0.2.0] (2025-07-06)
 
 ### Features
