@@ -5,6 +5,7 @@
 /* Import all component styles */
 @import "./hero.css";
 @import "./navbar.css";
+@import "./about.css";
 @import "./buttons.css";
 @import "./cards.css";
 @import "./forms.css";

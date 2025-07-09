@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { vi, describe, it, expect, beforeEach } from "vitest";
+import { vi, describe, it, expect, beforeEach, afterEach } from "vitest";
 import Hero from "./Hero";
 
 // Mock react-i18next
@@ -82,6 +82,14 @@ Object.defineProperty(document, "getElementById", {
   value: vi.fn(),
   writable: true,
 });
+
+// Polyfill scrollTo for JSDOM
+defineScrollToPolyfill();
+function defineScrollToPolyfill() {
+  if (!HTMLDivElement.prototype.scrollTo) {
+    HTMLDivElement.prototype.scrollTo = function () {};
+  }
+}
 
 describe("Hero - Business Logic Tests", () => {
   beforeEach(() => {
@@ -221,5 +229,56 @@ describe("Hero - Business Logic Tests", () => {
     // Test that scroll indicator is wrapped in desktop-only class
     const scrollIndicator = document.querySelector(".d-none.d-lg-block");
     expect(scrollIndicator).toBeInTheDocument();
+  });
+});
+
+describe("HeroStats - Auto-scroll and Pause Logic", () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
+    vi.clearAllMocks();
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
+  it("auto-scrolls the stats on interval", () => {
+    render(<Hero />);
+    const scrollContainer = document.querySelector(
+      ".hero-stats-scroll"
+    ) as HTMLDivElement;
+    const scrollToSpy = vi.spyOn(scrollContainer, "scrollTo");
+    vi.advanceTimersByTime(2000);
+    expect(scrollToSpy).toHaveBeenCalled();
+  });
+
+  it("sets up user interaction handlers", () => {
+    render(<Hero />);
+    const scrollContainer = document.querySelector(
+      ".hero-stats-scroll"
+    ) as HTMLDivElement;
+
+    // Test that the container has the expected event handlers
+    expect(scrollContainer).toBeInTheDocument();
+
+    // Simulate user interaction events
+    const mouseEnterEvent = new MouseEvent("mouseenter", { bubbles: true });
+    const touchStartEvent = new TouchEvent("touchstart", { bubbles: true });
+    const scrollEvent = new Event("scroll", { bubbles: true });
+
+    // These should not throw errors
+    expect(() => {
+      scrollContainer.dispatchEvent(mouseEnterEvent);
+      scrollContainer.dispatchEvent(touchStartEvent);
+      scrollContainer.dispatchEvent(scrollEvent);
+    }).not.toThrow();
+  });
+
+  it("clears intervals on unmount", () => {
+    const { unmount } = render(<Hero />);
+    const clearIntervalSpy = vi.spyOn(globalThis, "clearInterval");
+
+    unmount();
+    expect(clearIntervalSpy).toHaveBeenCalled();
   });
 });

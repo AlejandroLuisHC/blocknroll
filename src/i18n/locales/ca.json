@@ -31,8 +31,18 @@
     "title": "Qui som?",
     "description1": "Hola a tothom! Som la Sara, el Jesús i el David, apassionats del vòlei platja i del rock 🎸. Després d'anys entrenant i competint, hem decidit crear el Block n' Roll Club de Vòlei Platja: un espai on aprendre, millorar, gaudir i construir una comunitat.",
     "description2": "Volem compartir la nostra passió per aquest esport amb entrenaments dinàmics, intensos i adaptats a cada persona, tot en un ambient proper, divertit i ple de sorra!",
+    "trainersTitle": "Els nostres entrenadors",
     "trainer1": "Jesús García",
     "trainer2": "David Bardina",
+    "trainersCredentials": "Certificació oficial de Vòlei Platja Nivell 1",
+    "trainersExperience": "Més de 6 anys competint, entrenant i creixent en l'esport",
+    "trainersPassion": "Amants del vòlei i del bon ambient, dins i fora de la pista",
+    "stats": {
+      "experience": "6+",
+      "experienceLabel": "Anys Experiència",
+      "players": "50+",
+      "playersLabel": "Jugadors Feliços"
+    },
     "features": {
       "excellence": {
         "title": "Entrenaments dinàmics",
@@ -210,8 +220,8 @@
     "terms": "Termes"
   },
   "common": {
-    "years": "Anys",
-    "titles": "Prova",
+    "years": "Anys Experiència",
+    "players": "Jugadors Feliços",
     "month": "mes"
   }
 }

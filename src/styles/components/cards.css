@@ -29,12 +29,6 @@
   );
 }
 
-.card-modern:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: var(--shadow-2xl);
-  border-color: rgba(255, 255, 255, 0.4);
-}
-
 /* Pricing Cards */
 .pricing-card-modern {
   background: white;

@@ -10,16 +10,14 @@ vi.mock("react-i18next", () => ({
         "about.badge": "About Us",
         "about.title": "We are Block n' Roll",
         "about.description1":
-          "A passionate beach volleyball community in Barcelona dedicated to excellence and fun.",
+        "A passionate beach volleyball community in Barcelona dedicated to excellence and fun.",
         "about.description2":
-          "Join us to improve your skills, make lifelong friends, and compete at the highest level.",
-        "about.visualTitle": "Rock meets Volleyball",
-        "about.visualSubtitle": "Where passion and sport unite",
+        "Join us to improve your skills, make lifelong friends, and compete at the highest level.",
 
         // Features
         "about.features.excellence.title": "Excellence",
         "about.features.excellence.description":
-          "Pursuit of volleyball excellence",
+        "Pursuit of volleyball excellence",
         "about.features.community.title": "Community",
         "about.features.community.description": "Strong team community",
         "about.features.goals.title": "Goals",
@@ -27,9 +25,16 @@ vi.mock("react-i18next", () => ({
         "about.features.passion.title": "Passion",
         "about.features.passion.description": "Love for the sport",
 
-        // Stats
-        "common.years": "Years",
-        "common.titles": "Titles",
+        // Trainers
+        "about.trainersTitle": "Nuestros entrenadores",
+        "about.trainer1": "Jesús García",
+        "about.trainer2": "David Bardina",
+        "about.trainersCredentials":
+        "Certificación oficial de Vóley Playa Nivel 1",
+        "about.trainersExperience":
+        "Más de 6 años compitiendo, entrenando y creciendo en el deporte",
+        "about.trainersPassion":
+        "Amantes del vóley y del buen ambiente, dentro y fuera de la pista",
       };
       return translations[key] || key;
     },
@@ -86,34 +91,55 @@ describe("About - Business Value Tests", () => {
     expect(screen.getByText("Strong team community")).toBeInTheDocument();
   });
 
-  it("reinforces unique brand positioning", () => {
+  it("displays trainer information and credentials", () => {
     render(<About />);
 
-    // Test unique brand concept
-    expect(screen.getByText("Rock meets Volleyball")).toBeInTheDocument();
+    // Test trainer section
+    expect(screen.getByText("Nuestros entrenadores")).toBeInTheDocument();
+    expect(screen.getByText("Jesús García")).toBeInTheDocument();
+    expect(screen.getByText("David Bardina")).toBeInTheDocument();
+
+    // Test credentials and experience
     expect(
-      screen.getByText("Where passion and sport unite")
+      screen.getByText("Certificación oficial de Vóley Playa Nivel 1")
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "Más de 6 años compitiendo, entrenando y creciendo en el deporte"
+      )
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "Amantes del vóley y del buen ambiente, dentro y fuera de la pista"
+      )
     ).toBeInTheDocument();
   });
 
-  it("displays credibility metrics", () => {
+  it("includes trainer photos", () => {
     render(<About />);
 
-    // Test business credibility indicators
-    expect(screen.getByText("10+")).toBeInTheDocument();
-    expect(screen.getByText("25+")).toBeInTheDocument();
-    expect(screen.getByText("Years")).toBeInTheDocument();
-    expect(screen.getByText("Titles")).toBeInTheDocument();
+    // Test that trainer photos are present
+    const trainer1Image = screen.getByAltText("Jesús García");
+    const trainer2Image = screen.getByAltText("David Bardina");
+
+    expect(trainer1Image).toBeInTheDocument();
+    expect(trainer2Image).toBeInTheDocument();
+    expect(trainer1Image).toHaveAttribute(
+      "src",
+      "/src/assets/img/trainer1.png"
+    );
+    expect(trainer2Image).toHaveAttribute(
+      "src",
+      "/src/assets/img/trainer2.png"
+    );
   });
 
-  it("includes visual brand elements", () => {
+  it("maintains section structure and styling", () => {
     render(<About />);
 
-    // Test that brand icons/emojis are present (🎸 + 🏐)
-    const component = screen
-      .getByText("Rock meets Volleyball")
-      .closest("section");
-    expect(component).toContainHTML("🎸");
-    expect(component).toContainHTML("🏐");
+    // Test that the section has the correct structure
+    const aboutSection = document.querySelector("#about");
+    expect(aboutSection).toBeInTheDocument();
+    expect(aboutSection).toHaveClass("section-modern");
   });
 });
