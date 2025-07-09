@@ -1,6 +1,8 @@
 import { useTranslation } from "react-i18next";
 import { Users, Target, Heart, Star, Zap } from "lucide-react";
 import { SectionBadge, FeatureCard, ModernCard } from "./ui";
+import trainer1Image from "../assets/img/trainer1.png";
+import trainer2Image from "../assets/img/trainer2.png";
 
 const About = () => {
   const { t } = useTranslation();
@@ -42,24 +44,15 @@ const About = () => {
               {/* Section Badge */}
               <SectionBadge icon={Star} text={t("about.badge")} />
 
-              <h2
-                className="display-3 fw-bold mb-4"
-                style={{ color: "var(--neutral-800)" }}
-              >
+              <h2 className="display-3 fw-bold mb-4 about-title">
                 {t("about.title")}
               </h2>
 
               <div className="mb-4">
-                <p
-                  className="text-lg mb-4"
-                  style={{ color: "var(--neutral-600)", lineHeight: "1.7" }}
-                >
+                <p className="text-lg mb-4 about-description">
                   {t("about.description1")}
                 </p>
-                <p
-                  className="text-lg mb-0"
-                  style={{ color: "var(--neutral-600)", lineHeight: "1.7" }}
-                >
+                <p className="text-lg mb-0 about-description">
                   {t("about.description2")}
                 </p>
               </div>
@@ -82,121 +75,56 @@ const About = () => {
           {/* Visual Section */}
           <div className="col-lg-6">
             <div className="position-relative reveal">
-              {/* Main Visual Card */}
-              <ModernCard
-                className="p-5 text-center position-relative overflow-hidden"
-                padding=""
-              >
+              {/* Main Trainers Card */}
+              <ModernCard className="text-center position-relative overflow-hidden">
                 {/* Background Pattern */}
-                <div
-                  className="position-absolute top-0 start-0 w-100 h-100 opacity-1"
-                  style={{
-                    background: `
-                      radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 40%),
-                      radial-gradient(circle at 80% 80%, rgba(245, 158, 11, 0.1) 0%, transparent 40%)
-                    `,
-                  }}
-                ></div>
+                <div className="position-absolute top-0 start-0 w-100 h-100 opacity-1 trainers-container"></div>
 
                 <div className="position-relative">
-                  {/* Icon Display */}
-                  <div
-                    className="d-flex justify-content-center align-items-center mb-4"
-                    style={{ minHeight: "120px" }}
-                  >
-                    <div className="d-flex align-items-center gap-4">
-                      <div
-                        className="rounded-circle d-flex align-items-center justify-content-center animate-scale"
-                        style={{
-                          width: "80px",
-                          height: "80px",
-                          background: "var(--gradient-primary)",
-                          animation: "float 3s ease-in-out infinite",
-                        }}
-                      >
-                        <span style={{ fontSize: "2rem" }}>🎸</span>
-                      </div>
+                  {/* Trainers Title */}
+                  <h3 className="h4 fw-bold mb-4 trainers-title">
+                    {t("about.trainersTitle")}
+                  </h3>
 
-                      <div
-                        className="h2 fw-bold mx-3 mb-0"
-                        style={{
-                          color: "var(--neutral-400)",
-                          animation: "float 3s ease-in-out infinite 1s",
-                        }}
-                      >
-                        +
+                  {/* Trainers Photos */}
+                  <div className="trainers-photos-container">
+                    <div className="trainer-card">
+                      <div className="trainer-photo trainer-1">
+                        <img src={trainer1Image} alt={t("about.trainer1")} />
                       </div>
+                      <div className="trainer-name">{t("about.trainer1")}</div>
+                    </div>
 
-                      <div
-                        className="rounded-circle d-flex align-items-center justify-content-center animate-scale"
-                        style={{
-                          width: "80px",
-                          height: "80px",
-                          background: "var(--gradient-accent)",
-                          animation: "float 3s ease-in-out infinite 2s",
-                        }}
-                      >
-                        <span style={{ fontSize: "2rem" }}>🏐</span>
+                    <div className="trainer-card">
+                      <div className="trainer-photo trainer-2">
+                        <img src={trainer2Image} alt={t("about.trainer2")} />
                       </div>
+                      <div className="trainer-name">{t("about.trainer2")}</div>
                     </div>
                   </div>
 
-                  {/* Text Content */}
-                  <h3
-                    className="h3 fw-bold mb-3"
-                    style={{ color: "var(--neutral-800)" }}
-                  >
-                    {t("about.visualTitle")}
-                  </h3>
-                  <p
-                    className="text-base mb-0"
-                    style={{ color: "var(--neutral-600)" }}
-                  >
-                    {t("about.visualSubtitle")}
-                  </p>
+                  {/* Credentials */}
+                  <div className="mb-4">
+                    <p className="text-base trainers-credentials">
+                      {t("about.trainersCredentials")}
+                    </p>
+                  </div>
+
+                  {/* Experience */}
+                  <div className="mb-4">
+                    <p className="text-base trainers-experience">
+                      {t("about.trainersExperience")}
+                    </p>
+                  </div>
+
+                  {/* Passion */}
+                  <div>
+                    <p className="text-base trainers-passion">
+                      {t("about.trainersPassion")}
+                    </p>
+                  </div>
                 </div>
               </ModernCard>
-
-              {/* Floating Stats */}
-              <div
-                className="floating-card position-absolute"
-                style={{
-                  top: "-1rem",
-                  left: "-1rem",
-                  background: "white",
-                  borderRadius: "var(--radius-xl)",
-                  padding: "var(--space-lg)",
-                  boxShadow: "var(--shadow-xl)",
-                  border: "1px solid var(--neutral-200)",
-                }}
-              >
-                <div className="stat-modern">
-                  <div className="stat-number" style={{ fontSize: "2rem" }}>
-                    10+
-                  </div>
-                  <div className="stat-label">{t("common.years")}</div>
-                </div>
-              </div>
-
-              <div
-                className="floating-card position-absolute"
-                style={{
-                  bottom: "-1rem",
-                  right: "-1rem",
-                  background: "white",
-                  borderRadius: "var(--radius-xl)",
-                  padding: "var(--space-lg)",
-                  boxShadow: "var(--shadow-xl)",
-                  border: "1px solid var(--neutral-200)",
-                }}
-              >
-                <div className="stat-modern">
-                  <div className="stat-number" style={{ fontSize: "2rem" }}>
-                    25+
-                  </div>
-                  <div className="stat-label">{t("common.titles")}</div>
-                </div>
-              </div>
             </div>
           </div>
         </div>

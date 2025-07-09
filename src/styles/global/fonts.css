@@ -1,0 +1,78 @@
+/* =============================================
+   FONT DECLARATIONS - Block n' Roll
+   ============================================= */
+
+/* Feast of Flesh BB - Main Brand Font */
+@font-face {
+  font-family: "Feast of Flesh BB";
+  src: url("/fonts/FeastOfFleshBB.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Feast of Flesh BB Bold */
+@font-face {
+  font-family: "Feast of Flesh BB";
+  src: url("/fonts/FEASFBRG.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Feast of Flesh BB Italic */
+@font-face {
+  font-family: "Feast of Flesh BB";
+  src: url("/fonts/FEASFBI_.woff2") format("woff2");
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Web Font Loading for Fallbacks */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap");
+
+/* Font Loading Optimization */
+.font-loading {
+  font-display: swap;
+}
+
+/* Font Loading Detection */
+.fonts-loaded .font-title {
+  font-family: "Feast of Flesh BB", "Space Grotesk", "Impact", "Arial Black",
+    system-ui, sans-serif;
+}
+
+.fonts-failed .font-title {
+  font-family: "Space Grotesk", "Impact", "Arial Black", system-ui, sans-serif;
+}
+
+/* Font Loading Animation */
+@keyframes font-loading {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.font-loading-animation {
+  animation: font-loading 0.3s ease-in-out;
+}
+
+/* Critical Font Preload */
+@font-face {
+  font-family: "Feast of Flesh BB";
+  src: url("/fonts/FeastOfFleshBB.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}

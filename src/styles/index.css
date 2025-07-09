@@ -4,5 +4,5 @@
 
 /* Import all styles in order */
 @import "./global/index.css";
-@import "./components/index.css";
 @import "./utils/index.css";
+@import "./components/index.css";

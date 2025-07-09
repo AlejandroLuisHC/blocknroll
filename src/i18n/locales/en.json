@@ -31,8 +31,18 @@
     "title": "Who are we?",
     "description1": "Hello everyone! We are Sara, Jesús and David, passionate about beach volleyball and rock 🎸. After years of training and competing, we decided to create the Block n' Roll Beach Volleyball Club: a space to learn, improve, enjoy and build a community.",
     "description2": "We want to share our passion for this sport with dynamic, intense training adapted to each person, all in a close, fun environment full of sand!",
+    "trainersTitle": "Our trainers",
     "trainer1": "Jesús García",
     "trainer2": "David Bardina",
+    "trainersCredentials": "Official Beach Volleyball Level 1 Certification",
+    "trainersExperience": "More than 6 years competing, training and growing in the sport",
+    "trainersPassion": "Lovers of volleyball and good atmosphere, on and off the court",
+    "stats": {
+      "experience": "6+",
+      "experienceLabel": "Years Experience",
+      "players": "50+",
+      "playersLabel": "Happy Players"
+    },
     "features": {
       "excellence": {
         "title": "Dynamic training",
@@ -210,8 +220,8 @@
     "terms": "Terms"
   },
   "common": {
-    "years": "Years",
-    "titles": "Trial",
+    "years": "Years Experience",
+    "players": "Happy Players",
     "month": "month"
   }
 }

@@ -25,7 +25,7 @@ const Gallery = () => {
   const { t } = useTranslation();
 
   return (
-    <section id="gallery" className="section-padding bg-light">
+    <section id="gallery" className="section-modern bg-light">
       <div className="container">
         {/* Header */}
         <div className="text-center mb-5" style={{ paddingTop: "50px" }}>

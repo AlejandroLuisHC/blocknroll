@@ -182,10 +182,7 @@ const ContactInfoSection = () => {
 // Main component
 const Contact = () => {
   return (
-    <section
-      id="contact"
-      className="position-relative overflow-hidden contact-section-bg"
-    >
+    <section id="contact" className="section-modern">
       {/* Background Overlays */}
       <div className="contact-bg-overlay-linear" />
       <div className="contact-bg-overlay-radial" />
