@@ -5,6 +5,7 @@
 ### Features
 
 - Improve gallery section UI and UX
+- Improve contact section UI and UX
 
 ### Fixes
 
