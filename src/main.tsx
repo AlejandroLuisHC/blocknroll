@@ -2,7 +2,6 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import "./i18n";
-import "./utils/fontLoader";
 import App from "./App";
 
 // Get the root element and ensure it exists

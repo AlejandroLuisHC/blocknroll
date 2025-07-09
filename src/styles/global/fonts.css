@@ -5,7 +5,7 @@
 /* Feast of Flesh BB - Main Brand Font */
 @font-face {
   font-family: "Feast of Flesh BB";
-  src: url("/fonts/FeastOfFleshBB.woff2") format("woff2");
+  src: url("/fonts/FEASFBRG.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -71,7 +71,7 @@
 /* Critical Font Preload */
 @font-face {
   font-family: "Feast of Flesh BB";
-  src: url("/fonts/FeastOfFleshBB.woff2") format("woff2");
+  src: url("/fonts/FEASFBRG.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
   font-display: block;
