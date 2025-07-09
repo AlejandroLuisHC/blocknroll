@@ -15,11 +15,13 @@ const ContactInfo = ({
 }: ContactInfoProps) => {
   return (
     <div className="d-flex align-items-center rounded-3 contact-info-item">
-      <div className={`${bgColor} p-3 rounded-circle me-4 flex-shrink-0`}>
+      <div
+        className={`${bgColor} p-3 rounded-circle me-3 me-sm-4 flex-shrink-0`}
+      >
         <Icon size={24} className={iconColor} />
       </div>
-      <div className="flex-grow-1">
-        <p className="mb-0 fw-medium text-dark">{text}</p>
+      <div className="flex-grow-1 min-w-0">
+        <p className="mb-0 fw-medium text-dark text-break">{text}</p>
       </div>
     </div>
   );

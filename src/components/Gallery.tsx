@@ -28,20 +28,14 @@ const Gallery = () => {
     <section id="gallery" className="section-modern bg-light">
       <div className="container">
         {/* Header */}
-        <div className="text-center mb-5" style={{ paddingTop: "50px" }}>
+        <div className="text-center mb-5 gallery-header">
           {/* Section Badge */}
           <SectionBadge icon={Star} text={t("gallery.badge")} />
 
-          <h2
-            className="display-4 fw-bold mb-4"
-            style={{ color: "var(--block-main-dark)" }}
-          >
+          <h2 className="display-4 fw-bold mb-4 gallery-title">
             {t("gallery.title")}
           </h2>
-          <p
-            className="fs-5 text-secondary mx-auto"
-            style={{ maxWidth: "600px" }}
-          >
+          <p className="fs-5 text-secondary mx-auto gallery-subtitle">
             {t("gallery.subtitle")}
           </p>
         </div>
@@ -56,23 +50,27 @@ const Gallery = () => {
         </div>
 
         {/* Call to Action */}
-        <div className="text-center">
-          <div
-            className="bg-white rounded-4 shadow-sm p-4 p-md-5 mx-auto"
-            style={{ maxWidth: "600px" }}
-          >
-            <Instagram size={48} className="text-primary mb-3" />
-            <h4 className="mb-3">{t("footer.followUs")}</h4>
-            <p className="text-muted mb-4">{t("gallery.subtitle")}</p>
+        <div className="text-center px-3">
+          <div className="bg-white rounded-4 shadow-sm p-3 p-sm-4 p-md-5 mx-auto gallery-cta-container">
+            <Instagram size={40} className="text-primary mb-2 mb-sm-3" />
+            <h4 className="mb-2 mb-sm-3 fs-6 fs-sm-5">
+              {t("footer.followUs")}
+            </h4>
+            <p className="text-muted mb-3 mb-sm-4 small">
+              {t("gallery.subtitle")}
+            </p>
             <a
               href="https://www.instagram.com/blocknrollbeachvolleybcn"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-primary btn-lg d-inline-flex align-items-center gap-2"
+              className="btn btn-primary btn-sm d-inline-flex align-items-center gap-1 gap-sm-2 text-wrap gallery-cta-button"
             >
-              <Instagram size={20} />
-              @blocknrollbeachvolleybcn
-              <ExternalLink size={16} />
+              <Instagram size={16} className="flex-shrink-0" />
+              <span className="d-none d-sm-inline">
+                @blocknrollbeachvolleybcn
+              </span>
+              <span className="d-inline d-sm-none">@blocknroll</span>
+              <ExternalLink size={14} className="flex-shrink-0" />
             </a>
           </div>
         </div>
