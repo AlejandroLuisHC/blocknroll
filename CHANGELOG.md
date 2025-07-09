@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.3.1] (2025-07-09)
+
+### Fixes
+
+- Improve font loading
+
 ## [0.3.0] (2025-07-09)
 
 ### Features
