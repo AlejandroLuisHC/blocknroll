@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.3.1] (2025-07-09)
+
+### Features
+
+- Improve gallery section UI and UX
+- Improve contact section UI and UX
+
+### Fixes
+
+- Improve font loading
+
 ## [0.3.0] (2025-07-09)
 
 ### Features

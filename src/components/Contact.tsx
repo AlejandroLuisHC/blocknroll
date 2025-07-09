@@ -147,7 +147,7 @@ const ContactInfoSection = () => {
             {t("contact.info.description")}
           </p>
 
-          <div className="space-y-2">
+          <div className="contact-info-list">
             <ContactInfo
               icon={MapPin}
               text={t("contact.info.location.content")}
