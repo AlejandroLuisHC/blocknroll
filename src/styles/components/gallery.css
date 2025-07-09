@@ -1,0 +1,39 @@
+/* =============================================
+   GALLERY COMPONENT STYLES
+   ============================================= */
+
+.gallery-header {
+  padding-top: 50px;
+}
+
+.gallery-title {
+  color: var(--block-main-dark);
+}
+
+.gallery-subtitle {
+  max-width: 600px;
+}
+
+.gallery-cta-container {
+  max-width: 600px;
+  width: 100%;
+}
+
+.gallery-cta-button {
+  white-space: normal;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+  .gallery-header {
+    padding-top: 30px;
+  }
+
+  .gallery-subtitle {
+    max-width: 100%;
+  }
+
+  .gallery-cta-container {
+    max-width: 100%;
+  }
+}
