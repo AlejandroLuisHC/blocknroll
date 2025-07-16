@@ -31,7 +31,7 @@ const PDFDownloadButton = ({ option }: PDFDownloadButtonProps) => {
     <button
       type="button"
       className={`btn d-inline-flex align-items-center ${
-        option.language === "es" ? "btn-accent-modern" : "btn-primary-modern"
+        option.language === "en" ? "btn-accent-modern" : "btn-primary-modern"
       }`}
       onClick={() => handlePDFDownload(option)}
       aria-label={`Download detailed information in ${option.label}`}

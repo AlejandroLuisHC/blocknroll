@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
-import { Instagram, ExternalLink, Star } from "lucide-react";
-import { SectionBadge, GalleryImage } from "./ui";
+import { Instagram, ExternalLink } from "lucide-react";
+import { GalleryImage } from "./ui";
 
 // Simple gallery images for beach volleyball club
 const GALLERY_IMAGES = [
@@ -28,10 +28,7 @@ const Gallery = () => {
     <section id="gallery" className="section-modern bg-light">
       <div className="container">
         {/* Header */}
-        <div className="text-center mb-5 gallery-header">
-          {/* Section Badge */}
-          <SectionBadge icon={Star} text={t("gallery.badge")} />
-
+        <div className="text-center">
           <h2 className="display-4 fw-bold mb-4 gallery-title">
             {t("gallery.title")}
           </h2>

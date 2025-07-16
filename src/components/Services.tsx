@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
-import { Trophy, Target, Clock, Star, Zap, Award } from "lucide-react";
-import { SectionBadge, PricingCard } from "./ui";
+import { Trophy, Target, Clock, Star, Sparkles, Zap, Award } from "lucide-react";
+import { PricingCard } from "./ui";
 import PDFDownloadButton from "./services/PDFDownloadButton";
 import AdditionalServiceCard from "./services/AdditionalServiceCard";
 
@@ -45,7 +45,7 @@ const Services = () => {
         returnObjects: true,
       }) as string[],
       price: t("services.programs.basic.price"),
-      gradient: "from-blue-500 to-blue-600",
+      gradient: "var(--block-blue), var(--block-blue-light)",
     },
     {
       icon: Trophy,
@@ -55,7 +55,7 @@ const Services = () => {
         returnObjects: true,
       }) as string[],
       price: t("services.programs.competitive.price"),
-      gradient: "from-emerald-500 to-emerald-600",
+      gradient: "var(--block-main), var(--block-main-light)", 
     },
     {
       icon: Star,
@@ -65,7 +65,7 @@ const Services = () => {
         returnObjects: true,
       }) as string[],
       price: t("services.programs.elite.price"),
-      gradient: "from-purple-500 to-purple-600",
+      gradient: "var(--block-red), var(--block-red-light)",
     },
   ];
 
@@ -74,40 +74,40 @@ const Services = () => {
       icon: Award,
       title: t("services.additional.tournaments.title"),
       description: t("services.additional.tournaments.description"),
-      gradient: "from-rose-500 to-rose-600",
+      gradient: "var(--block-main-dark), var(--block-main)", 
     },
     {
       icon: Zap,
       title: t("services.additional.clinics.title"),
       description: t("services.additional.clinics.description"),
-      gradient: "from-indigo-500 to-indigo-600",
+      gradient: "var(--block-blue-light), var(--block-blue)",
     },
     {
       icon: Clock,
       title: t("services.additional.schedule.title"),
       description: t("services.additional.schedule.description"),
-      gradient: "from-amber-500 to-amber-600",
+      gradient: "var(--block-red-light), var(--block-red)", 
+    },
+    {
+      icon: Sparkles,
+      title: t("services.additional.trial.title"),
+      description: t("services.additional.trial.description"),
+        gradient: "var(--block-mojito-light), var(--block-mojito)", 
     },
   ];
 
   return (
-    <section id="services" className="section-modern section-alt">
+    <section
+      id="services"
+      className="section-modern section-alt services-section-blue"
+    >
       <div className="container">
         <div className="text-center mb-5 reveal">
-          {/* Section Badge */}
-          <SectionBadge icon={Star} text={t("services.badge")} />
-
           {/* Title */}
-          <h2
-            className="display-3 fw-bold mb-4"
-            style={{ background: "var(--gradient-primary)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
-          >
+          <h2 className="display-3 fw-bold mb-4 services-titles-color">
             {t("services.title")}
           </h2>
-          <p
-            className="text-lg mx-auto mb-4"
-            style={{ maxWidth: "48rem", color: "var(--block-cream)" }}
-          >
+          <p className="text-lg mx-auto mb-4 services-section-description">
             {t("services.subtitle")}
           </p>
 
@@ -119,8 +119,8 @@ const Services = () => {
           </div>
         </div>
 
-        {/* Modern Pricing Cards */}
-        <div className="grid-modern grid-3 mb-5">
+        {/* Service Information Blocks */}
+        <div className="service-blocks-container mb-5">
           {services.map((service, index) => (
             <PricingCard
               key={index}
@@ -130,20 +130,16 @@ const Services = () => {
               features={service.features}
               price={service.price}
               gradient={`linear-gradient(135deg, ${service.gradient})`}
-              delay={index * 100}
             />
           ))}
         </div>
 
         {/* Additional Services */}
         <div className="text-center mb-5">
-          <h3
-            className="h2 fw-bold mb-4"
-            style={{ background: "var(--gradient-accent-inverse)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
-          >
+          <h3 className="h2 fw-bold mb-4 services-titles-color">
             {t("services.additionalTitle")}
           </h3>
-          <div className="grid-modern grid-3">
+          <div className="additional-services-container">
             {additionalServices.map((service, index) => (
               <AdditionalServiceCard
                 key={index}
@@ -151,7 +147,6 @@ const Services = () => {
                 title={service.title}
                 description={service.description}
                 gradient={service.gradient}
-                delay={index * 100}
               />
             ))}
           </div>

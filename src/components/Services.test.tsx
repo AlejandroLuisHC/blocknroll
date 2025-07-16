@@ -52,6 +52,9 @@ vi.mock("react-i18next", () => ({
         "services.additional.schedule.title": "Flexible Schedule",
         "services.additional.schedule.description":
           "Training times that fit your schedule",
+        "services.additional.trial.title": "Free trial session",
+        "services.additional.trial.description":
+          "Try our training sessions and discover how we can help you improve.",
       };
 
       if (options?.returnObjects && Array.isArray(translations[key])) {
@@ -69,6 +72,7 @@ vi.mock("lucide-react", () => ({
   Target: () => <span data-testid="target-icon">🎯</span>,
   Clock: () => <span data-testid="clock-icon">🕒</span>,
   Star: () => <span data-testid="star-icon">⭐</span>,
+  Sparkles: () => <span data-testid="sparkles-icon">✨</span>,
   Zap: () => <span data-testid="zap-icon">⚡</span>,
   Award: () => <span data-testid="award-icon">🥇</span>,
   Download: () => <span data-testid="download-icon">⬇️</span>,
@@ -124,6 +128,7 @@ describe("Services - Business Logic Tests", () => {
     expect(screen.getByText("Tournaments")).toBeInTheDocument();
     expect(screen.getByText("Clinics")).toBeInTheDocument();
     expect(screen.getByText("Flexible Schedule")).toBeInTheDocument();
+    expect(screen.getByText("Free trial session")).toBeInTheDocument();
   });
 
   it("provides PDF downloads in multiple languages", () => {
@@ -145,6 +150,18 @@ describe("Services - Business Logic Tests", () => {
         "Choose the perfect program for your beach volleyball journey"
       )
     ).toBeInTheDocument();
-    expect(screen.getByText("Our Services")).toBeInTheDocument();
+    expect(screen.getByText("Additional Services")).toBeInTheDocument();
+  });
+
+  it("displays trial service for customer acquisition", () => {
+    render(<Services />);
+
+    // Test that the free trial service is prominently displayed
+    expect(screen.getByText("Free trial session")).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "Try our training sessions and discover how we can help you improve."
+      )
+    ).toBeInTheDocument();
   });
 });

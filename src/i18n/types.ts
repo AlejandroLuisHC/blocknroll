@@ -116,6 +116,10 @@ export interface TranslationSchema {
         title: string;
         description: string;
       };
+      trial: {
+        title: string;
+        description: string;
+      };
     };
   };
 

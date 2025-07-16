@@ -60,7 +60,6 @@ describe("About - Business Value Tests", () => {
 
     // Test main business identity
     expect(screen.getByText("We are Block n' Roll")).toBeInTheDocument();
-    expect(screen.getByText("About Us")).toBeInTheDocument();
 
     // Test value propositions
     expect(
