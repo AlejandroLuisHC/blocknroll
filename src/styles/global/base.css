@@ -116,3 +116,23 @@ select,
 .pricing-card-modern:hover {
   cursor: pointer;
 }
+
+/* Service info blocks should remain non-interactive */
+.service-info-block {
+  cursor: default !important;
+  user-select: text;
+}
+
+.service-info-block:hover {
+  cursor: default !important;
+}
+
+/* Additional service blocks should remain non-interactive */
+.additional-service-block {
+  cursor: default !important;
+  user-select: text;
+}
+
+.additional-service-block:hover {
+  cursor: default !important;
+}

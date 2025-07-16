@@ -62,6 +62,30 @@
   transform: scaleX(1);
 }
 
+/* Disable hover effects for service info blocks */
+.service-info-block {
+  cursor: default !important;
+  transition: none !important;
+}
+
+.service-info-block:hover {
+  transform: none !important;
+  border-color: inherit !important;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Disable hover effects for additional service blocks */
+.additional-service-block {
+  cursor: default !important;
+  transition: none !important;
+}
+
+.additional-service-block:hover {
+  transform: none !important;
+  border-color: inherit !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06) !important;
+}
+
 .pricing-card-featured {
   border-color: var(--block-main);
   background: linear-gradient(135deg, var(--primary-50), white);

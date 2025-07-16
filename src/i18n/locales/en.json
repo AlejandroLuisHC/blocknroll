@@ -76,7 +76,7 @@
           "Max. 8 people groups",
           "1h30 sessions",
           "Certified coaches",
-          "Free trial session"
+          "Dynamic training"
         ],
         "price": "35€/month"
       },
@@ -86,8 +86,8 @@
         "features": [
           "Max. 8 people groups",
           "1h30 sessions",
-          "Personalized follow-up",
-          "Dynamic training"
+          "Certified coaches",
+          "Sustained improvement"
         ],
         "price": "65€/month"
       },
@@ -119,6 +119,10 @@
       "schedule": {
         "title": "Premium Facilities",
         "description": "Outdoor courts, night lighting, changing rooms and bar at CEM Vall d'Hebron."
+      },
+      "trial": {
+        "title": "Free trial session",
+        "description": "Try our training sessions and discover how we can help you improve."
       }
     }
   },

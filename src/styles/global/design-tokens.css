@@ -17,8 +17,12 @@
   --block-blue-light: hsl(187, 49%, 53%);
   --block-blue-lighter: #7fc7d1;
 
-  --block-cream: #edf4ed;
-  --block-black: #131719;
+  --block-mojito: #3fa517;
+  --block-mojito-light: #66c440;
+  --block-mojito-lighter: #82f566;
+
+  --block-cream: #f4f2ed;
+  --block-black: #14110c;
 
   /* ===== FUNCTIONAL COLOR MAPPING ===== */
   --primary-50: #fff8f0;
@@ -38,15 +42,15 @@
   --danger-600: #7a1f10;
   --danger-700: #5a180c;
 
-  --neutral-50: var(--block-cream);
-  --neutral-100: #f8faf8;
-  --neutral-200: #e8ede8;
-  --neutral-300: #d1dad1;
-  --neutral-400: #a8b8a8;
-  --neutral-500: #7a8a7a;
-  --neutral-600: #5c6c5c;
-  --neutral-700: #434343;
-  --neutral-800: #2a2a2a;
+  --neutral-50: var(--block-cream); /* #f4f2ed */
+  --neutral-100: #f4f0e9;
+  --neutral-200: #ede5d8;
+  --neutral-300: #e2d6c4;
+  --neutral-400: #ccbda6;
+  --neutral-500: #a8957a;
+  --neutral-600: #8a7659;
+  --neutral-700: #65543d;
+  --neutral-800: #332a1e;
 
   /* ===== GRADIENTS ===== */
   --gradient-primary: linear-gradient(
@@ -68,6 +72,21 @@
     135deg,
     var(--accent-700) 0%,
     var(--block-blue-light) 100%
+  );
+  --gradient-accent-light: linear-gradient(
+    135deg,
+    var(--block-blue-light) 0%,
+    var(--block-blue) 100%
+  );
+  --gradient-accent-light-inverse: linear-gradient(
+    135deg,
+    var(--block-blue) 0%,
+    var(--block-blue-light) 100%
+  );
+  --gradient-blue-orange: linear-gradient(
+    150deg,
+    var(--block-blue) 0%,
+    var(--block-main-light) 100%
   );
   --gradient-hero: linear-gradient(
     135deg,

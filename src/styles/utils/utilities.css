@@ -293,6 +293,7 @@
 
 /* ===== SECTION LAYOUTS ===== */
 .section-modern {
+  background-color: var(--block-cream) !important;
   padding: 0;
 }
 

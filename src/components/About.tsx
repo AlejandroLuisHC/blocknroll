@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
-import { Users, Target, Heart, Star, Zap } from "lucide-react";
-import { SectionBadge, FeatureCard, ModernCard } from "./ui";
+import { Users, Target, Heart, Zap } from "lucide-react";
+import { FeatureCard, ModernCard } from "./ui";
 import trainer1Image from "../assets/img/trainer1.png";
 import trainer2Image from "../assets/img/trainer2.png";
 
@@ -41,9 +41,6 @@ const About = () => {
           {/* Content */}
           <div className="col-lg-6">
             <div className="reveal">
-              {/* Section Badge */}
-              <SectionBadge icon={Star} text={t("about.badge")} />
-
               <h2 className="display-3 fw-bold mb-4 about-title">
                 {t("about.title")}
               </h2>
