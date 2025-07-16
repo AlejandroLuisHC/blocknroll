@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.0] (2025-07-16)
+
+### Features
+
+- Improve services section UI and UX
+- Improve responsive design for services section
+- Remove badges
+
 ## [0.3.1] (2025-07-09)
 
 ### Features

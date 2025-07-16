@@ -1,7 +1,7 @@
 {
   "name": "blocknroll",
   "private": true,
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "Block n' Roll - Club de Voleibol de Playa en San Sebastián",
   "type": "module",
   "author": "Alejandro L. Herrero <alejandrolhc@gmail.com>",
@@ -19,7 +19,7 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:run": "vitest run",
-    "test:coverage": "vitest run --coverage"
+    "test:cover": "vitest run --coverage"
   },
   "dependencies": {
     "bootstrap": "^5.3.2",

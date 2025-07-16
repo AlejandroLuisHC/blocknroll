@@ -31,11 +31,7 @@
 .btn-primary-modern:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-xl);
-  background: linear-gradient(
-    135deg,
-    var(--block-main-light) 0%,
-    var(--block-main) 100%
-  );
+  background: var(--gradient-primary);
   color: white;
 }
 
@@ -59,7 +55,7 @@
 }
 
 .btn-accent-modern {
-  background: var(--gradient-accent);
+  background: var(--gradient-accent-inverse);
   color: white;
   box-shadow: var(--shadow-accent);
 }
@@ -67,11 +63,7 @@
 .btn-accent-modern:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-xl);
-  background: linear-gradient(
-    135deg,
-    var(--block-blue-light) 0%,
-    var(--block-blue) 100%
-  );
+  background: var(--gradient-accent-inverse);
   color: white;
 }
 

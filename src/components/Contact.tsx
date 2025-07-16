@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
-import { MapPin, Phone, Mail, Clock, Send, Star } from "lucide-react";
-import { SectionBadge, ContactInfo, FormField, ModernCard } from "./ui";
+import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
+import { ContactInfo, FormField, ModernCard } from "./ui";
 import { useContactForm } from "../hooks/useContactForm";
 
 // Types
@@ -15,9 +15,6 @@ const ContactSectionHeader = () => {
 
   return (
     <div className="contact-section-header">
-      <div className="mb-4">
-        <SectionBadge icon={Star} text={t("contact.badge")} />
-      </div>
       <h2 className="display-3 fw-bold mb-4 contact-section-title">
         {t("contact.title")}
       </h2>

@@ -76,7 +76,7 @@
           "Grupos máx. 8 personas",
           "Sesiones de 1h30",
           "Entrenadores acreditados",
-          "Sesión de prueba gratuita"
+          "Entrenamientos dinámicos"
         ],
         "price": "35€/mes"
       },
@@ -86,8 +86,8 @@
         "features": [
           "Grupos máx. 8 personas",
           "Sesiones de 1h30",
-          "Seguimiento personalizado",
-          "Entrenamientos dinámicos"
+          "Entrenadores acreditados",
+          "Mejora más sostenida"
         ],
         "price": "65€/mes"
       },
@@ -119,6 +119,10 @@
       "schedule": {
         "title": "Instalaciones Premium",
         "description": "Pistas outdoor, iluminación nocturna, vestuarios y bar en CEM Vall d'Hebron."
+      },
+      "trial": {
+        "title": "Sesión de prueba gratuita",
+        "description": "Prueba nuestros entrenamientos y descubre cómo podemos ayudarte a mejorar."
       }
     }
   },

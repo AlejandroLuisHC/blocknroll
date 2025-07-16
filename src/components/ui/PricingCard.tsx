@@ -8,7 +8,6 @@ interface PricingCardProps {
   features: string[];
   price: string;
   gradient?: string;
-  delay?: number;
 }
 
 const PricingCard = ({
@@ -18,77 +17,36 @@ const PricingCard = ({
   features,
   price,
   gradient,
-  delay = 0,
 }: PricingCardProps) => {
   return (
-    <div className="reveal" style={{ animationDelay: `${delay}ms` }}>
-      <div className="pricing-card-modern h-100 d-flex flex-column">
-        <div className="text-center flex-grow-1 d-flex flex-column">
-          {/* Icon */}
-          <div className="mb-4">
-            <div
-              className="rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3"
-              style={{
-                width: "80px",
-                height: "80px",
-                background: gradient || "var(--gradient-primary)",
-                boxShadow: "var(--shadow-md)",
-                
-              }}
-            >
-              <Icon size={32} className="text-block-main" />
+    <div className="service-info-block">
+      {/* Left side - Icon and Title */}
+      <div className="service-info-left">
+        <div
+          className="service-icon-badge"
+          style={{
+            background: gradient || "var(--gradient-primary)",
+          }}
+        >
+          <Icon size={24} className="text-white" />
+        </div>
+        <div className="service-header">
+          <h3 className="service-block-title">{title}</h3>
+          <div className="service-block-price">{price}</div>
+        </div>
+      </div>
+
+      {/* Right side - Description and Features */}
+      <div className="service-info-right">
+        <p className="service-block-description">{description}</p>
+
+        <div className="service-features-grid">
+          {features.map((feature, index) => (
+            <div key={index} className="service-feature-badge">
+              <Check size={12} className="feature-check" />
+              <span className="feature-label">{feature}</span>
             </div>
-
-            {/* Title & Description */}
-            <h3
-              className="h4 fw-bold mb-3"
-              style={{ color: "var(--neutral-800)" }}
-            >
-              {title}
-            </h3>
-            <p
-              className="text-base mb-4"
-              style={{ color: "var(--neutral-600)", lineHeight: "1.6" }}
-            >
-              {description}
-            </p>
-          </div>
-
-          {/* Features */}
-          <div className="flex-grow-1 mb-4">
-            <ul className="list-unstyled text-start">
-              {features.map((feature, index) => (
-                <li key={index} className="d-flex align-items-center mb-3">
-                  <div
-                    className="rounded-circle d-flex align-items-center justify-content-center me-3 flex-shrink-0"
-                    style={{
-                      width: "24px",
-                      height: "24px",
-                      background: "var(--gradient-primary)",
-                    }}
-                  >
-                    <Check size={12} className="text-white" />
-                  </div>
-                  <span
-                    className="text-sm"
-                    style={{ color: "var(--neutral-600)" }}
-                  >
-                    {feature}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Price */}
-          <div className="mt-auto">
-            <div
-              className="h3 fw-bold mb-0"
-              style={{ color: "var(--neutral-800)" }}
-            >
-              {price}
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>
