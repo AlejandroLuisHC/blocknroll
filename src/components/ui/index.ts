@@ -1,4 +1,3 @@
-export { default as SectionBadge } from "./SectionBadge";
 export { default as ModernCard } from "./ModernCard";
 export { default as IconButton } from "./IconButton";
 export { default as StatCard } from "./StatCard";
