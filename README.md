@@ -1,195 +1,224 @@
-# Block n' Roll - Club de Vóley Playa Barcelona
+# Block n' Roll - Beach Volleyball Club Website
 
-Una landing page moderna y acogedora para el club de voleibol de playa Block n' Roll, ubicado en Barcelona, España.
+A modern and welcoming landing page built with React and TypeScript.
 
-## 🏐 Sobre el Club
+## 🏐 About This Project
 
-Block n' Roll es un club de vóley playa en Barcelona creado por Sara, Jesús y David, apasionadxs del vóley playa y del rock 🎸. Ofrecemos entrenamientos dinámicos, intensos y adaptados a cada persona en un ambiente cercano, divertido y lleno de arena.
+This is a responsive, multilingual website template designed specifically for Block n' Roll beach volleyball club.
 
-### Características del Club
+### Key Features
 
-- **Entrenamientos Dinámicos**: Sesiones intensas y personalizadas de 1h30
-- **Grupos Reducidos**: Máximo 8 personas por pista para seguimiento cercano
-- **Entrenadores Acreditados**: Certificación oficial de Vóley Playa Nivel 1
-- **Sesión de Prueba Gratuita**: Para conocernos sin compromiso
-- **Metodología Propia**: Enfoque integral en capacidades físicas, técnicas y tácticas
-- **Comunidad Activa**: Buen rollo, ambiente familiar y mucha arena
+- **Modern Design**: Clean, responsive layout optimized for all devices
+- **Multilingual Support**: Built-in internationalization (Spanish/English/Catalan)
+- **Service Showcase**: Flexible sections for training programs and pricing
+- **Dynamic Gallery**: Future Instagram integration with smart fallback to sample images
+- **Contact Section**: User-friendly contact and inquiry section
+- **Performance Optimized**: Fast loading with modern build tools
 
-## 🚀 Tecnologías Utilizadas
+## 🚀 Technologies Used
 
-- **React 19** - Framework de JavaScript
-- **TypeScript** - Tipado estático
-- **Vite** - Build tool y servidor de desarrollo
-- **Bootstrap 5.3.2** - Framework de CSS para styling
-- **react-i18next** - Internacionalización (Español/Inglés)
-- **Lucide React** - Iconos modernos
-- **Instagram Basic Display API** - Integración con Instagram para galería en tiempo real
+- **React 19** - Modern React framework
+- **TypeScript** - Static type checking
+- **Vite** - Fast build tool and development server
+- **Bootstrap 5.3.2** - CSS framework for responsive design
+- **react-i18next** - Internationalization library
+- **Lucide React** - Modern icon library
+- **Instagram Basic Display API** - Social media integration
+- **Vitest** - Testing framework
 
-## 📦 Instalación
+## 📦 Installation
 
-1. **Clona el repositorio**
+1. **Clone the repository**
 
    ```bash
    git clone <repository-url>
-   cd blocknroll/blocknroll
+   cd blocknroll
    ```
 
-2. **Instala las dependencias**
+2. **Install dependencies**
 
    ```bash
    npm install
+   # or
+   pnpm install
    ```
 
-3. **Ejecuta el servidor de desarrollo**
+3. **Start the development server**
 
    ```bash
    npm run dev
+   # or
+   pnpm dev
    ```
 
-4. **Abre tu navegador**
-   Navega a `http://localhost:5173`
+4. **Open your browser**
+   Navigate to `http://localhost:3000`
 
-## 🏗️ Estructura del Proyecto
+## 🏗️ Project Structure
 
 ```
 src/
-├── components/          # Componentes React
-│   ├── Navbar.tsx      # Barra de navegación
-│   ├── Hero.tsx        # Sección principal con tema rock/vóley
-│   ├── About.tsx       # Quiénes somos
-│   ├── Services.tsx    # Entrenamientos y precios
-│   ├── Gallery.tsx     # Galería de la comunidad
-│   ├── Contact.tsx     # Formulario sin compromiso
-│   └── Footer.tsx      # Pie de página
-├── i18n/               # Internacionalización
-│   └── locales/        # Traducciones ES/EN
-├── types/              # Tipos TypeScript
-├── App.tsx             # Componente principal
-├── main.tsx           # Punto de entrada
-└── index.css          # Estilos Bootstrap + personalizados
+├── components/          # React components
+│   ├── Navbar.tsx      # Navigation bar
+│   ├── Hero.tsx        # Hero section with stats
+│   ├── About.tsx       # About section
+│   ├── Services.tsx    # Training programs and pricing
+│   ├── Gallery.tsx     # Dynamic photo gallery
+│   ├── Contact.tsx     # Contact form
+│   ├── Footer.tsx      # Footer component
+│   └── ui/             # Reusable UI components
+├── i18n/               # Internationalization
+│   └── locales/        # Translation files (ES/EN/CA)
+├── styles/             # CSS modules and styling
+├── hooks/              # Custom React hooks
+├── types/              # TypeScript type definitions
+├── utils/              # Utility functions
+├── layouts/            # Page layouts
+├── pages/              # Page components
+└── routes/             # Application routing
 ```
 
-## 🎨 Diseño y Tema
+## 🎨 Design System
 
-### Identidad Visual
+### Visual Identity
 
-- **Colores**: Azul (voleibol) y Amarillo (arena/playa)
-- **Tema**: Rock & Voleibol - "Where sand meets music"
-- **Estilo**: Moderno, acogedor y comunitario
-- **Emojis**: 🎸 🏐 🎵 🏖️ para reforzar la identidad rock/playa
+- **Color Scheme**: Blue (volleyball) and Yellow (beach/sand)
+- **Theme**: Rock & Volleyball - "Where sand meets music"
+- **Style**: Modern, welcoming, and community-focused
+- **Typography**: Custom font integration with fallbacks
 
-### Enfoque
+### Design Principles
 
-- **No comercial agresivo**: Informativo y acogedor
-- **Comunidad primero**: Enfoque en la familia Block n' Roll
-- **Transparencia**: Precios claros, sesión gratuita
-- **Inclusividad**: Para todos los niveles y edades
+- **Community First**: Focus on building relationships over sales
+- **Accessibility**: Designed for all skill levels and backgrounds
+- **Transparency**: Clear information and straightforward communication
+- **Mobile-First**: Responsive design optimized for all devices
 
-## 📱 Secciones de la Landing Page
+## 📱 Website Sections
 
-1. **Hero** - Presentación con tema rock/vóley y stats reales
-2. **About** - Historia de Sara, Jesús y David
-3. **Training** - Programas 1x/semana, 2x/semana y privados
-4. **Gallery** - Comunidad y entrenamientos (placeholder)
-5. **Contact** - Formulario sin compromiso
-6. **Footer** - Información de contacto y redes
+1. **Hero** - Eye-catching introduction with key statistics
+2. **About** - Club story and team information
+3. **Services** - Training programs and pricing options
+4. **Gallery** - Community photos and activities
+5. **Contact** - Contact form and location information
+6. **Footer** - Additional information and social links
 
-## 🔧 Scripts Disponibles
+## 🔧 Available Scripts
 
-- `npm run dev` - Servidor de desarrollo
-- `npm run build` - Construir para producción
-- `npm run preview` - Vista previa de la build
-- `npm run lint` - Linting del código
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+- `npm run test` - Run tests
+- `npm run test:coverage` - Run tests with coverage
 
-## 📍 Información del Club
+## 🌐 Customization
 
-- **Ubicación**: CEM Eurofitness Vall d'Hebron, Barcelona
-- **Dirección**: Pg. de la Vall d'Hebron, 178, Horta-Guinardó, 08035 Barcelona
-- **Email**: blocknroll.bcnclub@gmail.com
-- **Instagram**: @blocknrollbeachvolleybcn
-- **Horarios**: Lun-Vie 18:00-22:30 (Inicio: Septiembre 2025)
+### Content Localization
 
-## 💸 Precios
+The project supports multiple languages through `react-i18next`. Translation files are located in `src/i18n/locales/`:
 
-- **1 Entreno/Semana**: 35€/mes
-- **2 Entrenos/Semana**: 65€/mes
-- **Entrenamientos Privados**: Consultar
-- **Licencia Federativa**: 35€/año (incluye seguro)
+- `es.json` - Spanish translations
+- `en.json` - English translations
+- `ca.json` - Catalan translations
 
-## 🚀 Despliegue
+### Styling
 
-El proyecto está configurado para ser desplegado fácilmente:
+Styles are organized using CSS modules:
 
-1. **Netlify/Vercel**: Conecta tu repositorio
-2. **GitHub Pages**: Usa `npm run build` y sube la carpeta `dist`
+- `src/styles/global/` - Global styles and design tokens
+- `src/styles/components/` - Component-specific styles
+- `src/styles/utils/` - Utility classes and responsive helpers
 
-## 🎯 Próximas Características
+### Content Management
 
-- [ ] Galería real con fotos de entrenamientos
-- [ ] Integración con Instagram API
-- [ ] Sistema de reservas para sesiones gratuitas
-- [ ] Blog sobre metodología y técnicas
-- [ ] Testimonios de la comunidad
+Update content by modifying the translation files. No code changes required for:
 
-## 📞 Contacto del Club
+- Text content
+- Pricing information
+- Contact details
+- Service descriptions
 
-Para más información:
+## 📷 Instagram Integration
 
-- **Email**: blocknroll.bcnclub@gmail.com
-- **Instagram**: @blocknrollbeachvolleybcn
-- **Lema**: "We will Block n' Roll!" 🎸
+The gallery can automatically display Instagram posts when configured:
 
-## 📷 Configuración de Instagram
+### Setup Instructions
 
-La galería puede mostrar automáticamente las últimas 4 publicaciones de Instagram. Para configurar esta funcionalidad:
+1. **Create Instagram App**
 
-### 1. Crear App de Instagram
+   - Visit [Facebook Developers](https://developers.facebook.com/apps/)
+   - Create a new "Consumer" type app
+   - Add "Instagram Basic Display" product
 
-1. Ve a [Facebook Developers](https://developers.facebook.com/apps/)
-2. Crea una nueva app tipo "Consumer"
-3. Añade el producto "Instagram Basic Display"
-4. Configura las URLs de callback y permisos
+2. **Environment Variables**
 
-### 2. Variables de Entorno
+   Create `.env.local` in the project root:
 
-Crea un archivo `.env.local` en la raíz del proyecto:
+   ```bash
+   VITE_INSTAGRAM_ACCESS_TOKEN=your_access_token
+   VITE_INSTAGRAM_USER_ID=your_user_id
+   ```
+
+3. **Features**
+   - ✅ Automatic post loading
+   - ✅ Smart fallback to sample images
+   - ✅ Media type support (images/videos)
+   - ✅ Error handling and loading states
+   - ✅ Manual refresh capability
+
+## 🚀 Deployment
+
+The project is ready for deployment on various platforms:
+
+### Netlify/Vercel
+
+1. Connect your repository
+2. Set build command: `npm run build`
+3. Set publish directory: `dist`
+
+### GitHub Pages
+
+1. Run `npm run build`
+2. Deploy the `dist` folder
+
+### Environment Variables
+
+Remember to configure any required environment variables on your hosting platform.
+
+## 🧪 Testing
+
+The project includes comprehensive testing:
+
+- **Unit Tests**: Component and utility function tests
+- **Integration Tests**: Contact form and user interaction tests
+- **Coverage Reports**: Detailed test coverage analysis
+
+Run tests with:
 
 ```bash
-# Instagram Basic Display API Configuration
-VITE_INSTAGRAM_ACCESS_TOKEN=your_long_lived_access_token_here
-VITE_INSTAGRAM_USER_ID=your_instagram_user_id_here
+npm run test
+npm run test:coverage
 ```
 
-### 3. Obtener Token de Acceso
+## 🎯 Future Enhancements
 
-```bash
-# 1. Autorización (reemplaza YOUR_APP_ID y REDIRECT_URI)
-https://api.instagram.com/oauth/authorize?client_id=YOUR_APP_ID&redirect_uri=REDIRECT_URI&scope=user_profile,user_media&response_type=code
+- [ ] Advanced booking system
+- [ ] Payment integration
+- [ ] Member dashboard
+- [ ] Event management
+- [ ] Blog functionality
+- [ ] SEO optimizations
+- [ ] Analytics integration
 
-# 2. Intercambiar código por token (POST request)
-curl -X POST https://api.instagram.com/oauth/access_token \
-  -F client_id=YOUR_APP_ID \
-  -F client_secret=YOUR_APP_SECRET \
-  -F grant_type=authorization_code \
-  -F redirect_uri=REDIRECT_URI \
-  -F code=AUTHORIZATION_CODE
+## 📄 License
 
-# 3. Intercambiar por token de larga duración
-curl -i -X GET "https://graph.instagram.com/access_token?grant_type=ig_exchange_token&client_secret=YOUR_APP_SECRET&access_token=SHORT_LIVED_TOKEN"
-```
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-### 4. Funcionalidad
+## 🤝 Contributing
 
-- ✅ **Carga automática**: Muestra las últimas 4 publicaciones
-- ✅ **Fallback inteligente**: Si no hay configuración o falla la API, usa imágenes de muestra
-- ✅ **Categorización automática**: Clasifica posts por palabras clave en caption
-- ✅ **Soporte multimedia**: Imágenes y videos (con thumbnails)
-- ✅ **Enlaces directos**: Botón para ver publicación original en Instagram
-- ✅ **Actualización manual**: Botón de refresh para contenido nuevo
-- ✅ **Manejo de errores**: Estados de carga y error user-friendly
-
-Sin configuración, la galería funcionará con imágenes de muestra automáticamente.
+Contributions are welcome! Please feel free to submit a Pull Request.
 
 ---
 
-Desarrollado con ❤️ para la familia Block n' Roll
+Built with ❤️ for the beach volleyball community
