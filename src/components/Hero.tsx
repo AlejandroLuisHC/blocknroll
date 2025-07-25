@@ -2,8 +2,8 @@ import { useTranslation } from "react-i18next";
 import { Sparkles, Award, Users, Clock, Target, Zap } from "lucide-react";
 import { StatCard } from "./ui";
 import { useEffect, useRef, useState } from "react";
-import handRock from "../assets/img/hand-rock.png";
-import handVolley from "../assets/img/hand-volley.png";
+import handRock from "../assets/img/hand-rock-official.png";
+import handVolley from "../assets/img/hand-volley-official.png";
 import volleyballSVG from "../assets/img/volleyball.svg";
 import "../styles/components/hero.css";
 
