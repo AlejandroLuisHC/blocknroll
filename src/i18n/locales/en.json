@@ -137,14 +137,6 @@
       "celebration": "Celebration",
       "events": "Events"
     },
-    "images": {
-      "training1": "Training in action",
-      "training2": "Small groups",
-      "competition1": "Summer competition",
-      "competition2": "Team in tournaments",
-      "celebration1": "Celebrating together",
-      "events1": "Club events"
-    },
     "noImages": "More photos coming soon",
     "noImagesDescription": "We're preparing an amazing gallery to share with you.",
     "loading": "Loading Instagram content...",
@@ -153,6 +145,10 @@
     "error": "Error",
     "filters": "Gallery filters",
     "viewMore": "View more on Instagram",
+    "watchOnInstagram": "Watch on Instagram",
+    "ctaText": "Stay up to date with our latest training sessions and community moments",
+    "followButton": "Follow @blocknrollbeachvolleybcn",
+    "swipeHint": "Swipe to see more",
     "status": {
       "instagram": "Content from Instagram",
       "fallback": "Sample gallery"

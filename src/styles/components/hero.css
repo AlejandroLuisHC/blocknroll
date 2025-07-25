@@ -101,7 +101,7 @@
 
 /* Hero Title */
 .hero-title {
-  background: var(--neutral-700);
+  background: var(--neutral-800);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -252,7 +252,7 @@
   right: 5%;
   width: 900px;
   height: 900px;
-  background-image: url("/bg-logo.png");
+  background-image: url("../../assets/img/logo-official-no-text.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;

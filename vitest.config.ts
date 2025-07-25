@@ -37,8 +37,6 @@ export default defineConfig({
         "src/components/ui/IconButton.tsx", // Simple button wrapper
         "src/components/ui/PricingCard.tsx", // Simple display component
         "src/components/ui/SocialLink.tsx", // Simple link component
-        "src/components/services/**", // Service components (no business logic)
-        "src/components/Gallery.tsx", // Simple image gallery with no business logic
       ],
       // Set coverage thresholds for remaining files
       thresholds: {

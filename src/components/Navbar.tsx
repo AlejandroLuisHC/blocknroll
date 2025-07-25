@@ -2,7 +2,7 @@ import { useState, useCallback, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Menu, X } from "lucide-react";
 import { LanguageSelector } from "./";
-import logoImage from "../assets/img/logo-no-bg-gpt.png";
+import logoImage from "../assets/img/logo-official.png";
 import "../styles/components/navbar.css";
 
 // Navigation items configuration

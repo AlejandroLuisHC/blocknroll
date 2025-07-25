@@ -137,14 +137,6 @@
       "celebration": "Celebració",
       "events": "Esdeveniments"
     },
-    "images": {
-      "training1": "Entrenament en acció",
-      "training2": "Grups reduïts",
-      "competition1": "Competició d'estiu",
-      "competition2": "Equip en tornejos",
-      "celebration1": "Celebrant junts",
-      "events1": "Esdeveniments del club"
-    },
     "noImages": "Pròximament més fotos",
     "noImagesDescription": "Estem preparant una galeria increïble per compartir amb tu.",
     "loading": "Carregant contingut d'Instagram...",
@@ -153,6 +145,10 @@
     "error": "Error",
     "filters": "Filtres de galeria",
     "viewMore": "Veure més a Instagram",
+    "watchOnInstagram": "Veure a Instagram",
+    "ctaText": "Mantén-te al dia amb les nostres últimes sessions d'entrenament i moments de la comunitat",
+    "followButton": "Seguir @blocknrollbeachvolleybcn",
+    "swipeHint": "Llisca per veure més",
     "status": {
       "instagram": "Contingut des d'Instagram",
       "fallback": "Galeria de mostra"

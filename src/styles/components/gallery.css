@@ -7,29 +7,568 @@
 }
 
 .gallery-subtitle {
-  max-width: 600px;
+  max-width: 700px;
+  text-wrap: pretty;
+}
+
+/* ===== CTA SECTION ===== */
+.gallery-cta-section {
+  text-align: center;
+  text-wrap: pretty;
+  padding: 3rem 0;
 }
 
 .gallery-cta-container {
-  max-width: 600px;
+  position: relative;
+  max-width: 500px;
+  margin: 0 auto;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 1.7rem;
+}
+
+.gallery-cta-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.2;
+  background: radial-gradient(
+      circle at 30% 20%,
+      var(--block-main) 0%,
+      transparent 50%
+    ),
+    radial-gradient(circle at 70% 80%, var(--block-blue) 0%, transparent 50%);
+  border-radius: 20px;
+  z-index: -1;
+}
+
+.gallery-cta-text {
+  color: var(--neutral-700);
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+/* ===== INSTAGRAM BUTTONS ===== */
+.btn-instagram {
+  background-color: var(--block-mojito);
+  border: none;
+  color: white;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.5rem 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all var(--transition-normal);
+  text-decoration: none;
+}
+
+.btn-instagram:hover {
+  background-color: var(--block-mojito-light);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(63, 165, 23, 0.25);
+  text-decoration: none;
+}
+
+.btn-instagram:active {
+  background-color: var(--block-mojito);
+  transform: translateY(0);
+}
+
+.btn-instagram:focus {
+  box-shadow: 0 0 0 3px rgba(63, 165, 23, 0.3);
+  outline: none;
+}
+
+.btn-instagram-large {
+  font-size: 1.05rem;
+  padding: 0.75rem 1.5rem;
+  gap: 0.75rem;
+}
+
+.btn-instagram-small {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  gap: 0.25rem;
+}
+
+.btn-instagram-small:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(63, 165, 23, 0.25);
+}
+
+/* ===== GALLERY OVERLAY ===== */
+.gallery-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1040;
+  transition: opacity var(--transition-normal);
+}
+
+/* ===== CAROUSEL CONTAINER ===== */
+.gallery-carousel-container {
+  position: relative;
+  overflow: visible;
+  transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gallery-carousel-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  height: 100%;
+  padding: 0 0.5rem;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Mobile scroll behavior */
+.gallery-carousel-inner.scroll-mode {
+  justify-content: flex-start;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+  padding: 0 1rem;
+  /* Ensure proper scroll snapping */
+  scroll-snap-type: x mandatory;
+}
+
+.gallery-carousel-inner.scroll-mode::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+/* ===== CAROUSEL ITEMS ===== */
+.gallery-carousel-item {
+  cursor: pointer;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: var(--radius-xl);
+  flex-shrink: 0;
+  position: relative;
+  transform-origin: center center;
+  overflow: hidden;
+}
+
+.gallery-carousel-item:hover:not(.focused) {
+  transform: translateY(-4px) scale(1.02) !important;
+  box-shadow: var(--shadow-lg);
+}
+
+.gallery-carousel-item.focused {
+  cursor: default;
+  box-shadow: var(--shadow-2xl);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.1);
+  z-index: 1050;
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+/* Scroll mode specific styles */
+.gallery-carousel-inner.scroll-mode .gallery-carousel-item {
+  flex-shrink: 0;
+  scroll-snap-align: center;
+  min-width: 260px;
+  width: 260px;
+  height: 325px;
+}
+
+/* Disable hover effects in scroll mode */
+.gallery-carousel-inner.scroll-mode .gallery-carousel-item:hover:not(.focused) {
+  transform: none !important;
+  box-shadow: var(--shadow-sm);
+}
+
+/* ===== GALLERY IMAGE CONTAINER ===== */
+.gallery-image-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
   width: 100%;
 }
 
-.gallery-cta-button {
-  white-space: normal;
+.gallery-image-container-preview {
+  padding-bottom: 125%; /* 4:5 aspect ratio */
 }
 
-/* Responsive adjustments */
-@media (max-width: 576px) {
-  .gallery-header {
-    padding-top: 30px;
+.gallery-image-container-focused {
+  height: auto;
+  padding-bottom: 0;
+}
+
+/* ===== MEDIA ELEMENTS ===== */
+.gallery-media {
+  width: 100%;
+  transition: all var(--transition-normal);
+  border-radius: inherit;
+}
+
+.gallery-media-preview {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery-media-focused {
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  height: auto;
+  object-fit: contain;
+  max-height: 80vh;
+  max-width: 90vw;
+}
+
+/* ===== OVERLAY ELEMENTS ===== */
+.gallery-item-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all var(--transition-normal);
+  border-radius: inherit;
+}
+
+.gallery-item-overlay:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+  opacity: 1;
+}
+
+.gallery-item-overlay-text {
+  color: white;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.gallery-instagram-button-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.75rem;
+}
+
+/* ===== SCROLL INDICATORS ===== */
+.gallery-scroll-indicator {
+  text-align: center;
+  color: var(--neutral-500);
+  font-size: 0.875rem;
+  font-weight: 500;
+  display: none;
+}
+
+.gallery-scroll-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.gallery-scroll-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--neutral-300);
+  transition: all var(--transition-fast);
+}
+
+.gallery-scroll-dot.active {
+  background-color: var(--block-mojito);
+  transform: scale(1.2);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Large Tablets (iPad Pro) */
+@media (max-width: 1024px) {
+  .gallery-carousel-inner {
+    gap: 0.75rem;
+    padding: 0 1rem;
+  }
+
+  .gallery-carousel-item:not(.focused) {
+    width: 260px;
+    height: 325px;
+  }
+
+  .gallery-cta-section {
+    padding: 2.5rem 0;
+  }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+  .gallery-title {
+    font-size: 2.5rem;
   }
 
   .gallery-subtitle {
-    max-width: 100%;
+    font-size: 1.125rem;
+    max-width: 90%;
+  }
+
+  .gallery-carousel-container {
+    height: auto !important;
+    min-height: 380px;
+  }
+
+  .gallery-carousel-inner {
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+
+  .gallery-carousel-item:not(.focused) {
+    width: 280px;
+    height: 350px;
+  }
+
+  .gallery-carousel-item.focused {
+    max-width: 90vw !important;
+    max-height: 85vh !important;
+  }
+
+  .gallery-media-focused {
+    max-height: 75vh;
+    max-width: 85vw;
+  }
+
+  .gallery-cta-section {
+    padding: 2rem 0;
   }
 
   .gallery-cta-container {
+    padding: 1.5rem;
+    margin: 0 1rem;
+    max-width: 450px;
+  }
+
+  .gallery-cta-text {
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .btn-instagram-large {
+    font-size: 1rem;
+    padding: 0.675rem 1.25rem;
+  }
+
+  .gallery-instagram-button-container {
+    padding: 0.5rem;
+  }
+
+  .btn-instagram-small {
+    font-size: 0.7rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+/* Mobile Phones - Switch to scroll mode */
+@media (max-width: 768px) {
+  .gallery-carousel-inner.scroll-mode {
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+
+  .gallery-carousel-inner.scroll-mode .gallery-carousel-item {
+    min-width: 280px;
+    width: 280px;
+    height: 350px;
+  }
+
+  /* Show scroll indicator */
+  .gallery-scroll-indicator {
+    display: block;
+  }
+}
+
+@media (max-width: 576px) {
+  .gallery-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .gallery-subtitle {
+    font-size: 1rem;
     max-width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  .gallery-carousel-container {
+    min-height: 340px;
+  }
+
+  .gallery-carousel-inner.scroll-mode {
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+
+  .gallery-carousel-inner.scroll-mode .gallery-carousel-item {
+    min-width: 260px;
+    width: 260px;
+    height: 325px;
+  }
+
+  .gallery-carousel-item.focused {
+    max-width: 95vw !important;
+    max-height: 80vh !important;
+  }
+
+  .gallery-media-focused {
+    max-height: 70vh;
+    max-width: 90vw;
+  }
+
+  .gallery-cta-section {
+    padding: 1.5rem 0;
+  }
+
+  .gallery-cta-container {
+    padding: 1.25rem;
+    margin: 0 0.75rem;
+    border-radius: 16px;
+  }
+
+  .gallery-cta-text {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+  }
+
+  .btn-instagram-large {
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+    gap: 0.5rem;
+  }
+
+  .gallery-instagram-button-container {
+    padding: 0.375rem;
+  }
+
+  .btn-instagram-small {
+    font-size: 0.65rem;
+    padding: 0.35rem 0.7rem;
+    gap: 0.2rem;
+  }
+
+  /* Show scroll indicator */
+  .gallery-scroll-indicator {
+    display: block;
+  }
+}
+
+/* Small Phones */
+@media (max-width: 480px) {
+  .gallery-title {
+    font-size: 1.75rem;
+  }
+
+  .gallery-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .gallery-carousel-container {
+    min-height: 300px;
+  }
+
+  .gallery-carousel-inner.scroll-mode {
+    gap: 0.75rem;
+    padding: 0 0.75rem;
+  }
+
+  .gallery-carousel-inner.scroll-mode .gallery-carousel-item {
+    min-width: 220px;
+    width: 220px;
+    height: 275px;
+  }
+
+  .gallery-carousel-item.focused {
+    max-width: 98vw !important;
+    max-height: 75vh !important;
+  }
+
+  .gallery-media-focused {
+    max-height: 65vh;
+    max-width: 95vw;
+  }
+
+  .gallery-cta-container {
+    padding: 1rem;
+    margin: 0 0.5rem;
+    border-radius: 12px;
+  }
+
+  .gallery-cta-text {
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+
+  .btn-instagram-large {
+    font-size: 0.8rem;
+    padding: 0.5rem 0.8rem;
+    border-radius: 20px;
+  }
+
+  .btn-instagram-small {
+    font-size: 0.6rem;
+    padding: 0.3rem 0.6rem;
+  }
+}
+
+/* Extra Small Phones */
+@media (max-width: 360px) {
+  .gallery-carousel-inner.scroll-mode {
+    gap: 0.5rem;
+    padding: 0 0.5rem;
+  }
+
+  .gallery-carousel-inner.scroll-mode .gallery-carousel-item {
+    min-width: 200px;
+    width: 200px;
+    height: 250px;
+  }
+
+  .gallery-cta-container {
+    margin: 0 0.25rem;
+  }
+
+  .gallery-cta-text {
+    font-size: 0.8rem;
+  }
+
+  .btn-instagram-large {
+    font-size: 0.75rem;
+    padding: 0.45rem 0.7rem;
   }
 }

@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.5.0] (2025-07-25)
+
+### Features
+
+- Improve gallery section UI and UX
+- Improve responsive design for gallery section
+- Improve gallery section tests
+- Improve assets with official resources
+
 ## [0.4.0] (2025-07-16)
 
 ### Features
