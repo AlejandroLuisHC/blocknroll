@@ -134,14 +134,6 @@ export interface TranslationSchema {
       celebration: string;
       events: string;
     };
-    images: {
-      training1: string;
-      training2: string;
-      competition1: string;
-      competition2: string;
-      celebration1: string;
-      events1: string;
-    };
     noImages: string;
     noImagesDescription: string;
     loading: string;
