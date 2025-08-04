@@ -29,7 +29,7 @@
     "lucide-react": "^0.522.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-i18next": "^15.5.3",
+    "react-i18next": "^15.6.1",
     "react-router-dom": "^7.6.2"
   },
   "devDependencies": {
