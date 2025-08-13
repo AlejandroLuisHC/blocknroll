@@ -143,6 +143,26 @@
   box-shadow: 0 0 0 2px rgba(115, 115, 115, 0.2);
 }
 
+/* Loading state for submit buttons */
+.btn[data-loading="true"] {
+  pointer-events: none;
+  opacity: .85;
+}
+
+.btn[data-loading="true"]::after {
+  content: "";
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid rgba(255,255,255,.6);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: btn-spin .6s linear infinite;
+}
+
+@keyframes btn-spin {
+  to { transform: rotate(360deg); }
+}
+
 /* Touch device optimizations */
 @media (hover: none) and (pointer: coarse) {
   .btn-modern {

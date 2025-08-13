@@ -16,6 +16,7 @@ interface FormFieldProps {
   className?: string;
   pattern?: string;
   inputMode?: React.HTMLAttributes<HTMLInputElement>["inputMode"];
+  invalidFeedback?: string;
 }
 
 const FormField = ({
@@ -31,6 +32,7 @@ const FormField = ({
   className = "",
   pattern,
   inputMode,
+  invalidFeedback,
 }: FormFieldProps) => {
   const baseClasses = type === "select" ? "form-select" : "form-control";
 
@@ -38,47 +40,62 @@ const FormField = ({
     switch (type) {
       case "textarea":
         return (
-          <textarea
-            id={name}
-            name={name}
-            value={value}
-            onChange={onChange}
-            required={required}
-            className={`${baseClasses} ${className}`}
-            placeholder={placeholder}
-            rows={rows}
-          />
+          <>
+            <textarea
+              id={name}
+              name={name}
+              value={value}
+              onChange={onChange}
+              required={required}
+              className={`${baseClasses} ${className}`}
+              placeholder={placeholder}
+              rows={rows}
+            />
+            {invalidFeedback && (
+              <div className="invalid-feedback">{invalidFeedback}</div>
+            )}
+          </>
         );
       case "select":
         return (
-          <select
-            id={name}
-            name={name}
-            value={value}
-            onChange={onChange}
-            className={`${baseClasses} ${className}`}
-          >
-            {options?.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
+          <>
+            <select
+              id={name}
+              name={name}
+              value={value}
+              onChange={onChange}
+              className={`${baseClasses} ${className}`}
+            >
+              {options?.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+            {invalidFeedback && (
+              <div className="invalid-feedback">{invalidFeedback}</div>
+            )}
+          </>
         );
       default:
         return (
-          <input
-            type={type}
-            id={name}
-            name={name}
-            value={value}
-            onChange={onChange}
-            required={required}
-            className={`${baseClasses} ${className}`}
-            placeholder={placeholder}
-            pattern={pattern}
-            inputMode={inputMode}
-          />
+          <>
+            <input
+              type={type}
+              id={name}
+              name={name}
+              value={value}
+              onChange={onChange}
+              required={required}
+              className={`${baseClasses} ${className}`}
+              placeholder={placeholder}
+              pattern={pattern}
+              inputMode={inputMode}
+            />
+            {invalidFeedback && (
+              <div className="invalid-feedback">{invalidFeedback}</div>
+            )}
+          </>
         );
     }
   };

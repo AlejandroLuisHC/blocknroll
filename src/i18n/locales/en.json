@@ -172,6 +172,7 @@
       "phonePlaceholder": "+34 600 000 000",
       "messagePlaceholder": "Tell us your level, availability or any questions...",
       "required": "*",
+      "errorMessage": "There was a problem sending your request. Please try again.",
       "inquiryTypeLabel": "Type of inquiry",
       "inquiryOptions": {
         "join": "I want to join the club",

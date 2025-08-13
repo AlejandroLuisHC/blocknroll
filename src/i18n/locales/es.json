@@ -172,6 +172,7 @@
       "phonePlaceholder": "+34 600 000 000",
       "messagePlaceholder": "Cuéntanos tu nivel, disponibilidad o cualquier pregunta...",
       "required": "*",
+      "errorMessage": "Hubo un problema al enviar tu solicitud. Inténtalo de nuevo.",
       "inquiryTypeLabel": "Tipo de consulta",
       "inquiryOptions": {
         "join": "Quiero unirme al club",

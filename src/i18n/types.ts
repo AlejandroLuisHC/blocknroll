@@ -208,6 +208,7 @@ export interface TranslationSchema {
         other: string;
       };
       successMessage: string;
+      errorMessage: string;
     };
     email: {
       typeJoin: string;

@@ -18,7 +18,7 @@ const ContactSectionHeader = () => {
 
 const ContactFormSection = () => {
   const { t } = useTranslation();
-  const { formData, handleSubmit, handleChange, toggleAvailability } = useContactForm();
+  const { formData, handleSubmit, handleChange, toggleAvailability, status, submitError } = useContactForm();
 
   return (
     <div className="col-lg-7">
@@ -60,7 +60,7 @@ const ContactFormSection = () => {
             required
             placeholder={t("contact.form.namePlaceholder")}
             className="mb-4"
-            pattern={'^[A-Za-zÀ-ÖØ-öø-ÿ\\s\'’-]{2,}$'}
+            pattern={'^[A-Za-zÀ-ÖØ-öø-ÿ \u2019\u2018\'-]{2,}$'}
           />
 
           <FormField
@@ -83,7 +83,7 @@ const ContactFormSection = () => {
             onChange={handleChange}
             placeholder={t("contact.form.phonePlaceholder")}
             className="mb-4"
-            pattern={"^[+]?[-()\\s\\d]{7,}$"}
+            pattern={'^(\\+\\d{1,3}[ ]?)?(\\d{3}[ ]?\\d{3}[ ]?\\d{3}|\\d{9})$'}
             inputMode="tel"
           />
 
@@ -143,12 +143,20 @@ const ContactFormSection = () => {
             </>
           )}
 
+          {submitError && (
+            <div className="alert alert-danger mt-2" role="alert">
+              {submitError}
+            </div>
+          )}
+
           <button
             type="submit"
             className="btn btn-lg w-100 d-flex align-items-center justify-content-center gap-3 contact-form-submit-btn"
+            data-loading={status === "loading" ? "true" : "false"}
+            disabled={status === "loading"}
           >
             <Send size={20} />
-            {t("contact.form.send")}
+            {status === "success" ? t("contact.form.successMessage") : t("contact.form.send")}
           </button>
         </form>
       </ModernCard>

@@ -71,7 +71,8 @@ describe("useContactForm Hook", () => {
       "/api/send-email",
       expect.objectContaining({ method: "POST" })
     );
-    expect(window.alert).toHaveBeenCalledWith("contact.form.successMessage");
+    // Success is now indicated via internal state, not alert
+    expect(result.current.formData.fullName).toBe("");
   });
 
   it("resets form after successful submission", async () => {

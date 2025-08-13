@@ -14,11 +14,15 @@ export const useContactForm = () => {
     packageType: "one_per_week",
     availability: [],
   });
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
+      setStatus("loading");
+      setSubmitError(null);
       const endpoint = import.meta.env.VITE_CONTACT_ENDPOINT || "/api/send-email";
       const message = buildEmailMessage(formData);
       const payload = {
@@ -36,8 +40,6 @@ export const useContactForm = () => {
 
       if (!res.ok) throw new Error("Request failed");
 
-      alert(t("contact.form.successMessage"));
-
       setFormData({
         inquiryType: "join",
         fullName: "",
@@ -48,9 +50,11 @@ export const useContactForm = () => {
         packageType: "one_per_week",
         availability: [],
       });
+      setStatus("success");
     } catch (error) {
       console.error("Submit error:", error);
-      alert("Error sending message. Please try again.");
+      setStatus("error");
+      setSubmitError(t("contact.form.errorMessage"));
     }
   };
 
@@ -140,5 +144,7 @@ export const useContactForm = () => {
     handleSubmit,
     handleChange,
     toggleAvailability,
+    status,
+    submitError,
   };
 };
