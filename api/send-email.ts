@@ -1,19 +1,7 @@
 import React from "react";
 import nodemailer from "nodemailer";
 import { render } from "@react-email/render";
-import {
-  Html,
-  Head,
-  Preview,
-  Body,
-  Container,
-  Section,
-  Text,
-  Heading,
-  Hr,
-  Row,
-  Column,
-} from "@react-email/components";
+import ContactEmail, { type ContactEmailProps } from "../emails/ContactEmail";
 
 type InquiryType = "join" | "talk";
 
@@ -33,69 +21,9 @@ interface IncomingBody {
   name?: string;
   email?: string;
   phone?: string;
-  message?: string; // prebuilt text (still will render component)
+  message?: string;
   meta?: IncomingMeta;
 }
-
-const EmailTemplate = ({
-  title,
-  summary,
-  details,
-  message,
-}: {
-  title: string;
-  summary: Array<[string, string]>;
-  details?: Array<[string, string]>;
-  message?: string;
-}) => (
-  <Html>
-    <Head />
-    <Preview>{title}</Preview>
-    <Body style={{ backgroundColor: "#ffffff", fontFamily: "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif" }}>
-      <Container style={{ margin: "0 auto", padding: "24px", maxWidth: "640px" }}>
-        <Heading as="h2" style={{ margin: 0, marginBottom: 12 }}>{title}</Heading>
-
-        <Section>
-          {summary.map(([k, v]) => (
-            <Row key={k}>
-              <Column style={{ width: 180 }}>
-                <Text style={{ margin: 0, fontWeight: 600 }}>{k}</Text>
-              </Column>
-              <Column>
-                <Text style={{ margin: 0 }}>{v || "-"}</Text>
-              </Column>
-            </Row>
-          ))}
-        </Section>
-
-        {details && details.length > 0 && (
-          <Section>
-            <Hr />
-            {details.map(([k, v]) => (
-              <Row key={k}>
-                <Column style={{ width: 180 }}>
-                  <Text style={{ margin: 0, fontWeight: 600 }}>{k}</Text>
-                </Column>
-                <Column>
-                  <Text style={{ margin: 0 }}>{v || "-"}</Text>
-                </Column>
-              </Row>
-            ))}
-          </Section>
-        )}
-
-        {message && (
-          <>
-            <Hr />
-            <Section>
-              <Text style={{ whiteSpace: "pre-wrap", margin: 0 }}>{message}</Text>
-            </Section>
-          </>
-        )}
-      </Container>
-    </Body>
-  </Html>
-);
 
 interface ApiRequest {
   method?: string;
@@ -159,14 +87,13 @@ export default async function handler(req: ApiRequest, res: ApiResponse) {
       }
     }
 
-    const html = render(
-      EmailTemplate({
-        title: "New contact message",
-        summary: summaryRows,
-        details: detailsRows.length ? detailsRows : undefined,
-        message,
-      })
-    );
+    const emailProps: ContactEmailProps = {
+      title: "New contact message",
+      summary: summaryRows,
+      details: detailsRows.length ? detailsRows : undefined,
+      message,
+    };
+    const html = render(React.createElement(ContactEmail, emailProps));
 
     const info = await transporter.sendMail({
       from: smtpUser,
