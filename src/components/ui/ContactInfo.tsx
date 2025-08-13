@@ -16,7 +16,7 @@ const ContactInfo = ({
   return (
     <div className="d-flex align-items-center rounded-3 contact-info-item">
       <div
-        className={`${bgColor} p-3 rounded-circle me-3 me-sm-4 flex-shrink-0`}
+        className={`${bgColor} p-1 rounded-circle me-sm-3 flex-shrink-0`}
       >
         <Icon size={24} className={iconColor} />
       </div>

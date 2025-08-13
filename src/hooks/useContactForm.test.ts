@@ -28,10 +28,9 @@ describe("useContactForm Hook", () => {
   it("initializes with correct default values", () => {
     const { result } = renderHook(() => useContactForm());
 
-    expect(result.current.formData).toEqual({
-      name: "",
-      message: "",
-    });
+    expect(result.current.formData.inquiryType).toBe("join");
+    expect(result.current.formData.fullName).toBe("");
+    expect(result.current.formData.email).toBe("");
   });
 
   it("updates form data when handleChange is called", () => {
@@ -39,11 +38,11 @@ describe("useContactForm Hook", () => {
 
     act(() => {
       result.current.handleChange({
-        target: { name: "name", value: "John Doe" },
+        target: { name: "fullName", value: "John Doe" },
       } as React.ChangeEvent<HTMLInputElement>);
     });
 
-    expect(result.current.formData.name).toBe("John Doe");
+    expect(result.current.formData.fullName).toBe("John Doe");
   });
 
   it("handles form submission with valid data", async () => {
@@ -52,19 +51,13 @@ describe("useContactForm Hook", () => {
     // Set up form data
     act(() => {
       result.current.handleChange({
-        target: { name: "name", value: "John Doe" },
+        target: { name: "fullName", value: "John Doe" },
       } as React.ChangeEvent<HTMLInputElement>);
     });
 
     act(() => {
       result.current.handleChange({
         target: { name: "email", value: "john@example.com" },
-      } as React.ChangeEvent<HTMLInputElement>);
-    });
-
-    act(() => {
-      result.current.handleChange({
-        target: { name: "message", value: "Test message" },
       } as React.ChangeEvent<HTMLInputElement>);
     });
 
@@ -87,7 +80,7 @@ describe("useContactForm Hook", () => {
     // Fill form data
     act(() => {
       result.current.handleChange({
-        target: { name: "name", value: "John Doe" },
+        target: { name: "fullName", value: "John Doe" },
       } as React.ChangeEvent<HTMLInputElement>);
     });
 
@@ -98,10 +91,7 @@ describe("useContactForm Hook", () => {
     });
 
     // Check that form is reset to initial values
-    expect(result.current.formData).toEqual({
-      name: "",
-      message: "",
-    });
+    expect(result.current.formData.fullName).toBe("");
   });
 
   it("handles different input types correctly", () => {
@@ -110,33 +100,26 @@ describe("useContactForm Hook", () => {
     // Test select input
     act(() => {
       result.current.handleChange({
-        target: { name: "program", value: "competitive" },
+        target: { name: "packageType", value: "two_per_week" },
       } as React.ChangeEvent<HTMLSelectElement>);
     });
 
-    // Test textarea input
-    act(() => {
-      result.current.handleChange({
-        target: { name: "message", value: "Long message text" },
-      } as React.ChangeEvent<HTMLTextAreaElement>);
-    });
-
-    expect(result.current.formData.message).toBe("Long message text");
+    expect(result.current.formData.packageType).toBe("two_per_week");
   });
 
   it("handles form submission with different program values", async () => {
     const { result } = renderHook(() => useContactForm());
 
-    // Test with competitive program
+    // Test with two_per_week
     act(() => {
       result.current.handleChange({
-        target: { name: "program", value: "competitive" },
+        target: { name: "packageType", value: "two_per_week" },
       } as React.ChangeEvent<HTMLSelectElement>);
     });
 
     act(() => {
       result.current.handleChange({
-        target: { name: "name", value: "Test User" },
+        target: { name: "fullName", value: "Test User" },
       } as React.ChangeEvent<HTMLInputElement>);
     });
 
@@ -147,29 +130,17 @@ describe("useContactForm Hook", () => {
     });
 
     // Verify form resets properly
-    expect(result.current.formData.name).toBe("");
+    expect(result.current.formData.fullName).toBe("");
   });
 
   it("handles form submission with all fields filled", async () => {
     const { result } = renderHook(() => useContactForm());
 
-    // Fill all form fields
+    // Fill required fields
     act(() => {
       result.current.handleChange({
-        target: { name: "name", value: "John Doe" },
+        target: { name: "fullName", value: "John Doe" },
       } as React.ChangeEvent<HTMLInputElement>);
-    });
-
-    act(() => {
-      result.current.handleChange({
-        target: { name: "message", value: "Test message" },
-      } as React.ChangeEvent<HTMLInputElement>);
-    });
-    
-    act(() => {
-      result.current.handleChange({
-        target: { name: "message", value: "Test message" },
-      } as React.ChangeEvent<HTMLTextAreaElement>);
     });
 
     // Submit form
@@ -179,10 +150,7 @@ describe("useContactForm Hook", () => {
     });
 
     // Verify form resets to initial state
-    expect(result.current.formData).toEqual({
-      name: "",
-      message: "",
-    });
+    expect(result.current.formData.fullName).toBe("");
   });
 
   it("handles form submission with empty optional fields", async () => {
@@ -191,17 +159,16 @@ describe("useContactForm Hook", () => {
     // Fill only required fields
     act(() => {
       result.current.handleChange({
-        target: { name: "name", value: "Jane Doe" },
+        target: { name: "fullName", value: "Jane Doe" },
       } as React.ChangeEvent<HTMLInputElement>);
     });
 
     act(() => {
       result.current.handleChange({
-        target: { name: "message", value: "Test message" },
+        target: { name: "email", value: "jane@example.com" },
       } as React.ChangeEvent<HTMLInputElement>);
     });
     
-    // Leave message empty
     // Submit form
     const mockEvent = { preventDefault: vi.fn() };
     await act(async () => {
@@ -209,8 +176,7 @@ describe("useContactForm Hook", () => {
     });
 
     // Verify form resets properly
-    expect(result.current.formData.name).toBe("");
-    expect(result.current.formData.message).toBe("");
+    expect(result.current.formData.fullName).toBe("");
   });
 
   // Mailto logic removed; no timeout/confirm behavior in new flow

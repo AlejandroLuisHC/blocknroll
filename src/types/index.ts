@@ -17,9 +17,21 @@ export interface BackgroundElement {
   color: string;
 }
 
+export type InquiryType = "join" | "talk";
+
+export type PackageType = "one_per_week" | "two_per_week" | "private";
+
+export type EstimatedLevel = "Iniciación" | "Básico" | "Intermedio" | "Avanzado";
+
 export interface FormData {
-  name: string;
-  message: string;
+  inquiryType: InquiryType;
+  fullName: string;
+  email: string;
+  phone?: string;
+  players?: number; // 1 to 8
+  level?: EstimatedLevel;
+  packageType?: PackageType;
+  availability?: string[]; // list of keys like "mon_18_1930"
 }
 
 export interface ContactInfo {

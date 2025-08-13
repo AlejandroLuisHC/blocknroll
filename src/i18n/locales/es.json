@@ -160,6 +160,7 @@
     "subtitle": "¡Nos encantaría tenerte en la familia Block n' Roll! ¡Ponte en contacto con nosotros!",
     "form": {
       "title": "Formulario sin compromiso",
+      "description": "Enviando este formulario, no te comprometes a nada. ¡Te atenderemos lo antes posible!",
       "name": "Nombre completo",
       "email": "Email",
       "phone": "Teléfono",
@@ -171,6 +172,31 @@
       "phonePlaceholder": "+34 600 000 000",
       "messagePlaceholder": "Cuéntanos tu nivel, disponibilidad o cualquier pregunta...",
       "required": "*",
+      "inquiryTypeLabel": "Tipo de consulta",
+      "inquiryOptions": {
+        "join": "Quiero unirme al club",
+        "talk": "Quiero más información"
+      },
+      "playersLabel": "¿Cuántos jugadores sois?",
+      "levelLabel": "Nivel estimado",
+      "packageLabel": "¿Qué paquete te interesa?",
+      "levels": {
+        "iniciacion": "Iniciación",
+        "basico": "Básico",
+        "intermedio": "Intermedio",
+        "avanzado": "Avanzado"
+      },
+      "packages": {
+        "onePerWeek": "1 entrenamiento/semana",
+        "twoPerWeek": "2 entrenamientos/semana",
+        "private": "Entrenamiento privado"
+      },
+      "selectPlaceholder": "- Selecciona -",
+      "availabilityLabel": "Disponibilidad horaria (L-V)",
+      "availability": {
+        "days": { "mon": "Lun", "tue": "Mar", "wed": "Mié", "thu": "Jue", "fri": "Vie" },
+        "slots": { "18_1930": "18:00-19:30", "1930_21": "19:30-21:00", "21_2230": "21:00-22:30" }
+      },
       "programs": {
         "basic": "1 Entreno/Semana",
         "competitive": "2 Entrenos/Semana",
@@ -178,6 +204,18 @@
         "other": "Solo información"
       },
       "successMessage": "¡Gracias! Te contactaremos pronto para coordinar tu sesión gratuita."
+    },
+    "email": {
+      "typeJoin": "Tipo de consulta: Quiero unirme al club",
+      "typeTalk": "Tipo de consulta: Quiero más información",
+      "name": "Nombre",
+      "email": "Email",
+      "phone": "Teléfono",
+      "players": "¿Cuántos jugadores sois?",
+      "level": "Nivel estimado",
+      "package": "¿Qué paquete te interesa?",
+      "availability": "Disponibilidad horaria",
+      "availabilityNone": "Sin preferencia"
     },
     "info": {
       "title": "Información de contacto",

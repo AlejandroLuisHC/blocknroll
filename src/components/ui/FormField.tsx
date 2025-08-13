@@ -1,3 +1,4 @@
+import type React from "react";
 import type { ChangeEvent } from "react";
 
 interface FormFieldProps {
@@ -13,6 +14,8 @@ interface FormFieldProps {
   options?: { value: string; label: string }[];
   rows?: number;
   className?: string;
+  pattern?: string;
+  inputMode?: React.HTMLAttributes<HTMLInputElement>["inputMode"];
 }
 
 const FormField = ({
@@ -26,6 +29,8 @@ const FormField = ({
   options,
   rows = 4,
   className = "",
+  pattern,
+  inputMode,
 }: FormFieldProps) => {
   const baseClasses = type === "select" ? "form-select" : "form-control";
 
@@ -71,6 +76,8 @@ const FormField = ({
             required={required}
             className={`${baseClasses} ${className}`}
             placeholder={placeholder}
+            pattern={pattern}
+            inputMode={inputMode}
           />
         );
     }

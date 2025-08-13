@@ -160,6 +160,7 @@
     "subtitle": "We'd love to have you in the Block n' Roll family! Get in touch with our team!",
     "form": {
       "title": "No commitment form",
+      "description": "By sending this form, you don't commit to anything. We'll contact you as soon as possible!",
       "name": "Full name",
       "email": "Email",
       "phone": "Phone",
@@ -171,6 +172,31 @@
       "phonePlaceholder": "+34 600 000 000",
       "messagePlaceholder": "Tell us your level, availability or any questions...",
       "required": "*",
+      "inquiryTypeLabel": "Type of inquiry",
+      "inquiryOptions": {
+        "join": "I want to join the club",
+        "talk": "I want more information"
+      },
+      "playersLabel": "How many players are you?",
+      "levelLabel": "Estimated level",
+      "packageLabel": "What package are you interested in?",
+      "levels": {
+        "iniciacion": "Beginner",
+        "basico": "Basic",
+        "intermedio": "Intermediate",
+        "avanzado": "Advanced"
+      },
+      "packages": {
+        "onePerWeek": "1 training/week",
+        "twoPerWeek": "2 trainings/week",
+        "private": "Private training"
+      },
+      "selectPlaceholder": "- Select -",
+      "availabilityLabel": "Availability time (Mon–Fri)",
+      "availability": {
+        "days": { "mon": "Mon", "tue": "Tue", "wed": "Wed", "thu": "Thu", "fri": "Fri" },
+        "slots": { "18_1930": "18:00-19:30", "1930_21": "19:30-21:00", "21_2230": "21:00-22:30" }
+      },
       "programs": {
         "basic": "1 Training/Week",
         "competitive": "2 Trainings/Week",
@@ -178,6 +204,18 @@
         "other": "Just information"
       },
       "successMessage": "Thank you! We'll contact you soon to coordinate your free session."
+    },
+    "email": {
+      "typeJoin": "Type of inquiry: I want to join the club",
+      "typeTalk": "Type of inquiry: I want more information",
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "players": "How many players are you?",
+      "level": "Estimated level",
+      "package": "What package are you interested in?",
+      "availability": "Availability time",
+      "availabilityNone": "No preference"
     },
     "info": {
       "title": "Contact information",
