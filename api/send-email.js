@@ -1,7 +1,5 @@
 import nodemailer from "nodemailer";
 
-// Vercel Node.js Serverless Function
-// Expects JSON body: { name, message }
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     res.status(405).json({ ok: false, error: "Method Not Allowed" });
@@ -20,11 +18,10 @@ export default async function handler(req, res) {
       return;
     }
 
-    // Vercel parses JSON automatically for Node functions when header is application/json
-    const { name, email, phone, program, message } = req.body || {};
+    const { name, email, message } = req.body || {};
 
-    if (!email || !message) {
-      res.status(400).json({ ok: false, error: "Missing required fields" });
+    if (!message) {
+      res.status(400).json({ ok: false, error: "Missing message" });
       return;
     }
 
@@ -39,6 +36,7 @@ export default async function handler(req, res) {
     const html = `
       <h2>New contact message</h2>
       <p><strong>Name:</strong> ${name || "-"}</p>
+      ${email ? `<p><strong>Email:</strong> ${email}</p>` : ""}
       <hr />
       <p>${String(message).replace(/\n/g, "<br/>")}</p>
     `;
@@ -46,7 +44,7 @@ export default async function handler(req, res) {
     const info = await transporter.sendMail({
       from: smtpUser,
       to: mailTo,
-      replyTo: email,
+      replyTo: email || undefined,
       subject,
       html,
     });
@@ -57,5 +55,6 @@ export default async function handler(req, res) {
     res.status(500).json({ ok: false, error: "Email send failed" });
   }
 }
+
 
 
