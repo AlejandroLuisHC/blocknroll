@@ -3,13 +3,6 @@ import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
 import { ContactInfo, FormField, ModernCard } from "./ui";
 import { useContactForm } from "../hooks/useContactForm";
 
-// Types
-interface ProgramOption {
-  value: string;
-  label: string;
-}
-
-// Sub-components
 const ContactSectionHeader = () => {
   const { t } = useTranslation();
 
@@ -27,13 +20,6 @@ const ContactFormSection = () => {
   const { t } = useTranslation();
   const { formData, handleSubmit, handleChange } = useContactForm();
 
-  const programOptions: ProgramOption[] = [
-    { value: "basic", label: t("contact.form.programs.basic") },
-    { value: "competitive", label: t("contact.form.programs.competitive") },
-    { value: "elite", label: t("contact.form.programs.elite") },
-    { value: "other", label: t("contact.form.programs.other") },
-  ];
-
   return (
     <div className="col-lg-7">
       <ModernCard className="border-0 h-100 contact-form-card" padding="p-5">
@@ -45,9 +31,6 @@ const ContactFormSection = () => {
             <h3 className="h3 fw-bold text-dark mb-1">
               {t("contact.form.title")}
             </h3>
-            <p className="text-secondary mb-0 small">
-              Get in touch with our team
-            </p>
           </div>
         </div>
 
@@ -60,42 +43,6 @@ const ContactFormSection = () => {
             onChange={handleChange}
             required
             placeholder={t("contact.form.namePlaceholder")}
-            className="mb-4"
-          />
-
-          <div className="row g-3 mb-4">
-            <div className="col-md-6">
-              <FormField
-                label={t("contact.form.email")}
-                name="email"
-                type="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                placeholder={t("contact.form.emailPlaceholder")}
-                className="mb-0"
-              />
-            </div>
-            <div className="col-md-6">
-              <FormField
-                label={t("contact.form.phone")}
-                name="phone"
-                type="tel"
-                value={formData.phone}
-                onChange={handleChange}
-                placeholder={t("contact.form.phonePlaceholder")}
-                className="mb-0"
-              />
-            </div>
-          </div>
-
-          <FormField
-            label={t("contact.form.program")}
-            name="program"
-            type="select"
-            value={formData.program}
-            onChange={handleChange}
-            options={programOptions}
             className="mb-4"
           />
 

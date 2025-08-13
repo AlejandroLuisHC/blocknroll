@@ -19,9 +19,6 @@ export interface BackgroundElement {
 
 export interface FormData {
   name: string;
-  email: string;
-  phone: string;
-  program: string;
   message: string;
 }
 
