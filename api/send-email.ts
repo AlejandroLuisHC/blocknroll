@@ -68,7 +68,7 @@ export default async function handler(req: ApiRequest, res: ApiResponse) {
     });
 
     const inquiryType: InquiryType = (meta?.inquiryType === "talk" ? "talk" : "join");
-    const subject = `BnR Web - ${inquiryType === "join" ? "Join" : "Info"} - ${name || "User"} - ${email || "-"}`;
+    const subject = `BnR Web - ${inquiryType === "join" ? "Join" : "Info"} - ${name || "Web user"} - ${email || ""}`;
 
     const summaryRows: Array<[string, string]> = [
       ["Type", inquiryType === "join" ? "Join" : "Info"],

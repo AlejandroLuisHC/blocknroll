@@ -60,7 +60,7 @@ const ContactFormSection = () => {
             required
             placeholder={t("contact.form.namePlaceholder")}
             className="mb-4"
-            pattern={'^[A-Za-zÀ-ÖØ-öø-ÿ \u2019\u2018\'-]{2,}$'}
+            pattern={'^[A-Za-zÀ-ÖØ-öø-ÿ \'-]{2,}$'}
           />
 
           <FormField
