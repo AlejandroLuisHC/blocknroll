@@ -39,19 +39,19 @@ export default async function handler(req, res) {
     const subject = `BnR Web - ${inquiryType === "join" ? "Join" : "Info"} - ${name || "Web user"} - ${email || ""}`;
 
     const summaryRows = [
-      ["Type", inquiryType === "join" ? "Join" : "Info"],
-      ["Name", name || "-"],
+      ["Tipo de consulta", inquiryType === "join" ? "Apuntarse a entrenamientos" : "Información"],
+      ["Nombre", name || "-"],
       ["Email", email || "-"],
     ];
-    if (phone) summaryRows.push(["Phone", phone]);
+    if (phone) summaryRows.push(["Teléfono", phone]);
 
     const detailsRows = [];
     if (inquiryType === "join") {
-      if (meta?.players != null) detailsRows.push(["Players", String(meta.players)]);
-      if (meta?.level) detailsRows.push(["Level", String(meta.level)]);
-      if (meta?.packageType) detailsRows.push(["Package", String(meta.packageType)]);
+      if (meta?.players != null) detailsRows.push(["Número de jugadores", String(meta.players)]);
+      if (meta?.level) detailsRows.push(["Nivel estimado", String(meta.level)]);
+      if (meta?.packageType) detailsRows.push(["Paquete", String(meta.packageType) === "one_per_week" ? "Una vez por semana" : String(meta.packageType) === "two_per_week" ? "Dos veces por semana" : "Privados"]);
       if (Array.isArray(meta?.availability)) {
-        detailsRows.push(["Availability", meta.availability.length ? meta.availability.join(", ") : "No preference"]);
+        detailsRows.push(["Disponibilidad", meta.availability.length ? meta.availability : ["Sin preferencia"]]);
       }
     }
 
