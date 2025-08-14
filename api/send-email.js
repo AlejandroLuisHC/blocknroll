@@ -46,12 +46,24 @@ export default async function handler(req, res) {
     if (phone) summaryRows.push(["Teléfono", phone]);
 
     const detailsRows = [];
+    // Format availability keys like "mon_18_1930" to human-readable Spanish labels
+    const formatAvailabilityLabel = (key) => {
+      if (typeof key !== "string") return String(key);
+      const [dayKey, ...rest] = key.split("_");
+      const slotKey = rest.join("_");
+      const dayMap = { mon: "Lun", tue: "Mar", wed: "Mié", thu: "Jue", fri: "Vie" };
+      const slotMap = { "18_1930": "18:00-19:30", "1930_21": "19:30-21:00", "21_2230": "21:00-22:30" };
+      const day = dayMap[dayKey] || dayKey;
+      const slot = slotMap[slotKey] || slotKey?.replace("_", ":")?.replace("_", ":");
+      return slot ? `${day} ${slot}` : day;
+    };
     if (inquiryType === "join") {
       if (meta?.players != null) detailsRows.push(["Número de jugadores", String(meta.players)]);
       if (meta?.level) detailsRows.push(["Nivel estimado", String(meta.level)]);
       if (meta?.packageType) detailsRows.push(["Paquete", String(meta.packageType) === "one_per_week" ? "Una vez por semana" : String(meta.packageType) === "two_per_week" ? "Dos veces por semana" : "Privados"]);
       if (Array.isArray(meta?.availability)) {
-        detailsRows.push(["Disponibilidad", meta.availability.length ? meta.availability : ["Sin preferencia"]]);
+        const formatted = meta.availability.map(formatAvailabilityLabel);
+        detailsRows.push(["Disponibilidad", formatted.length ? formatted : ["Sin preferencia"]]);
       }
     }
 

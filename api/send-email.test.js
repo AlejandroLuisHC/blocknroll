@@ -69,7 +69,7 @@ describe("api/send-email", () => {
 		expect(res.status).toHaveBeenCalledWith(400);
 	});
 
-	it("sends email and renders array availability as chips-friendly array", async () => {
+  it("sends email and formats availability labels to Spanish day/time", async () => {
 		const req = {
 			method: "POST",
 			body: {
@@ -78,7 +78,7 @@ describe("api/send-email", () => {
 				message: "Hello world",
 				meta: {
 					inquiryType: "join",
-					availability: ["Lunes tarde", "Miércoles mañana"],
+          availability: ["mon_18_1930", "wed_1930_21", "thu_21_2230"],
 				},
 			},
 		};
@@ -94,10 +94,10 @@ describe("api/send-email", () => {
 		expect(element).toBeTruthy();
 		const props = element.props || {};
 		expect(Array.isArray(props.details)).toBe(true);
-		const availabilityRow = props.details.find((row) => row[0] === "Disponibilidad");
+    const availabilityRow = props.details.find((row) => row[0] === "Disponibilidad");
 		expect(availabilityRow).toBeTruthy();
 		expect(Array.isArray(availabilityRow[1])).toBe(true);
-		expect(availabilityRow[1]).toEqual(["Lunes tarde", "Miércoles mañana"]);
+    expect(availabilityRow[1]).toEqual(["Lun 18:00-19:30", "Mié 19:30-21:00", "Jue 21:00-22:30"]);
 	});
 
 	it("falls back to simple HTML when render throws", async () => {
