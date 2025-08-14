@@ -1,7 +1,6 @@
 import React from "react";
 import nodemailer from "nodemailer";
 import { render } from "@react-email/render";
-import ContactEmail from "../emails/ContactEmail";
 
 type InquiryType = "join" | "talk";
 
@@ -86,6 +85,9 @@ export default async function handler(req: ApiRequest, res: ApiResponse) {
         detailsRows.push(["Availability", meta.availability.length ? meta.availability.join(", ") : "No preference"]);
       }
     }
+
+    // Dynamically import the React Email template to be compatible with CJS/ESM at runtime
+    const { default: ContactEmail } = await import("../emails/ContactEmail");
 
     let html: string;
     try {
