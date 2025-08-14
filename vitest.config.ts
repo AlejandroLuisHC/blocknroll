@@ -32,6 +32,8 @@ export default defineConfig({
         "src/pages/index.ts", // Pages index file
         // Exclude simple UI components with no business logic
         "src/components/ui/**",
+        // Exclude emails
+        "emails/**",
       ],
       // Set coverage thresholds for remaining files
       thresholds: {
