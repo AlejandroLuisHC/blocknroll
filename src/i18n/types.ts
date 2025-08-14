@@ -154,6 +154,7 @@ export interface TranslationSchema {
     subtitle: string;
     form: {
       title: string;
+      description: string;
       name: string;
       email: string;
       phone: string;
@@ -165,6 +166,41 @@ export interface TranslationSchema {
       phonePlaceholder: string;
       messagePlaceholder: string;
       required: string;
+      inquiryTypeLabel: string;
+      inquiryOptions: {
+        join: string;
+        talk: string;
+      };
+      playersLabel: string;
+      levelLabel: string;
+      packageLabel: string;
+      levels: {
+        iniciacion: string;
+        basico: string;
+        intermedio: string;
+        avanzado: string;
+      };
+      packages: {
+        onePerWeek: string;
+        twoPerWeek: string;
+        private: string;
+      };
+      selectPlaceholder: string;
+      availabilityLabel: string;
+      availability: {
+        days: {
+          mon: string;
+          tue: string;
+          wed: string;
+          thu: string;
+          fri: string;
+        };
+        slots: {
+          '18_1930': string;
+          '1930_21': string;
+          '21_2230': string;
+        };
+      };
       programs: {
         basic: string;
         competitive: string;
@@ -172,6 +208,19 @@ export interface TranslationSchema {
         other: string;
       };
       successMessage: string;
+      errorMessage: string;
+    };
+    email: {
+      typeJoin: string;
+      typeTalk: string;
+      name: string;
+      email: string;
+      phone: string;
+      players: string;
+      level: string;
+      package: string;
+      availability: string;
+      availabilityNone: string;
     };
     info: {
       title: string;

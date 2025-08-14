@@ -4,7 +4,7 @@ A modern and welcoming landing page built with React and TypeScript.
 
 ## 🏐 About This Project
 
-This is a responsive, multilingual website template designed specifically for Block n' Roll beach volleyball club.
+This is a responsive, multilingual website designed specifically for Block n' Roll beach volleyball club.
 
 ### Key Features
 
@@ -12,7 +12,7 @@ This is a responsive, multilingual website template designed specifically for Bl
 - **Multilingual Support**: Built-in internationalization (Spanish/English/Catalan)
 - **Service Showcase**: Flexible sections for training programs and pricing
 - **Dynamic Gallery**: Future Instagram integration with smart fallback to sample images
-- **Contact Section**: User-friendly contact and inquiry section
+- **Contact Section**: User-friendly contact and inquiry section with email sending service
 - **Performance Optimized**: Fast loading with modern build tools
 
 ## 🚀 Technologies Used
@@ -23,6 +23,10 @@ This is a responsive, multilingual website template designed specifically for Bl
 - **Bootstrap** - CSS framework for responsive design
 - **react-i18next** - Internationalization library
 - **Vitest** - Testing framework
+- **Vercel** - Serverless functions and deployment
+- **Nodemailer** - Email sending library
+- **Maileroo** - SMTP provider
+- **React Email** - Email templates
 
 ## 📦 Installation
 
@@ -52,7 +56,7 @@ This is a responsive, multilingual website template designed specifically for Bl
 4. **Open your browser**
    Navigate to `http://localhost:3000`
 
-## 🏗️ Project Structure
+## 🏗️ Main Project Structure
 
 ```
 src/
@@ -142,6 +146,12 @@ The gallery should automatically display Instagram posts when configured:
    - ✅ Manual refresh capability
    - ✅ Redirect to post/account
 
+## 📧 Email Sending
+
+Emails are sent from a Serverless Function (`api/send-email.js`) using Nodemailer over SMTP.
+
+Note: Works with any SMTP provider (e.g., Maileroo, Gmail, etc.) by setting the variables accordingly.
+
 ## 🧪 Testing
 
 The project includes comprehensive testing:
@@ -159,7 +169,6 @@ npm run test:coverage
 ## 🎯 To-Do List
 
 - [ ] Instagram app integration
-- [ ] Booking/contact system
 - [ ] SEO optimization
 - [ ] Blog functionality 
 - [ ] Payment integration (?)

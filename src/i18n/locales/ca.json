@@ -157,9 +157,10 @@
   "contact": {
     "badge": "Contacte",
     "title": "T'interessa unir-te?",
-    "subtitle": "Ens encantaria tenir-te a la família Block n' Roll! Omple el formulari sense compromís o escriu-nos.",
+    "subtitle": "Ens encantaria tenir-te a la família Block n' Roll! Contacta amb nosaltres!",
     "form": {
       "title": "Formulari sense compromís",
+      "description": "Enviant aquest formulari, no comprometeu res. Ens contactarem tan aviat com sigui possible!",
       "name": "Nom complet",
       "email": "Email",
       "phone": "Telèfon",
@@ -171,6 +172,32 @@
       "phonePlaceholder": "+34 600 000 000",
       "messagePlaceholder": "Explica'ns el teu nivell, disponibilitat o qualsevol pregunta...",
       "required": "*",
+      "errorMessage": "Hi ha hagut un problema en enviar la teva sol·licitud. Torna-ho a intentar.",
+      "inquiryTypeLabel": "Tipus de consulta",
+      "inquiryOptions": {
+        "join": "Vull unir-me al club",
+        "talk": "Vull més informació"
+      },
+      "playersLabel": "Quants jugadors sois?",
+      "levelLabel": "Nivell estimat",
+      "packageLabel": "Quin paquet t'interessa?",
+      "levels": {
+        "iniciacion": "Iniciació",
+        "basico": "Bàsic",
+        "intermedio": "Intermedi",
+        "avanzado": "Avançat"
+      },
+      "packages": {
+        "onePerWeek": "1 entrenament/setmana",
+        "twoPerWeek": "2 entrenaments/setmana",
+        "private": "Entrenament privat"
+      },
+      "selectPlaceholder": "- Selecciona -",
+      "availabilityLabel": "Disponibilitat horària (Dl–Dv)",
+      "availability": {
+        "days": { "mon": "Dl", "tue": "Dt", "wed": "Dc", "thu": "Dj", "fri": "Dv" },
+        "slots": { "18_1930": "18:00-19:30", "1930_21": "19:30-21:00", "21_2230": "21:00-22:30" }
+      },
       "programs": {
         "basic": "1 Entrenament/Setmana",
         "competitive": "2 Entrenaments/Setmana",
@@ -178,6 +205,18 @@
         "other": "Només informació"
       },
       "successMessage": "Gràcies! Et contactarem aviat per coordinar la teva sessió gratuïta."
+    },
+    "email": {
+      "typeJoin": "Tipus de consulta: Vull unir-me al club",
+      "typeTalk": "Tipus de consulta: Vull més informació",
+      "name": "Nom",
+      "email": "Email",
+      "phone": "Telèfon",
+      "players": "Quants jugadors sois?",
+      "level": "Nivell estimat",
+      "package": "Quin paquet t'interessa?",
+      "availability": "Disponibilitat horària",
+      "availabilityNone": "Sense preferència"
     },
     "info": {
       "title": "Informació de contacte",

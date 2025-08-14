@@ -100,6 +100,28 @@
   color: white;
 }
 
+/* Show invalid feedback messages when invalid */
+input:invalid ~ .invalid-feedback,
+textarea:invalid ~ .invalid-feedback,
+select:invalid ~ .invalid-feedback {
+  display: block;
+}
+
+/* Highlight invalid fields */
+.form-control:invalid,
+.form-select:invalid,
+textarea.form-control:invalid {
+  border-color: #dc3545 !important; /* bootstrap danger */
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.1);
+}
+
+.form-control:focus:invalid,
+.form-select:focus:invalid,
+textarea.form-control:focus:invalid {
+  border-color: #dc3545 !important;
+  box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.15);
+}
+
 /* Form Section Spacing */
 .form-section-spacing {
   padding-top: 6rem;
