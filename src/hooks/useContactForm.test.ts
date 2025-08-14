@@ -182,7 +182,7 @@ describe("useContactForm Hook", () => {
 
   it("sets error status when API returns non-ok", async () => {
     const { result } = renderHook(() => useContactForm());
-    (globalThis.fetch as unknown as vi.Mock).mockResolvedValueOnce({
+    (globalThis.fetch as unknown as { mockResolvedValueOnce: (value: unknown) => void }).mockResolvedValueOnce({
       ok: false,
       json: async () => ({ error: "boom" }),
     } as unknown as Response);
