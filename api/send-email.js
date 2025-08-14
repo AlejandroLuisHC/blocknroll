@@ -1,40 +1,9 @@
 import React from "react";
 import nodemailer from "nodemailer";
 import { render } from "@react-email/render";
+import ContactEmail from "../emails/ContactEmail.js";
 
-type InquiryType = "join" | "talk";
-
-interface IncomingMeta {
-  inquiryType?: InquiryType;
-  fullName?: string;
-  email?: string;
-  phone?: string;
-  players?: number;
-  level?: string;
-  packageType?: string;
-  availability?: string[];
-  [key: string]: unknown;
-}
-
-interface IncomingBody {
-  name?: string;
-  email?: string;
-  phone?: string;
-  message?: string;
-  meta?: IncomingMeta;
-}
-
-interface ApiRequest {
-  method?: string;
-  body?: unknown;
-}
-
-interface ApiResponse {
-  status: (code: number) => ApiResponse;
-  json: (payload: unknown) => void;
-}
-
-export default async function handler(req: ApiRequest, res: ApiResponse) {
+export default async function handler(req, res) {
   if (req.method !== "POST") {
     res.status(405).json({ ok: false, error: "Method Not Allowed" });
     return;
@@ -52,7 +21,7 @@ export default async function handler(req: ApiRequest, res: ApiResponse) {
       return;
     }
 
-    const { name, email, phone, message, meta } = (req.body || {}) as IncomingBody;
+    const { name, email, phone, message, meta } = (req.body || {});
 
     if (!message || !name) {
       res.status(400).json({ ok: false, error: "Missing message or name", code: "BAD_REQUEST" });
@@ -66,17 +35,17 @@ export default async function handler(req: ApiRequest, res: ApiResponse) {
       auth: { user: smtpUser, pass: smtpPass },
     });
 
-    const inquiryType: InquiryType = (meta?.inquiryType === "talk" ? "talk" : "join");
+    const inquiryType = (meta?.inquiryType === "talk" ? "talk" : "join");
     const subject = `BnR Web - ${inquiryType === "join" ? "Join" : "Info"} - ${name || "Web user"} - ${email || ""}`;
 
-    const summaryRows: Array<[string, string]> = [
+    const summaryRows = [
       ["Type", inquiryType === "join" ? "Join" : "Info"],
       ["Name", name || "-"],
       ["Email", email || "-"],
-      ["Phone", phone || ""],
     ];
+    if (phone) summaryRows.push(["Phone", phone]);
 
-    const detailsRows: Array<[string, string]> = [];
+    const detailsRows = [];
     if (inquiryType === "join") {
       if (meta?.players != null) detailsRows.push(["Players", String(meta.players)]);
       if (meta?.level) detailsRows.push(["Level", String(meta.level)]);
@@ -86,10 +55,7 @@ export default async function handler(req: ApiRequest, res: ApiResponse) {
       }
     }
 
-    // Dynamically import the React Email template to be compatible with CJS/ESM at runtime
-    const { default: ContactEmail } = await import("../emails/ContactEmail");
-
-    let html: string;
+    let html;
     try {
       html = await render(
         React.createElement(ContactEmail, {
@@ -101,12 +67,9 @@ export default async function handler(req: ApiRequest, res: ApiResponse) {
       );
     } catch (renderError) {
       console.error("render error:", renderError);
-      // Fallback very simple HTML
-      const esc = (s: string) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-      const line = (k: string, v?: string) => (v ? `<p><strong>${esc(k)}:</strong> ${esc(v)}</p>` : "");
-      const details = detailsRows
-        .map(([k, v]) => line(k, v))
-        .join("");
+      const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      const line = (k, v) => (v ? `<p><strong>${esc(k)}:</strong> ${esc(v)}</p>` : "");
+      const details = detailsRows.map(([k, v]) => line(k, v)).join("");
       html = `
         <h2>New contact message</h2>
         ${summaryRows.map(([k, v]) => line(k, v)).join("")}

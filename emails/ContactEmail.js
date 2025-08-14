@@ -13,14 +13,7 @@ import {
   Column,
 } from "@react-email/components";
 
-export interface ContactEmailProps {
-  title: string;
-  summary: Array<[string, string]>;
-  details?: Array<[string, string]>;
-  message?: string;
-}
-
-const ContactEmail = ({ title, summary, details, message }: ContactEmailProps) =>
+const ContactEmail = ({ title, summary, details, message }) =>
   React.createElement(
     Html,
     null,
