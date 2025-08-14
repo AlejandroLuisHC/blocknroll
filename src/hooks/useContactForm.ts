@@ -17,6 +17,11 @@ export const useContactForm = () => {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [submitError, setSubmitError] = useState<string | null>(null);
 
+  // Basic client-side validation
+  const isNonEmptyName = (value?: string) => Boolean(value && value.trim().length >= 2);
+  const isValidEmail = (value?: string) => Boolean(value && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value));
+  const isValid = isNonEmptyName(formData.fullName) && isValidEmail(formData.email);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -146,5 +151,6 @@ export const useContactForm = () => {
     toggleAvailability,
     status,
     submitError,
+    isValid,
   };
 };

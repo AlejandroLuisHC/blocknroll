@@ -18,7 +18,7 @@ const ContactSectionHeader = () => {
 
 const ContactFormSection = () => {
   const { t } = useTranslation();
-  const { formData, handleSubmit, handleChange, toggleAvailability, status, submitError } = useContactForm();
+  const { formData, handleSubmit, handleChange, toggleAvailability, status, submitError, isValid } = useContactForm();
 
   return (
     <div className="col-lg-7">
@@ -153,7 +153,7 @@ const ContactFormSection = () => {
             type="submit"
             className="btn btn-lg w-100 d-flex align-items-center justify-content-center gap-3 contact-form-submit-btn"
             data-loading={status === "loading" ? "true" : "false"}
-            disabled={status === "loading"}
+            disabled={status === "loading" || !isValid}
           >
             <Send size={20} />
             {status === "success" ? t("contact.form.successMessage") : t("contact.form.send")}
