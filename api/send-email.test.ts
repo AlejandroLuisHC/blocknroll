@@ -50,7 +50,7 @@ describe("api/send-email", () => {
     const res = createRes();
     await handler({ method: "POST" }, res);
     expect(res.statusCode).toBe(500);
-    expect(res.body).toEqual({ ok: false, error: "Missing SMTP configuration" });
+    expect(res.body).toEqual({ ok: false, error: "Missing SMTP configuration", code: "MISSING_SMTP_CONFIG" });
   });
 
   it("returns 400 when message is missing", async () => {
@@ -63,7 +63,7 @@ describe("api/send-email", () => {
     const res = createRes();
     await handler({ method: "POST", body: {} }, res);
     expect(res.statusCode).toBe(400);
-    expect(res.body).toEqual({ ok: false, error: "Missing message" });
+    expect(res.body).toEqual({ ok: false, error: "Missing message or name", code: "BAD_REQUEST" });
   });
 
   it("sends email for join inquiry with correct subject", async () => {

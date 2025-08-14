@@ -1,7 +1,4 @@
-import React from "react";
 import nodemailer from "nodemailer";
-import { render } from "@react-email/render";
-import ContactEmail, { type ContactEmailProps } from "../emails/ContactEmail";
 
 type InquiryType = "join" | "talk";
 
@@ -49,14 +46,18 @@ export default async function handler(req: ApiRequest, res: ApiResponse) {
     const mailTo = process.env.MAIL_TO;
 
     if (!smtpHost || !smtpUser || !smtpPass || !mailTo) {
-      res.status(500).json({ ok: false, error: "Missing SMTP configuration" });
+      res.status(500).json({
+        ok: false,
+        error: "Missing SMTP configuration",
+        code: "MISSING_SMTP_CONFIG",
+      });
       return;
     }
 
     const { name, email, phone, message, meta } = (req.body || {}) as IncomingBody;
 
-    if (!message) {
-      res.status(400).json({ ok: false, error: "Missing message" });
+    if (!message || !name) {
+      res.status(400).json({ ok: false, error: "Missing message or name", code: "BAD_REQUEST" });
       return;
     }
 
@@ -87,13 +88,23 @@ export default async function handler(req: ApiRequest, res: ApiResponse) {
       }
     }
 
-    const emailProps: ContactEmailProps = {
-      title: "New contact message",
-      summary: summaryRows,
-      details: detailsRows.length ? detailsRows : undefined,
-      message,
-    };
-    const html = render(React.createElement(ContactEmail, emailProps));
+    const escape = (s: string) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    const simpleLine = (k: string, v?: string) => (v ? `<p><strong>${escape(k)}:</strong> ${escape(v)}</p>` : "");
+    const html = `
+      <h2>New contact message</h2>
+      ${simpleLine("Type", inquiryType === "join" ? "Join" : "Info")}
+      ${simpleLine("Name", name)}
+      ${simpleLine("Email", email)}
+      ${simpleLine("Phone", phone)}
+      ${inquiryType === "join" ? `
+        ${simpleLine("Players", meta?.players != null ? String(meta.players) : undefined)}
+        ${simpleLine("Level", meta?.level ? String(meta.level) : undefined)}
+        ${simpleLine("Package", meta?.packageType ? String(meta.packageType) : undefined)}
+        ${simpleLine("Availability", Array.isArray(meta?.availability) ? (meta!.availability!.length ? meta!.availability!.join(", ") : "No preference") : undefined)}
+      ` : ""}
+      <hr />
+      <pre style="white-space:pre-wrap;font-family:inherit;">${escape(message)}</pre>
+    `;
 
     const info = await transporter.sendMail({
       from: smtpUser,
@@ -106,7 +117,7 @@ export default async function handler(req: ApiRequest, res: ApiResponse) {
     res.status(200).json({ ok: true, id: info.messageId });
   } catch (error) {
     console.error("send-email error:", error);
-    res.status(500).json({ ok: false, error: "Email send failed" });
+    res.status(500).json({ ok: false, error: "Email send failed", code: "SEND_FAILED" });
   }
 }
 
