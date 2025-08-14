@@ -2,7 +2,6 @@ import { renderHook, act } from "@testing-library/react";
 import { vi, describe, it, expect, beforeEach, afterEach } from "vitest";
 import { useContactForm } from "./useContactForm";
 
-// Mock react-i18next
 vi.mock("react-i18next", () => ({
   useTranslation: () => ({
     t: (key: string) => key,
@@ -194,6 +193,4 @@ describe("useContactForm Hook", () => {
     expect(result.current.submitError).not.toBeNull();
     expect(result.current.status).toBe("error");
   });
-
-  // Mailto logic removed; no timeout/confirm behavior in new flow
 });
