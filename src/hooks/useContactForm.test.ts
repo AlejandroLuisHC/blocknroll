@@ -180,5 +180,20 @@ describe("useContactForm Hook", () => {
     expect(result.current.formData.fullName).toBe("");
   });
 
+  it("sets error status when API returns non-ok", async () => {
+    const { result } = renderHook(() => useContactForm());
+    (globalThis.fetch as unknown as vi.Mock).mockResolvedValueOnce({
+      ok: false,
+      json: async () => ({ error: "boom" }),
+    } as unknown as Response);
+
+    await act(async () => {
+      await result.current.handleSubmit({ preventDefault: vi.fn() } as unknown as React.FormEvent);
+    });
+
+    expect(result.current.submitError).not.toBeNull();
+    expect(result.current.status).toBe("error");
+  });
+
   // Mailto logic removed; no timeout/confirm behavior in new flow
 });
