@@ -103,8 +103,8 @@
   display: flex;
   align-items: center;
   gap: var(--space-md);
-  flex-shrink: 0;
-  min-width: 280px;
+  flex: 0 0 300px;
+  min-width: 300px;
 }
 
 .service-icon-badge {
@@ -141,6 +141,7 @@
 
 .service-info-right {
   flex-grow: 1;
+  min-width: 0;
 }
 
 .service-block-description {
@@ -188,6 +189,7 @@
 
   .service-info-left {
     min-width: auto;
+    flex: 1 1 auto;
     width: 100%;
     justify-content: center;
     text-align: center;

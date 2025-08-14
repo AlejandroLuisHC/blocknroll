@@ -13,13 +13,6 @@ vi.mock("react-i18next", () => ({
         "contact.subtitle": "Ready to start your beach volleyball journey?",
         "contact.form.title": "Send us a message",
         "contact.form.name": "Full Name",
-        "contact.form.email": "Email Address",
-        "contact.form.phone": "Phone Number",
-        "contact.form.program": "Program Interest",
-        "contact.form.programs.basic": "Basic Training",
-        "contact.form.programs.competitive": "Competitive",
-        "contact.form.programs.elite": "Elite Program",
-        "contact.form.programs.other": "Other",
         "contact.form.message": "Message",
         "contact.form.send": "Send Message",
         "contact.info.title": "Contact Information",
@@ -52,9 +45,6 @@ vi.mock("../hooks/useContactForm", () => ({
   useContactForm: () => ({
     formData: {
       name: "",
-      email: "",
-      phone: "",
-      program: "basic",
       message: "",
     },
     handleSubmit: mockHandleSubmit,
@@ -97,15 +87,5 @@ describe("Contact Component - Business Logic Tests", () => {
 
     // The actual submission is handled by the useContactForm hook,
     // which is tested separately. This tests the integration exists.
-  });
-
-  it("includes program selection options", () => {
-    render(<Contact />);
-
-    // Test that all program options are available (business logic)
-    expect(screen.getByText("Basic Training")).toBeInTheDocument();
-    expect(screen.getByText("Competitive")).toBeInTheDocument();
-    expect(screen.getByText("Elite Program")).toBeInTheDocument();
-    expect(screen.getByText("Other")).toBeInTheDocument();
   });
 });

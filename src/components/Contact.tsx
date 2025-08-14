@@ -1,15 +1,8 @@
 import { useTranslation } from "react-i18next";
 import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
-import { ContactInfo, FormField, ModernCard } from "./ui";
+import { ContactInfo, FormField, ModernCard, AvailabilityGrid } from "./ui";
 import { useContactForm } from "../hooks/useContactForm";
 
-// Types
-interface ProgramOption {
-  value: string;
-  label: string;
-}
-
-// Sub-components
 const ContactSectionHeader = () => {
   const { t } = useTranslation();
 
@@ -25,18 +18,11 @@ const ContactSectionHeader = () => {
 
 const ContactFormSection = () => {
   const { t } = useTranslation();
-  const { formData, handleSubmit, handleChange } = useContactForm();
-
-  const programOptions: ProgramOption[] = [
-    { value: "basic", label: t("contact.form.programs.basic") },
-    { value: "competitive", label: t("contact.form.programs.competitive") },
-    { value: "elite", label: t("contact.form.programs.elite") },
-    { value: "other", label: t("contact.form.programs.other") },
-  ];
+  const { formData, handleSubmit, handleChange, toggleAvailability, status, submitError, isValid } = useContactForm();
 
   return (
     <div className="col-lg-7">
-      <ModernCard className="border-0 h-100 contact-form-card" padding="p-5">
+      <ModernCard className="border-0 h-100 contact-form-card" padding="p-4">
         <div className="contact-form-header">
           <div className="contact-form-icon">
             <Send size={24} className="text-white" />
@@ -45,78 +31,132 @@ const ContactFormSection = () => {
             <h3 className="h3 fw-bold text-dark mb-1">
               {t("contact.form.title")}
             </h3>
-            <p className="text-secondary mb-0 small">
-              Get in touch with our team
+            <p className="text-secondary mb-1 fs-6">
+              {t("contact.form.description")}
             </p>
           </div>
         </div>
 
         <form onSubmit={handleSubmit} className="needs-validation" noValidate>
           <FormField
+            label={t("contact.form.inquiryTypeLabel")}
+            name="inquiryType"
+            type="select"
+            value={formData.inquiryType}
+            onChange={handleChange}
+            options={[
+              { value: "join", label: t("contact.form.inquiryOptions.join") },
+              { value: "talk", label: t("contact.form.inquiryOptions.talk") },
+            ]}
+            className="mb-4"
+          />
+
+          <FormField
             label={t("contact.form.name")}
-            name="name"
+            name="fullName"
             type="text"
-            value={formData.name}
+            value={formData.fullName}
             onChange={handleChange}
             required
             placeholder={t("contact.form.namePlaceholder")}
             className="mb-4"
-          />
-
-          <div className="row g-3 mb-4">
-            <div className="col-md-6">
-              <FormField
-                label={t("contact.form.email")}
-                name="email"
-                type="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                placeholder={t("contact.form.emailPlaceholder")}
-                className="mb-0"
-              />
-            </div>
-            <div className="col-md-6">
-              <FormField
-                label={t("contact.form.phone")}
-                name="phone"
-                type="tel"
-                value={formData.phone}
-                onChange={handleChange}
-                placeholder={t("contact.form.phonePlaceholder")}
-                className="mb-0"
-              />
-            </div>
-          </div>
-
-          <FormField
-            label={t("contact.form.program")}
-            name="program"
-            type="select"
-            value={formData.program}
-            onChange={handleChange}
-            options={programOptions}
-            className="mb-4"
+            pattern={'^[A-Za-zÀ-ÖØ-öø-ÿ \'-]{2,}$'}
           />
 
           <FormField
-            label={t("contact.form.message")}
-            name="message"
-            type="textarea"
-            value={formData.message}
+            label={t("contact.form.email")}
+            name="email"
+            type="email"
+            value={formData.email}
             onChange={handleChange}
             required
-            placeholder={t("contact.form.messagePlaceholder")}
-            rows={4}
+            placeholder={t("contact.form.emailPlaceholder")}
             className="mb-4"
+            pattern={'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$'}
           />
+
+          <FormField
+            label={t("contact.form.phone")}
+            name="phone"
+            type="tel"
+            value={formData.phone || ""}
+            onChange={handleChange}
+            placeholder={t("contact.form.phonePlaceholder")}
+            className="mb-4"
+            pattern={'^(\\+\\d{1,3}[ ]?)?(\\d{3}[ ]?\\d{3}[ ]?\\d{3}|\\d{9})$'}
+            inputMode="tel"
+          />
+
+          {formData.inquiryType === "join" && (
+            <>
+              <FormField
+                label={t("contact.form.playersLabel")}
+                name="players"
+                type="select"
+                value={String(formData.players || 1)}
+                onChange={handleChange}
+                options={[1,2,3,4,5,6,7,8].map((n) => ({ value: String(n), label: String(n) }))}
+                className="mb-4"
+              />
+
+              <FormField
+                label={t("contact.form.levelLabel")}
+                name="level"
+                type="select"
+                value={formData.level || ""}
+                onChange={handleChange}
+                options={[
+                  { value: "", label: t("contact.form.selectPlaceholder") },
+                  { value: "Iniciación", label: t("contact.form.levels.iniciacion") },
+                  { value: "Básico", label: t("contact.form.levels.basico") },
+                  { value: "Intermedio", label: t("contact.form.levels.intermedio") },
+                  { value: "Avanzado", label: t("contact.form.levels.avanzado") },
+                ]}
+                className="mb-4"
+              />
+
+              <FormField
+                label={t("contact.form.packageLabel")}
+                name="packageType"
+                type="select"
+                value={formData.packageType || "one_per_week"}
+                onChange={handleChange} 
+                options={[
+                  { value: "one_per_week", label: t("contact.form.packages.onePerWeek") },
+                  { value: "two_per_week", label: t("contact.form.packages.twoPerWeek") },
+                  { value: "private", label: t("contact.form.packages.private") },
+                ]}
+                className="mb-4"
+              />
+
+              {formData.packageType !== "private" && (
+                <div className="mb-4">
+                  <label className="form-label fw-medium">
+                    {t("contact.form.availabilityLabel")}
+                  </label>
+                  <AvailabilityGrid
+                    selected={formData.availability || []}
+                    onToggle={toggleAvailability}
+                  />
+                </div>
+              )}
+            </>
+          )}
+
+          {submitError && (
+            <div className="alert alert-danger mt-2" role="alert">
+              {submitError}
+            </div>
+          )}
 
           <button
             type="submit"
             className="btn btn-lg w-100 d-flex align-items-center justify-content-center gap-3 contact-form-submit-btn"
+            data-loading={status === "loading" ? "true" : "false"}
+            disabled={status === "loading" || !isValid}
           >
             <Send size={20} />
-            {t("contact.form.send")}
+            {status === "success" ? t("contact.form.successMessage") : t("contact.form.send")}
           </button>
         </form>
       </ModernCard>

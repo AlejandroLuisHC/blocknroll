@@ -4,6 +4,8 @@
 
 ```
 blocknroll/
+├── api/                     # Serverless functions API (email sending)
+├── emails/                # Email templates
 ├── public/                    # Static assets
 ├── src/
 │   ├── assets/               # Images, docs, and other assets
@@ -109,6 +111,8 @@ const ROUTES = {
 ### Path Aliases Available:
 
 - `@/` → `src/`
+- `@api/` → `api/`
+- `@emails/` → `emails/`
 - `@components/` → `src/components/`
 - `@pages/` → `src/pages/`
 - `@layouts/` → `src/layouts/`
@@ -151,14 +155,3 @@ const ROUTES = {
 - Automated testing
 - Build verification
 - Coverage reporting
-
-## 🔄 Migration Benefits
-
-The new architecture provides:
-
-1. **Better separation** of concerns
-2. **Easier navigation** for new developers
-3. **Scalable routing** for multi-page apps
-4. **Consistent layouts** across pages
-5. **Cleaner imports** with path aliases
-6. **Future-proof** structure for growth

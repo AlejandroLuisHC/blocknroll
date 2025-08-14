@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.6.0] (2025-08-14)
+
+### Features
+
+- Add better contact form with email sending service:
+  - Add email templates
+  - Use nodemailer and maileroo to send emails
+  - Configure vercel serverless functions to manage email sending
+
 ## [0.5.0] (2025-07-25)
 
 ### Features

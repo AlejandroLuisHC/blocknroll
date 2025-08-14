@@ -7,3 +7,4 @@ export { default as ContactInfo } from "./ContactInfo";
 export { default as SocialLink } from "./SocialLink";
 export { default as FormField } from "./FormField";
 export { default as GalleryImage } from "./GalleryImage";
+export { default as AvailabilityGrid } from "./AvailabilityGrid";

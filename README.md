@@ -4,7 +4,7 @@ A modern and welcoming landing page built with React and TypeScript.
 
 ## 🏐 About This Project
 
-This is a responsive, multilingual website template designed specifically for Block n' Roll beach volleyball club.
+This is a responsive, multilingual website designed specifically for Block n' Roll beach volleyball club.
 
 ### Key Features
 
@@ -12,7 +12,7 @@ This is a responsive, multilingual website template designed specifically for Bl
 - **Multilingual Support**: Built-in internationalization (Spanish/English/Catalan)
 - **Service Showcase**: Flexible sections for training programs and pricing
 - **Dynamic Gallery**: Future Instagram integration with smart fallback to sample images
-- **Contact Section**: User-friendly contact and inquiry section
+- **Contact Section**: User-friendly contact and inquiry section with email sending service
 - **Performance Optimized**: Fast loading with modern build tools
 
 ## 🚀 Technologies Used
@@ -20,11 +20,13 @@ This is a responsive, multilingual website template designed specifically for Bl
 - **React 19** - Modern React framework
 - **TypeScript** - Static type checking
 - **Vite** - Fast build tool and development server
-- **Bootstrap 5.3.2** - CSS framework for responsive design
+- **Bootstrap** - CSS framework for responsive design
 - **react-i18next** - Internationalization library
-- **Lucide React** - Modern icon library
-- **Instagram Basic Display API** - Social media integration
 - **Vitest** - Testing framework
+- **Vercel** - Serverless functions and deployment
+- **Nodemailer** - Email sending library
+- **Maileroo** - SMTP provider
+- **React Email** - Email templates
 
 ## 📦 Installation
 
@@ -54,7 +56,7 @@ This is a responsive, multilingual website template designed specifically for Bl
 4. **Open your browser**
    Navigate to `http://localhost:3000`
 
-## 🏗️ Project Structure
+## 🏗️ Main Project Structure
 
 ```
 src/
@@ -79,13 +81,6 @@ src/
 ```
 
 ## 🎨 Design System
-
-### Visual Identity
-
-- **Color Scheme**: Blue (volleyball) and Yellow (beach/sand)
-- **Theme**: Rock & Volleyball - "Where sand meets music"
-- **Style**: Modern, welcoming, and community-focused
-- **Typography**: Custom font integration with fallbacks
 
 ### Design Principles
 
@@ -139,59 +134,29 @@ Update content by modifying the translation files. No code changes required for:
 - Contact details
 - Service descriptions
 
-## 📷 Instagram Integration
+## 📷 Instagram Integration *(to-do)*
 
-The gallery can automatically display Instagram posts when configured:
+The gallery should automatically display Instagram posts when configured:
 
-### Setup Instructions
-
-1. **Create Instagram App**
-
-   - Visit [Facebook Developers](https://developers.facebook.com/apps/)
-   - Create a new "Consumer" type app
-   - Add "Instagram Basic Display" product
-
-2. **Environment Variables**
-
-   Create `.env.local` in the project root:
-
-   ```bash
-   VITE_INSTAGRAM_ACCESS_TOKEN=your_access_token
-   VITE_INSTAGRAM_USER_ID=your_user_id
-   ```
-
-3. **Features**
+### Features:
    - ✅ Automatic post loading
    - ✅ Smart fallback to sample images
    - ✅ Media type support (images/videos)
    - ✅ Error handling and loading states
    - ✅ Manual refresh capability
+   - ✅ Redirect to post/account
 
-## 🚀 Deployment
+## 📧 Email Sending
 
-The project is ready for deployment on various platforms:
+Emails are sent from a Serverless Function (`api/send-email.js`) using Nodemailer over SMTP.
 
-### Netlify/Vercel
-
-1. Connect your repository
-2. Set build command: `npm run build`
-3. Set publish directory: `dist`
-
-### GitHub Pages
-
-1. Run `npm run build`
-2. Deploy the `dist` folder
-
-### Environment Variables
-
-Remember to configure any required environment variables on your hosting platform.
+Note: Works with any SMTP provider (e.g., Maileroo, Gmail, etc.) by setting the variables accordingly.
 
 ## 🧪 Testing
 
 The project includes comprehensive testing:
 
 - **Unit Tests**: Component and utility function tests
-- **Integration Tests**: Contact form and user interaction tests
 - **Coverage Reports**: Detailed test coverage analysis
 
 Run tests with:
@@ -201,24 +166,20 @@ npm run test
 npm run test:coverage
 ```
 
-## 🎯 Future Enhancements
+## 🎯 To-Do List
 
-- [ ] Advanced booking system
-- [ ] Payment integration
-- [ ] Member dashboard
-- [ ] Event management
-- [ ] Blog functionality
-- [ ] SEO optimizations
-- [ ] Analytics integration
+- [ ] Instagram app integration
+- [ ] SEO optimization
+- [ ] Blog functionality 
+- [ ] Payment integration (?)
+- [ ] Member dashboard (?)
+- [ ] Events calendar/management (?)
+- [ ] Analytics integration (?)
 
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
 ---
 
-Built with ❤️ for the beach volleyball community
+Built with love ❤️ for the Block n' Roll club and the beach volleyball community.
