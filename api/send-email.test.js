@@ -32,6 +32,7 @@ const createRes = () => {
 describe("api/send-email", () => {
 	beforeEach(() => {
 		vi.clearAllMocks();
+		sendMailMock.mockResolvedValue({ messageId: "test-message-id" });
 		vi.stubEnv("SMTP_HOST", "smtp.example.com");
 		vi.stubEnv("SMTP_PORT", "587");
 		vi.stubEnv("SMTP_USER", "user@example.com");
@@ -52,7 +53,7 @@ describe("api/send-email", () => {
 	});
 
 	it("returns 500 when SMTP config is missing", async () => {
-		vi.unstubAllEnvs(); // simulate missing env
+		vi.stubEnv("SMTP_HOST", undefined);
 		const req = { method: "POST", body: { name: "John", message: "Hi" } };
 		const res = createRes();
 		await handler(req, res);
@@ -69,7 +70,11 @@ describe("api/send-email", () => {
 		expect(res.status).toHaveBeenCalledWith(400);
 	});
 
-  it("sends email and formats availability labels to Spanish day/time", async () => {
+  it.each([
+    { inquiryType: "join", packageType: "one_per_week" },
+    { inquiryType: "join", packageType: "private" },
+    { inquiryType: "talk" },
+  ])("formats availability in the email for %j", async (enquiry) => {
 		const req = {
 			method: "POST",
 			body: {
@@ -77,7 +82,7 @@ describe("api/send-email", () => {
 				email: "jane@example.com",
 				message: "Hello world",
 				meta: {
-					inquiryType: "join",
+					...enquiry,
           availability: ["mon_18_1930", "wed_1930_21", "thu_21_2230"],
 				},
 			},
@@ -87,6 +92,7 @@ describe("api/send-email", () => {
 
 		// Response
 		expect(res.status).toHaveBeenCalledWith(200);
+		expect(res.json).toHaveBeenCalledWith({ ok: true, id: "test-message-id" });
 		expect(sendMailMock).toHaveBeenCalled();
 
 		// Render call and props

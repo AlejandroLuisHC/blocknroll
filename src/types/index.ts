@@ -67,3 +67,15 @@ export type GalleryCategory =
   | "competition"
   | "celebration"
   | "events";
+export interface ClubSeason {
+  startsOn: string;
+  endsOn: string;
+  prices: {
+    one_per_week: number;
+    two_per_week: number;
+    coachSupplement: number;
+    annualLicence: number;
+    processingFeePercent: number;
+  };
+  documents: { guide: string; rules: string };
+}

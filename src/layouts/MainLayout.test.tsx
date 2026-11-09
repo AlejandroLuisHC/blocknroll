@@ -1,103 +1,16 @@
 import { render, screen } from "@testing-library/react";
-import { vi, describe, it, expect } from "vitest";
+import { beforeEach, expect, it } from "vitest";
+import i18n from "../i18n";
 import MainLayout from "./MainLayout";
 
-// Mock the components
-vi.mock("../components", () => ({
-  Navbar: () => <nav data-testid="navbar">Mock Navbar</nav>,
-  Footer: () => <footer data-testid="footer">Mock Footer</footer>,
-}));
+beforeEach(() => i18n.changeLanguage("es"));
 
-describe("MainLayout", () => {
-  it("renders without crashing", () => {
-    render(
-      <MainLayout>
-        <div>Test Content</div>
-      </MainLayout>
-    );
-    
-    expect(screen.getByText("Test Content")).toBeInTheDocument();
-  });
+it("provides landmarks and a keyboard shortcut to the main content", () => {
+  render(<MainLayout><h1>Page content</h1></MainLayout>);
 
-  it("renders navbar component", () => {
-    render(
-      <MainLayout>
-        <div>Test Content</div>
-      </MainLayout>
-    );
-    
-    expect(screen.getByTestId("navbar")).toBeInTheDocument();
-    expect(screen.getByText("Mock Navbar")).toBeInTheDocument();
-  });
-
-  it("renders footer component", () => {
-    render(
-      <MainLayout>
-        <div>Test Content</div>
-      </MainLayout>
-    );
-    
-    expect(screen.getByTestId("footer")).toBeInTheDocument();
-    expect(screen.getByText("Mock Footer")).toBeInTheDocument();
-  });
-
-  it("renders children content in main element", () => {
-    render(
-      <MainLayout>
-        <div data-testid="child-content">Child Content</div>
-      </MainLayout>
-    );
-    
-    const mainElement = screen.getByRole("main");
-    expect(mainElement).toBeInTheDocument();
-    expect(mainElement).toContainElement(screen.getByTestId("child-content"));
-  });
-
-  it("has correct structure with navbar, main, and footer", () => {
-    render(
-      <MainLayout>
-        <div>Test Content</div>
-      </MainLayout>
-    );
-    
-    const container = screen.getByTestId("navbar").parentElement;
-    expect(container).toHaveClass("min-h-screen", "bg-white");
-    
-    // Check order: navbar, main, footer
-    const navbar = screen.getByTestId("navbar");
-    const main = screen.getByRole("main");
-    const footer = screen.getByTestId("footer");
-    
-    expect(navbar).toBeInTheDocument();
-    expect(main).toBeInTheDocument();
-    expect(footer).toBeInTheDocument();
-  });
-
-  it("handles different types of children", () => {
-    render(
-      <MainLayout>
-        <div>
-          <h1>Title</h1>
-          <p>Paragraph</p>
-          <button>Button</button>
-        </div>
-      </MainLayout>
-    );
-    
-    expect(screen.getByText("Title")).toBeInTheDocument();
-    expect(screen.getByText("Paragraph")).toBeInTheDocument();
-    expect(screen.getByText("Button")).toBeInTheDocument();
-  });
-
-  it("handles empty children", () => {
-    render(
-      <MainLayout>
-        {null}
-      </MainLayout>
-    );
-    
-    expect(screen.getByRole("main")).toBeInTheDocument();
-    expect(screen.getByTestId("navbar")).toBeInTheDocument();
-    expect(screen.getByTestId("footer")).toBeInTheDocument();
-  });
-}); 
+  expect(screen.getByRole("link", { name: "Saltar al contenido" })).toHaveAttribute("href", "#main-content");
+  expect(screen.getByRole("banner")).toBeInTheDocument();
+  expect(screen.getByRole("main")).toHaveAttribute("id", "main-content");
+  expect(screen.getByRole("main")).toContainElement(screen.getByRole("heading", { name: "Page content" }));
+  expect(screen.getByRole("contentinfo")).toBeInTheDocument();
+});

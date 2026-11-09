@@ -1,8 +1,7 @@
-/* =============================================
-   BLOCK N' ROLL - MAIN STYLESHEET
-   ============================================= */
-
-/* Import all styles in order */
-@import "./global/index.css";
-@import "./utils/index.css";
-@import "./components/index.css";
+@import "./global/base.css";
+@import "./components/navbar.css";
+@import "./components/hero.css";
+@import "./components/services.css";
+@import "./components/about.css";
+@import "./components/gallery.css";
+@import "./components/forms.css";

@@ -1,266 +1,170 @@
 {
+  "meta": {
+    "title": "Block n’ Roll — Beach volleyball club in Barcelona"
+  },
   "nav": {
-    "home": "Home",
-    "about": "About",
+    "main": "Main navigation",
+    "skip": "Skip to content",
     "services": "Training",
-    "gallery": "Gallery",
+    "about": "The club",
+    "gallery": "On court",
     "contact": "Contact",
-    "joinNow": "Join Us",
+    "language": "Language",
     "openMenu": "Open menu",
     "closeMenu": "Close menu"
   },
   "hero": {
-    "title": "Block n' Roll",
-    "motto": "We will Block n' Roll!",
-    "subtitle": "Beach Volleyball Club · Barcelona",
-    "description": "Dynamic training, active community... and lots of sand",
-    "description2": "Looking to improve your beach volleyball, meet people with good vibes and enjoy training in Barcelona?\n\nCome try a free class and start living beach volleyball in a different way!",
-    "joinButton": "Join the family",
-    "videoButton": "Learn more",
-    "stats": {
-      "completeTraining": "Complete training",
-      "players": "Max. 8 people",
-      "sessions": "1h30 sessions",
-      "freeTrial": "Free trial option",
-      "privateTraining": "Private training",
-      "experience": "6+ years experience"
+    "kicker": "Beach volleyball club",
+    "headline": "Beach volleyball",
+    "city": "in Barcelona",
+    "intro": "Train on the sand courts at CEM Vall d’Hebron in small groups, with sessions tailored to your level.",
+    "training": "See training options",
+    "trial": "Request a trial session",
+    "caption": "Block n’ Roll on court",
+    "photoAlt": "A coach demonstrates a receiving stance to a group of players on a sand court",
+    "facts": {
+      "players": "Players per group, at most",
+      "duration": "Per training session",
+      "season": "Season"
     }
   },
-  "about": {
-    "badge": "Who are we?",
-    "title": "Who are we?",
-    "description1": "Hello everyone! We are Sara, Jesús and David, passionate about beach volleyball and rock 🎸. After years of training and competing, we decided to create the Block n' Roll Beach Volleyball Club: a space to learn, improve, enjoy and build a community.",
-    "description2": "We want to share our passion for this sport with dynamic, intense training adapted to each person, all in a close, fun environment full of sand!",
-    "trainersTitle": "Our trainers",
-    "trainer1": "Jesús García",
-    "trainer2": "David Bardina",
-    "trainersCredentials": "Official Beach Volleyball Level 1 Certification",
-    "trainersExperience": "More than 6 years competing, training and growing in the sport",
-    "trainersPassion": "Lovers of volleyball and good atmosphere, on and off the court",
-    "stats": {
-      "experience": "6+",
-      "experienceLabel": "Years Experience",
-      "players": "50+",
-      "playersLabel": "Happy Players"
-    },
-    "features": {
-      "excellence": {
-        "title": "Dynamic training",
-        "description": "Intense and personalized sessions that optimize every minute on the court."
-      },
-      "community": {
-        "title": "Active community",
-        "description": "More than a club, we are a family with good vibes and lots of sand."
-      },
-      "goals": {
-        "title": "For all levels",
-        "description": "From beginner to advanced, we adapt each training to your pace."
-      },
-      "passion": {
-        "title": "Rock & volleyball passion",
-        "description": "We combine our love for beach volleyball with the energy of rock."
-      }
-    },
-    "visualTitle": "Rock & Volleyball",
-    "visualSubtitle": "Where sand meets music"
-  },
-  "services": {
-    "badge": "Training",
-    "title": "Our Training Sessions",
-    "subtitle": "Small groups, certified coaches and our own methodology to optimize your experience.",
+  "training": {
+    "title": "Train at your pace",
+    "intro": "We train in groups of up to 8, with 90-minute sessions for adults and juniors of all levels.",
+    "perMonth": "/ month",
+    "customPrice": "On request",
+    "choose": "Check availability",
     "programs": {
-      "basic": {
-        "title": "1 Training/Week",
-        "description": "Perfect to start or maintain your level with weekly training.",
-        "features": [
-          "Max. 8 people groups",
-          "1h30 sessions",
-          "Certified coaches",
-          "Dynamic training"
-        ],
-        "price": "35€/month"
+      "one_per_week": {
+        "title": "One session a week",
+        "description": "A weekly session to get started or keep playing regularly."
       },
-      "competitive": {
-        "title": "2 Trainings/Week",
-        "description": "For those looking to progress faster with regular training.",
-        "features": [
-          "Max. 8 people groups",
-          "1h30 sessions",
-          "Certified coaches",
-          "Sustained improvement"
-        ],
-        "price": "65€/month"
+      "two_per_week": {
+        "title": "Two sessions a week",
+        "description": "More court time to build on what you learn in each session."
       },
-      "elite": {
-        "title": "Private Training",
-        "description": "Personalized sessions for specific goals and reduced groups.",
-        "features": [
-          "Flexible schedules",
-          "Personalized methodology",
-          "Super small groups",
-          "Check availability"
-        ],
-        "price": "Consult"
+      "private": {
+        "title": "Private training",
+        "description": "A session built around your goals, scheduled with the coaching team."
       }
     },
-    "popular": "Most Popular",
-    "joinButton": "Information",
-    "downloadInfo": "Download detailed info",
-    "additionalTitle": "What we include",
-    "additional": {
-      "tournaments": {
-        "title": "Federation License",
-        "description": "35€/year includes sports insurance. We process it at no extra cost."
-      },
-      "clinics": {
-        "title": "Own Methodology",
-        "description": "Comprehensive approach: physical, technical and tactical skills adapted."
-      },
-      "schedule": {
-        "title": "Premium Facilities",
-        "description": "Outdoor courts, night lighting, changing rooms and bar at CEM Vall d'Hebron."
-      },
-      "trial": {
-        "title": "Free trial session",
-        "description": "Try our training sessions and discover how we can help you improve."
-      }
-    }
+    "scheduleTitle": "Training hours",
+    "schedule": "Monday to Thursday, 18:00 to 22:30, in three time slots.",
+    "seasonDates": "The season runs from {{start}} to {{end}}.",
+    "licenseTitle": "Federation licence",
+    "license": "Required to train at Vall d’Hebron. It includes sports insurance and costs around {{amount}} a year. The club can arrange it at no extra charge.",
+    "licenseWithoutPrice": "Required to train at Vall d’Hebron. It includes sports insurance and the club can arrange it.",
+    "trialTitle": "Trial session",
+    "guides": "Season documents",
+    "download": "Download {{title}} (PDF in Spanish)",
+    "priceNote": "Rates are for groups of 8. Groups with a high-level coach may cost an extra {{supplement}} per month. Card payments via Cluber carry a processing fee of around {{fee}}% plus VAT.",
+    "trialTerms": "The trial is free and comes with no commitment. If you join, the trial session is included in the prorated monthly fee.",
+    "guide": "Club guide",
+    "rules": "Club rules",
+    "seeSchedule": "See training times by group"
+  },
+  "club": {
+    "title": "It started on the court",
+    "story": "We’re Sara, Jesús and David. After years of training and competing, we started Block n’ Roll to share beach volleyball and bring together people who want to play.",
+    "approach": "On court we work on technique and gameplay at your pace, from your first touches to competition.",
+    "trainers": "On court with",
+    "credentials": "Jesús and David hold official Level 1 beach volleyball certification and have over six years of training and competition experience."
   },
   "gallery": {
-    "badge": "Gallery",
-    "title": "Our Community",
-    "subtitle": "Special moments, training sessions and the energy we share at Block n' Roll.",
-    "categories": {
-      "all": "All",
-      "training": "Training",
-      "competition": "Competition",
-      "celebration": "Celebration",
-      "events": "Events"
+    "title": "Life on the sand",
+    "profile": "See the Instagram profile",
+    "play": "Play “{{title}}”",
+    "posts": {
+      "training": "Season training",
+      "schedule": "Training timetable",
+      "competition": "Club League",
+      "join": "Join the club",
+      "practice": "A day of training",
+      "zaragoza": "A Zaragoza tournament microvlog"
     },
-    "noImages": "More photos coming soon",
-    "noImagesDescription": "We're preparing an amazing gallery to share with you.",
-    "loading": "Loading Instagram content...",
-    "refresh": "Refresh",
-    "lastUpdate": "Last update",
-    "error": "Error",
-    "filters": "Gallery filters",
-    "viewMore": "View more on Instagram",
-    "watchOnInstagram": "Watch on Instagram",
-    "ctaText": "Stay up to date with our latest training sessions and community moments",
-    "followButton": "Follow @blocknrollbeachvolleybcn",
-    "swipeHint": "Swipe to see more",
-    "status": {
-      "instagram": "Content from Instagram",
-      "fallback": "Sample gallery"
+    "imageDescriptions": {
+      "training": "2026–27 season training poster showing a receiving demonstration on the sand",
+      "schedule": "Monday-to-Thursday timetable with three time slots for women’s, men’s and mixed groups",
+      "competition": "The club’s five teams in the Catalan First Division and National Second Division, in the women’s and men’s categories",
+      "join": "Club poster inviting players to join training"
     }
   },
   "contact": {
-    "badge": "Contact",
-    "title": "Interested in joining?",
-    "subtitle": "We'd love to have you in the Block n' Roll family! Get in touch with our team!",
+    "title": "See you on the sand",
+    "intro": "Tell us which training option interests you or get in touch with a question. The team will reply by email.",
+    "locationLabel": "Where we train",
+    "venue": "CEM Eurofitness Vall d’Hebron",
+    "address": "Pg. de la Vall d’Hebron, 178 · 08035 Barcelona",
+    "directions": "Get directions",
+    "emailLabel": "Email",
     "form": {
-      "title": "No commitment form",
-      "description": "By sending this form, you don't commit to anything. We'll contact you as soon as possible!",
-      "name": "Full name",
-      "email": "Email",
-      "phone": "Phone",
-      "program": "Interest",
-      "message": "Tell us",
-      "send": "Send",
-      "namePlaceholder": "Your name",
-      "emailPlaceholder": "your@email.com",
-      "phonePlaceholder": "+34 600 000 000",
-      "messagePlaceholder": "Tell us your level, availability or any questions...",
-      "required": "*",
-      "errorMessage": "There was a problem sending your request. Please try again.",
-      "inquiryTypeLabel": "Type of inquiry",
+      "title": "Get in touch",
+      "trialSelected": "Trial session request",
+      "inquiryTypeLabel": "How can we help?",
       "inquiryOptions": {
-        "join": "I want to join the club",
-        "talk": "I want more information"
+        "join": "I want to train",
+        "talk": "I’d like more information"
       },
-      "playersLabel": "How many players are you?",
-      "levelLabel": "Estimated level",
-      "packageLabel": "What package are you interested in?",
+      "name": "Full name",
+      "email": "Email address",
+      "phone": "Phone (optional)",
+      "question": "What would you like to know? (optional)",
+      "playersLabel": "Number of players",
+      "levelLabel": "Approximate level",
+      "packageLabel": "Training option",
       "levels": {
         "iniciacion": "Beginner",
         "basico": "Basic",
         "intermedio": "Intermediate",
         "avanzado": "Advanced"
       },
-      "packages": {
-        "onePerWeek": "1 training/week",
-        "twoPerWeek": "2 trainings/week",
-        "private": "Private training"
-      },
-      "selectPlaceholder": "- Select -",
-      "availabilityLabel": "Availability time (Mon–Fri)",
+      "selectPlaceholder": "Choose a level (optional)",
+      "availabilityLabel": "Availability (optional)",
+      "time": "Time",
       "availability": {
-        "days": { "mon": "Mon", "tue": "Tue", "wed": "Wed", "thu": "Thu", "fri": "Fri" },
-        "slots": { "18_1930": "18:00-19:30", "1930_21": "19:30-21:00", "21_2230": "21:00-22:30" }
+        "days": {
+          "mon": "Mon",
+          "tue": "Tue",
+          "wed": "Wed",
+          "thu": "Thu"
+        },
+        "slots": {
+          "18_1930": "18:00–19:30",
+          "1930_21": "19:30–21:00",
+          "21_2230": "21:00–22:30"
+        },
+        "dayNames": {
+          "mon": "Monday",
+          "tue": "Tuesday",
+          "wed": "Wednesday",
+          "thu": "Thursday"
+        }
       },
-      "programs": {
-        "basic": "1 Training/Week",
-        "competitive": "2 Trainings/Week",
-        "elite": "Private Training",
-        "other": "Just information"
-      },
-      "successMessage": "Thank you! We'll contact you soon to coordinate your free session."
+      "send": "Send request",
+      "sending": "Sending…",
+      "nameError": "Enter a name with at least two characters.",
+      "emailError": "Enter a valid email address.",
+      "errorMessage": "We couldn’t send your request. Your details are still here. Please try again.",
+      "successJoin": "Request sent. We’ll email you to arrange your training session.",
+      "successTalk": "Enquiry sent. We’ll get back to you by email."
     },
     "email": {
-      "typeJoin": "Type of inquiry: I want to join the club",
-      "typeTalk": "Type of inquiry: I want more information",
+      "typeJoin": "Enquiry type: I want to train",
+      "trial": "Interest: trial session",
+      "typeTalk": "Enquiry type: I’d like more information",
       "name": "Name",
       "email": "Email",
       "phone": "Phone",
-      "players": "How many players are you?",
-      "level": "Estimated level",
-      "package": "What package are you interested in?",
-      "availability": "Availability time",
+      "players": "Number of players",
+      "level": "Approximate level",
+      "package": "Training option",
+      "availability": "Availability",
       "availabilityNone": "No preference"
     },
-    "info": {
-      "title": "Contact information",
-      "description": "We're here to answer all your questions. Write to us and we'll tell you everything!",
-      "location": {
-        "title": "Where we train",
-        "content": "CEM Eurofitness Vall d'Hebron, Barcelona",
-        "description": "Pg. de la Vall d'Hebron, 178, Horta-Guinardó"
-      },
-      "phone": {
-        "title": "WhatsApp",
-        "content": "Contact via social media",
-        "description": "Quick response via Instagram or email"
-      },
-      "email": {
-        "title": "Email",
-        "content": "blocknroll.bcnclub@gmail.com",
-        "description": "We respond within 24 hours"
-      },
-      "schedule": {
-        "title": "Schedule",
-        "content": "Mon-Fri: 18:00-22:30",
-        "description": "Official start: September 2025"
-      }
-    }
+    "transit": "Metro: Montbau (L3) or Vall d’Hebron (L5)."
   },
   "footer": {
-    "description": "Beach Volleyball Club in Barcelona. Dynamic training, active community and lots of sand. We will Block n' Roll! 🎸",
-    "followUs": "Follow us on",
-    "quickLinks": "Quick links",
-    "contactInfo": "Contact",
-    "newsletter": {
-      "title": "Stay updated",
-      "description": "Receive news about training and events",
-      "placeholder": "Your email",
-      "subscribe": "Subscribe"
-    },
-    "copyright": "All rights reserved.",
-    "privacy": "Privacy",
-    "terms": "Terms"
-  },
-  "common": {
-    "years": "Years Experience",
-    "players": "Happy Players",
-    "month": "month"
+    "description": "Beach volleyball club in Barcelona.",
+    "top": "Back to top"
   }
 }

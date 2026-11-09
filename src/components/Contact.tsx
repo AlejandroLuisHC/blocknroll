@@ -1,236 +1,129 @@
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
-import { ContactInfo, FormField, ModernCard, AvailabilityGrid } from "./ui";
-import { useContactForm } from "../hooks/useContactForm";
+import { CLUB_EMAIL, DIRECTIONS_URL, TRAINING_PROGRAMS } from "../constants/club";
+import type { useContactForm } from "../hooks/useContactForm";
+import type { EstimatedLevel, PackageType } from "../types";
+import AvailabilityGrid from "./ui/AvailabilityGrid";
+import FormField from "./ui/FormField";
 
-const ContactSectionHeader = () => {
+const LEVELS = [
+  { key: "iniciacion", value: "Iniciación" },
+  { key: "basico", value: "Básico" },
+  { key: "intermedio", value: "Intermedio" },
+  { key: "avanzado", value: "Avanzado" },
+] as const;
+const PLAYER_COUNTS = Array.from({ length: 8 }, (_, index) => ({
+  value: String(index + 1),
+  label: String(index + 1),
+}));
+
+const Contact = ({ form }: { form: ReturnType<typeof useContactForm> }) => {
   const { t } = useTranslation();
+  const { formData, setField, submission } = form;
+  const isTraining = formData.inquiryType === "join";
+  const isLoading = submission.status === "loading";
 
   return (
-    <div className="contact-section-header">
-      <h2 className="display-3 fw-bold mb-4 contact-section-title">
-        {t("contact.title")}
-      </h2>
-      <p className="fs-4 contact-section-subtitle">{t("contact.subtitle")}</p>
-    </div>
-  );
-};
-
-const ContactFormSection = () => {
-  const { t } = useTranslation();
-  const { formData, handleSubmit, handleChange, toggleAvailability, status, submitError, isValid } = useContactForm();
-
-  return (
-    <div className="col-lg-7">
-      <ModernCard className="border-0 h-100 contact-form-card" padding="p-4">
-        <div className="contact-form-header">
-          <div className="contact-form-icon">
-            <Send size={24} className="text-white" />
+    <section id="contact" className="section contact" aria-labelledby="contact-title" tabIndex={-1}>
+      <div className="shell contact-layout">
+        <div className="contact-heading">
+          <p className="eyebrow">{t("nav.contact")}</p>
+          <h2 id="contact-title">{t("contact.title")}</h2>
+          <p>{t("contact.intro")}</p>
+        </div>
+        <form className="contact-form" noValidate onSubmit={form.handleSubmit}
+          aria-labelledby="contact-form-title">
+          <h3 id="contact-form-title">{t("contact.form.title")}</h3>
+          {isTraining && formData.trialRequested && (
+            <p className="trial-selection">{t("contact.form.trialSelected")}</p>
+          )}
+          <fieldset className="form-content" disabled={isLoading}>
+            <fieldset className="inquiry-options">
+              <legend>{t("contact.form.inquiryTypeLabel")}</legend>
+              <div>
+                {(["join", "talk"] as const).map((type) => (
+                  <label key={type}>
+                    <input
+                      type="radio"
+                      name="inquiryType"
+                      value={type}
+                      checked={type === formData.inquiryType}
+                      onChange={() => setField("inquiryType", type)}
+                    />
+                    {t(`contact.form.inquiryOptions.${type}`)}
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+            <div className="form-grid">
+              <FormField name="fullName" label={t("contact.form.name")} value={formData.fullName}
+                onChange={(value) => setField("fullName", value)} error={form.nameError} autoComplete="name" required />
+              <FormField name="email" label={t("contact.form.email")} value={formData.email}
+                onChange={(value) => setField("email", value)} error={form.emailError} autoComplete="email"
+                type="email" required />
+              <FormField name="phone" label={t("contact.form.phone")} value={formData.phone ?? ""}
+                onChange={(value) => setField("phone", value)} autoComplete="tel" type="tel" />
+              {isTraining && (
+                <>
+                  <FormField name="players" label={t("contact.form.playersLabel")}
+                    value={String(formData.players ?? 1)} options={PLAYER_COUNTS}
+                    onChange={(value) => setField("players", Number(value))} />
+                  <FormField name="level" label={t("contact.form.levelLabel")} value={formData.level ?? ""}
+                    options={[
+                      { value: "", label: t("contact.form.selectPlaceholder") },
+                      ...LEVELS.map(({ key, value }) => ({ value, label: t(`contact.form.levels.${key}`) })),
+                    ]}
+                    onChange={(value) => setField("level", (value || undefined) as EstimatedLevel | undefined)} />
+                  <FormField name="packageType" label={t("contact.form.packageLabel")}
+                    value={formData.packageType ?? "one_per_week"}
+                    options={TRAINING_PROGRAMS.map((id) => ({
+                      value: id, label: t(`training.programs.${id}.title`),
+                    }))}
+                    onChange={(value) => setField("packageType", value as PackageType)} />
+                </>
+              )}
+            </div>
+            {!isTraining && (
+              <div className="form-field enquiry">
+                <label htmlFor="question">{t("contact.form.question")}</label>
+                <textarea id="question" name="question" rows={4} value={formData.question}
+                  onChange={(event) => setField("question", event.target.value)} />
+              </div>
+            )}
+            <AvailabilityGrid selected={formData.availability ?? []} onToggle={form.toggleAvailability} />
+            <button className="button button-primary form-submit" type="submit">
+              {t(isLoading ? "contact.form.sending" : "contact.form.send")}
+              <ArrowRight size={17} aria-hidden="true" />
+            </button>
+          </fieldset>
+          {submission.status === "error" && (
+            <p className="submission-error" role="alert">{t("contact.form.errorMessage")}</p>
+          )}
+          <div role="status">
+            {submission.status === "success" && (
+              <p className="submission-success">
+                {t(submission.inquiryType === "join" ? "contact.form.successJoin" : "contact.form.successTalk")}
+              </p>
+            )}
+          </div>
+        </form>
+        <dl className="contact-details">
+          <div>
+            <dt>{t("contact.locationLabel")}</dt>
+            <dd><strong>{t("contact.venue")}</strong></dd>
+            <dd>{t("contact.address")}</dd>
+            <dd className="contact-transit">{t("contact.transit")}</dd>
+            <dd>
+              <a className="text-link" href={DIRECTIONS_URL} target="_blank" rel="noopener noreferrer">
+                {t("contact.directions")} <ArrowUpRight size={16} aria-hidden="true" />
+              </a>
+            </dd>
           </div>
           <div>
-            <h3 className="h3 fw-bold text-dark mb-1">
-              {t("contact.form.title")}
-            </h3>
-            <p className="text-secondary mb-1 fs-6">
-              {t("contact.form.description")}
-            </p>
+            <dt>{t("contact.emailLabel")}</dt>
+            <dd><a className="text-link" href={"mailto:" + CLUB_EMAIL}>{CLUB_EMAIL}</a></dd>
           </div>
-        </div>
-
-        <form onSubmit={handleSubmit} className="needs-validation" noValidate>
-          <FormField
-            label={t("contact.form.inquiryTypeLabel")}
-            name="inquiryType"
-            type="select"
-            value={formData.inquiryType}
-            onChange={handleChange}
-            options={[
-              { value: "join", label: t("contact.form.inquiryOptions.join") },
-              { value: "talk", label: t("contact.form.inquiryOptions.talk") },
-            ]}
-            className="mb-4"
-          />
-
-          <FormField
-            label={t("contact.form.name")}
-            name="fullName"
-            type="text"
-            value={formData.fullName}
-            onChange={handleChange}
-            required
-            placeholder={t("contact.form.namePlaceholder")}
-            className="mb-4"
-            pattern={'^[A-Za-zÀ-ÖØ-öø-ÿ \'-]{2,}$'}
-          />
-
-          <FormField
-            label={t("contact.form.email")}
-            name="email"
-            type="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-            placeholder={t("contact.form.emailPlaceholder")}
-            className="mb-4"
-            pattern={'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$'}
-          />
-
-          <FormField
-            label={t("contact.form.phone")}
-            name="phone"
-            type="tel"
-            value={formData.phone || ""}
-            onChange={handleChange}
-            placeholder={t("contact.form.phonePlaceholder")}
-            className="mb-4"
-            pattern={'^(\\+\\d{1,3}[ ]?)?(\\d{3}[ ]?\\d{3}[ ]?\\d{3}|\\d{9})$'}
-            inputMode="tel"
-          />
-
-          {formData.inquiryType === "join" && (
-            <>
-              <FormField
-                label={t("contact.form.playersLabel")}
-                name="players"
-                type="select"
-                value={String(formData.players || 1)}
-                onChange={handleChange}
-                options={[1,2,3,4,5,6,7,8].map((n) => ({ value: String(n), label: String(n) }))}
-                className="mb-4"
-              />
-
-              <FormField
-                label={t("contact.form.levelLabel")}
-                name="level"
-                type="select"
-                value={formData.level || ""}
-                onChange={handleChange}
-                options={[
-                  { value: "", label: t("contact.form.selectPlaceholder") },
-                  { value: "Iniciación", label: t("contact.form.levels.iniciacion") },
-                  { value: "Básico", label: t("contact.form.levels.basico") },
-                  { value: "Intermedio", label: t("contact.form.levels.intermedio") },
-                  { value: "Avanzado", label: t("contact.form.levels.avanzado") },
-                ]}
-                className="mb-4"
-              />
-
-              <FormField
-                label={t("contact.form.packageLabel")}
-                name="packageType"
-                type="select"
-                value={formData.packageType || "one_per_week"}
-                onChange={handleChange} 
-                options={[
-                  { value: "one_per_week", label: t("contact.form.packages.onePerWeek") },
-                  { value: "two_per_week", label: t("contact.form.packages.twoPerWeek") },
-                  { value: "private", label: t("contact.form.packages.private") },
-                ]}
-                className="mb-4"
-              />
-
-              {formData.packageType !== "private" && (
-                <div className="mb-4">
-                  <label className="form-label fw-medium">
-                    {t("contact.form.availabilityLabel")}
-                  </label>
-                  <AvailabilityGrid
-                    selected={formData.availability || []}
-                    onToggle={toggleAvailability}
-                  />
-                </div>
-              )}
-            </>
-          )}
-
-          {submitError && (
-            <div className="alert alert-danger mt-2" role="alert">
-              {submitError}
-            </div>
-          )}
-
-          <button
-            type="submit"
-            className="btn btn-lg w-100 d-flex align-items-center justify-content-center gap-3 contact-form-submit-btn"
-            data-loading={status === "loading" ? "true" : "false"}
-            disabled={status === "loading" || !isValid}
-          >
-            <Send size={20} />
-            {status === "success" ? t("contact.form.successMessage") : t("contact.form.send")}
-          </button>
-        </form>
-      </ModernCard>
-    </div>
-  );
-};
-
-const ContactInfoSection = () => {
-  const { t } = useTranslation();
-
-  return (
-    <div className="col-lg-5">
-      <div className="h-100">
-        <ModernCard className="border-0 contact-info-card" padding="p-4">
-          <div className="contact-info-header">
-            <div className="contact-info-icon">
-              <Phone size={20} className="text-white" />
-            </div>
-            <h3 className="h4 fw-bold text-dark mb-0">
-              {t("contact.info.title")}
-            </h3>
-          </div>
-
-          <p className="text-secondary mb-4 fs-6">
-            {t("contact.info.description")}
-          </p>
-
-          <div className="contact-info-list">
-            <ContactInfo
-              icon={MapPin}
-              text={t("contact.info.location.content")}
-              bgColor="bg-primary-50"
-              iconColor="text-block-main"
-            />
-            <ContactInfo
-              icon={Phone}
-              text={t("contact.info.phone.content")}
-              bgColor="bg-accent-50"
-              iconColor="text-block-blue"
-            />
-            <ContactInfo
-              icon={Mail}
-              text={t("contact.info.email.content")}
-              bgColor="bg-primary-50"
-              iconColor="text-block-main"
-            />
-            <ContactInfo
-              icon={Clock}
-              text={t("contact.info.schedule.content")}
-              bgColor="bg-accent-50"
-              iconColor="text-block-blue"
-            />
-          </div>
-        </ModernCard>
-      </div>
-    </div>
-  );
-};
-
-// Main component
-const Contact = () => {
-  return (
-    <section id="contact" className="section-modern">
-      {/* Background Overlays */}
-      <div className="contact-bg-overlay-linear" />
-      <div className="contact-bg-overlay-radial" />
-
-      <div className="container contact-section-content">
-        <ContactSectionHeader />
-
-        <div className="row g-5 align-items-start">
-          <ContactFormSection />
-          <ContactInfoSection />
-        </div>
+        </dl>
       </div>
     </section>
   );
