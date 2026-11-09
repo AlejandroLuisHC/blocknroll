@@ -1,84 +1,70 @@
-import { render, screen } from "@testing-library/react";
-import { vi, describe, it, expect } from "vitest";
+import { act, render, screen, waitFor } from "@testing-library/react";
+import { beforeEach, expect, it, vi } from "vitest";
+import i18n from "../i18n";
+import type { ClubSeason } from "../types";
 import HomePage from "./HomePage";
 
-// Mock all the components
-vi.mock("../components", () => ({
-  Hero: () => <section data-testid="hero">Mock Hero Section</section>,
-  About: () => <section data-testid="about">Mock About Section</section>,
-  Services: () => (
-    <section data-testid="services">Mock Services Section</section>
-  ),
-  Gallery: () => <section data-testid="gallery">Mock Gallery Section</section>,
-  Contact: () => <section data-testid="contact">Mock Contact Section</section>,
-}));
+const publishedSeason: ClubSeason = {
+  startsOn: "2027-09",
+  endsOn: "2028-06",
+  prices: {
+    one_per_week: 45,
+    two_per_week: 85,
+    coachSupplement: 6,
+    annualLicence: 38,
+    processingFeePercent: 4,
+  },
+  documents: {
+    guide: "https://example.public.blob.vercel-storage.com/guide.pdf?download=1",
+    rules: "https://example.public.blob.vercel-storage.com/rules.pdf?download=1",
+  },
+};
 
-describe("HomePage", () => {
-  it("renders without crashing", () => {
-    render(<HomePage />);
+beforeEach(() => i18n.changeLanguage("es"));
 
-    expect(screen.getByTestId("hero")).toBeInTheDocument();
-  });
+it("shows training before club, gallery and contact, with the original anchors", async () => {
+  vi.spyOn(globalThis, "fetch").mockResolvedValue(new Response(null, { status: 204 }));
+  render(<HomePage />);
 
-  it("renders all required sections", () => {
-    render(<HomePage />);
+  expect(screen.getAllByRole("region").map((section) => section.id))
+    .toEqual(["home", "services", "about", "gallery", "contact"]);
+  expect(await screen.findByText("26/27")).toBeInTheDocument();
+  expect(screen.getByText("40 €")).toBeInTheDocument();
+});
 
-    expect(screen.getByTestId("hero")).toBeInTheDocument();
-    expect(screen.getByTestId("about")).toBeInTheDocument();
-    expect(screen.getByTestId("services")).toBeInTheDocument();
-    expect(screen.getByTestId("gallery")).toBeInTheDocument();
-    expect(screen.getByTestId("contact")).toBeInTheDocument();
-  });
+it("uses the published season and PDFs without a rebuild", async () => {
+  const fetchMock = vi.spyOn(globalThis, "fetch").mockResolvedValue(Response.json(publishedSeason));
+  const { unmount } = render(<HomePage />);
 
-  it("renders sections in correct order", () => {
-    render(<HomePage />);
+  expect(await screen.findByText("27/28")).toBeInTheDocument();
+  expect(screen.getByText("45 €")).toBeInTheDocument();
+  expect(screen.getByText("Temporada de septiembre de 2027 a junio de 2028.")).toBeInTheDocument();
+  expect(screen.getByRole("link", { name: /descargar guía del club/i }))
+    .toHaveAttribute("href", publishedSeason.documents.guide);
 
-    const hero = screen.getByTestId("hero");
-    const about = screen.getByTestId("about");
-    const services = screen.getByTestId("services");
-    const gallery = screen.getByTestId("gallery");
-    const contact = screen.getByTestId("contact");
+  await act(() => i18n.changeLanguage("en"));
+  expect(screen.getByText("€45")).toBeInTheDocument();
+  expect(fetchMock).toHaveBeenCalledTimes(1);
+  unmount();
 
-    // Check that sections are present
-    expect(hero).toBeInTheDocument();
-    expect(about).toBeInTheDocument();
-    expect(services).toBeInTheDocument();
-    expect(gallery).toBeInTheDocument();
-    expect(contact).toBeInTheDocument();
-  });
+  const updatedGuide = "https://example.public.blob.vercel-storage.com/guide-revised.pdf?download=1";
+  fetchMock.mockResolvedValueOnce(Response.json({
+    ...publishedSeason,
+    prices: { ...publishedSeason.prices, one_per_week: 48 },
+    documents: { ...publishedSeason.documents, guide: updatedGuide },
+  }));
+  render(<HomePage />);
 
-  it("displays correct content in each section", () => {
-    render(<HomePage />);
+  expect(await screen.findByText("€48")).toBeInTheDocument();
+  expect(screen.getByRole("link", { name: /download club guide/i })).toHaveAttribute("href", updatedGuide);
+});
 
-    expect(screen.getByText("Mock Hero Section")).toBeInTheDocument();
-    expect(screen.getByText("Mock About Section")).toBeInTheDocument();
-    expect(screen.getByText("Mock Services Section")).toBeInTheDocument();
-    expect(screen.getByText("Mock Gallery Section")).toBeInTheDocument();
-    expect(screen.getByText("Mock Contact Section")).toBeInTheDocument();
-  });
+it("keeps contact available if the configured season cannot be loaded", async () => {
+  vi.spyOn(globalThis, "fetch").mockResolvedValue(Response.json({}, { status: 503 }));
+  render(<HomePage />);
 
-  it("has the complete landing page structure", () => {
-    render(<HomePage />);
-
-    // Verify all sections are rendered for a complete landing page
-    const requiredSections = [
-      "hero",
-      "about",
-      "services",
-      "gallery",
-      "contact",
-    ];
-
-    requiredSections.forEach((section) => {
-      expect(screen.getByTestId(section)).toBeInTheDocument();
-    });
-  });
-
-  it("renders as a React fragment without wrapper element", () => {
-    const { container } = render(<HomePage />);
-
-    // HomePage should render without a wrapper div
-    // The children should be direct children of the container
-    expect(container.firstChild).toEqual(screen.getByTestId("hero"));
-  });
+  await waitFor(() => expect(screen.getAllByText("A consultar")).toHaveLength(3));
+  expect(screen.queryByText("40 €")).not.toBeInTheDocument();
+  expect(screen.queryByRole("link", { name: /descargar guía del club/i })).not.toBeInTheDocument();
+  expect(screen.getByRole("link", { name: /consultar plaza: un entreno/i })).toHaveAttribute("href", "#contact");
 });

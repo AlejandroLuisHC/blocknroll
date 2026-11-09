@@ -1,64 +1,55 @@
-import React from "react";
 import { useTranslation } from "react-i18next";
 
-interface AvailabilityGridProps {
-  selected: string[];
-  onToggle: (slotKey: string) => void;
-}
+const DAYS = ["mon", "tue", "wed", "thu"] as const;
+const SLOTS = ["18_1930", "1930_21", "21_2230"] as const;
 
-const dayKeys = ["mon", "tue", "wed", "thu", "fri"] as const;
-const slotKeys = ["18_1930", "1930_21", "21_2230"] as const;
-type DayKey = typeof dayKeys[number];
-type SlotKey = typeof slotKeys[number];
-
-const AvailabilityGrid: React.FC<AvailabilityGridProps> = ({ selected, onToggle }) => {
+const AvailabilityGrid = ({
+  selected,
+  onToggle,
+}: {
+  selected: readonly string[];
+  onToggle: (slot: string) => void;
+}) => {
   const { t } = useTranslation();
-  const isChecked = (dayKey: DayKey, slotKey: SlotKey) => {
-    const key = `${dayKey}_${slotKey}`;
-    return selected.includes(key);
-  };
-
-  const handleChange = (dayKey: DayKey, slotKey: SlotKey) => () => {
-    const key = `${dayKey}_${slotKey}`;
-    onToggle(key);
-  };
 
   return (
-    <div className="table-responsive">
-      <table className="table align-middle mb-0">
-        <thead>
-          <tr>
-            <th style={{ width: 160 }}></th>
-            {dayKeys.map((key) => (
-              <th key={key} className="text-center">{t(`contact.form.availability.days.${key}`)}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {slotKeys.map((slotKey) => (
-            <tr key={slotKey}>
-              <td className="fw-medium">{t(`contact.form.availability.slots.${slotKey}`)}</td>
-              {dayKeys.map((dayKey) => {
-                const checked = isChecked(dayKey, slotKey);
+    <table className="availability">
+      <caption>{t("contact.form.availabilityLabel")}</caption>
+      <thead>
+        <tr>
+          <th scope="col">{t("contact.form.time")}</th>
+          {DAYS.map((day) => (
+            <th scope="col" key={day}>{t(`contact.form.availability.days.${day}`)}</th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {SLOTS.map((slot) => {
+          const time = t(`contact.form.availability.slots.${slot}`);
+          return (
+            <tr key={slot}>
+              <th scope="row">{time}</th>
+              {DAYS.map((day) => {
+                const key = day + "_" + slot;
                 return (
-                  <td key={`${dayKey}_${slotKey}`} className="text-center">
-                    <input
-                      type="checkbox"
-                      className="form-check-input"
-                      checked={checked}
-                      onChange={handleChange(dayKey, slotKey)}
-                    />
+                  <td key={key}>
+                    <label className="availability-cell">
+                      <input
+                        type="checkbox"
+                        checked={selected.includes(key)}
+                        onChange={() => onToggle(key)}
+                        aria-label={t(`contact.form.availability.dayNames.${day}`) + " " + time}
+                      />
+                    </label>
                   </td>
                 );
               })}
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          );
+        })}
+      </tbody>
+    </table>
   );
 };
 
 export default AvailabilityGrid;
-
-

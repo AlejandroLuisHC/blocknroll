@@ -1,10 +1,31 @@
 /// <reference types="vitest" />
 import { defineConfig } from "vitest/config";
 import react from "@vitejs/plugin-react";
+import { loadEnv, type Plugin } from "vite";
 
-// https://vite.dev/config/
-export default defineConfig({
-  plugins: [react()],
+function siteMetadata(siteUrl: string | undefined): Plugin {
+  return {
+    name: "blocknroll-site-metadata",
+    transformIndexHtml(html) {
+      if (!siteUrl) return;
+      const origin = new URL(siteUrl);
+      if (origin.protocol !== "https:" && origin.protocol !== "http:") {
+        throw new Error("VITE_SITE_URL must be an HTTP or HTTPS URL.");
+      }
+      const pageUrl = origin.origin + "/";
+      return {
+        html: html.replaceAll('content="/club-social.jpg"', 'content="' + pageUrl + 'club-social.jpg"'),
+        tags: [
+          { tag: "link", attrs: { rel: "canonical", href: pageUrl } },
+          { tag: "meta", attrs: { property: "og:url", content: pageUrl } },
+        ],
+      };
+    },
+  };
+}
+
+export default defineConfig(({ mode }) => ({
+  plugins: [react(), siteMetadata(loadEnv(mode, ".", "VITE_").VITE_SITE_URL)],
   server: {
     port: 3000,
   },
@@ -63,4 +84,4 @@ export default defineConfig({
       },
     },
   },
-});
+}));

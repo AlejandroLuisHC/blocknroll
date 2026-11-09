@@ -1,17 +1,18 @@
 import type { ReactNode } from "react";
-import { Navbar, Footer } from "../components";
+import { useTranslation } from "react-i18next";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
-interface MainLayoutProps {
-  children: ReactNode;
-}
+const MainLayout = ({ children }: { children: ReactNode }) => {
+  const { t } = useTranslation();
 
-const MainLayout = ({ children }: MainLayoutProps) => {
   return (
-    <div className="min-h-screen bg-white">
+    <>
+      <a className="skip-link" href="#main-content">{t("nav.skip")}</a>
       <Navbar />
-      <main>{children}</main>
+      <main id="main-content" tabIndex={-1}>{children}</main>
       <Footer />
-    </div>
+    </>
   );
 };
 

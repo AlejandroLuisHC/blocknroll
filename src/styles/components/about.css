@@ -1,110 +1,58 @@
-/* =============================================
-   ABOUT COMPONENT STYLES
-   ============================================= */
+.club { border-block: 1px solid var(--line); }
 
-/* Trainers Section */
-.trainers-container {
-  background: radial-gradient(
-      circle at 20% 20%,
-      rgba(59, 130, 246, 0.1) 0%,
-      transparent 70%
-    ),
-    radial-gradient(
-      circle at 80% 80%,
-      rgba(245, 158, 11, 0.1) 0%,
-      transparent 70%
-    );
-}
-
-.trainers-title {
-  color: var(--neutral-800);
-}
-
-.trainers-photos-container {
-  display: flex;
-  justify-content: center;
+.club-layout {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
   align-items: center;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
+  gap: 2.25rem clamp(2rem, 6vw, 6rem);
 }
 
-.trainer-card {
-  text-align: center;
+.club-copy h2 { margin-bottom: 1.3rem; }
+
+.club-copy > p + p { margin-top: .8rem; }
+
+.club-copy .club-signature {
+  width: fit-content;
+  margin-top: 1.6rem;
+  border-bottom: .22rem solid var(--signal);
+  font: 400 clamp(1.45rem, 3vw, 2.1rem)/1.15 var(--font-brand);
 }
 
-.trainer-photo {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin: 0 auto 1rem auto;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.trainers h3 {
+  margin-bottom: .8rem;
+  font-size: .78rem;
+  letter-spacing: .105em;
+  text-transform: uppercase;
 }
 
-.trainer-photo.trainer-1 {
-  border: 4px solid var(--primary-500);
+.trainer-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .65rem;
 }
 
-.trainer-photo.trainer-2 {
-  border: 4px solid var(--accent-500);
-}
+.trainer-grid figure { background: var(--sand); }
 
-.trainer-photo:hover {
-  transform: scale(1.35);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-}
+.trainer-grid figure:nth-child(2) { background: #ded0b9; }
 
-.trainer-photo img {
+.trainer-grid img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
+  height: auto;
+  aspect-ratio: 1 / 1.02;
+  padding: 8% 9% 0;
+  object-fit: contain;
+  object-position: bottom center;
 }
 
-.trainer-name {
-  font-size: 1rem;
-  font-weight: bold;
-  color: var(--neutral-800);
+.trainer-grid figcaption {
+  padding: .65rem .7rem;
+  border-top: 1px solid #aa9d89;
+  font-weight: 800;
+  line-height: 1.2;
 }
 
-.trainers-credentials {
-  color: var(--primary-600);
-  font-size: 0.95rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-}
+.trainer-credentials { margin-top: .7rem; color: var(--muted); font-size: .89rem; }
 
-.trainers-experience {
-  color: var(--neutral-700);
-  line-height: 1.6;
-  margin-bottom: 0.5rem;
-}
-
-.trainers-passion {
-  color: var(--neutral-600);
-  line-height: 1.6;
-  margin-bottom: 0;
-}
-
-/* About Content Styles */
-.about-title {
-  color: var(--neutral-800);
-}
-
-.about-description {
-  color: var(--neutral-600);
-  line-height: 1.7;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .trainers-photos-container {
-    flex-direction: column;
-    gap: 2rem;
-  }
-
-  .trainer-photo {
-    width: 120px;
-    height: 120px;
-  }
+@media (max-width: 720px) {
+  .club-layout { grid-template-columns: 1fr; }
 }

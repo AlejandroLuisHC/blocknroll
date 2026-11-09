@@ -61,10 +61,10 @@ export default async function handler(req, res) {
       if (meta?.players != null) detailsRows.push(["Número de jugadores", String(meta.players)]);
       if (meta?.level) detailsRows.push(["Nivel estimado", String(meta.level)]);
       if (meta?.packageType) detailsRows.push(["Paquete", String(meta.packageType) === "one_per_week" ? "Una vez por semana" : String(meta.packageType) === "two_per_week" ? "Dos veces por semana" : "Privados"]);
-      if (Array.isArray(meta?.availability)) {
-        const formatted = meta.availability.map(formatAvailabilityLabel);
-        detailsRows.push(["Disponibilidad", formatted.length ? formatted : ["Sin preferencia"]]);
-      }
+    }
+    if (Array.isArray(meta?.availability)) {
+      const formatted = meta.availability.map(formatAvailabilityLabel);
+      detailsRows.push(["Disponibilidad", formatted.length ? formatted : ["Sin preferencia"]]);
     }
 
     let html;
