@@ -1,138 +1,150 @@
-/* =============================================
-   BASE STYLES - HTML Elements & Reset
-   ============================================= */
+@font-face {
+  font-family: "Feast of Flesh";
+  src: url("/fonts/FEASFBRG.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
 
-/* Imports */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap");
+:root {
+  color-scheme: light;
+  --paper: #ede5d8;
+  --light: #fbf8f1;
+  --sand: #e5d9c6;
+  --ink: #1a171e;
+  --muted: #554b58;
+  --line: #c4baaa;
+  --signal: #ffc92b;
+  --signal-hover: #ffdc68;
+  --violet: #7542fe;
+  --violet-ink: #6034cc;
+  --focus: var(--violet-ink);
+  --font-brand: "Feast of Flesh", Impact, sans-serif;
+  --gutter: clamp(1.125rem, 5vw, 4rem);
+  --section-space: clamp(3.75rem, 8vw, 7rem);
+}
 
-/* Third-party Libraries */
-@import "bootstrap/dist/css/bootstrap.min.css";
-@import "flag-icons/css/flag-icons.min.css";
+* { box-sizing: border-box; }
 
-/* Base HTML Elements */
 html {
   scroll-behavior: smooth;
-  font-size: 16px;
+  scroll-padding-top: 5.75rem;
 }
 
 body {
-  font-family: var(--font-family-base);
-  font-weight: var(--font-weight-normal);
-  line-height: var(--line-height-normal);
-  color: var(--block-black);
-  background-color: var(--block-cream);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  cursor: default;
-  user-select: none;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  line-height: 1.55;
+  background: var(--paper);
+  color: var(--ink);
 }
 
-/* Prevent text cursor on non-editable elements */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-span,
-div,
-section,
-article,
-aside,
-nav,
-header,
-footer,
-main {
-  cursor: default;
-  user-select: none;
+h1, h2, h3, p, dl, dd, figure { margin: 0; }
+
+h1, h2, h3 { line-height: 1; }
+
+h2 {
+  max-inline-size: 17ch;
+  font-size: clamp(2.375rem, 5.35vw, 5rem);
+  letter-spacing: -.069em;
+  text-wrap: balance;
 }
 
-/* Allow text selection only on specific content areas */
-.hero-description,
-.text-content,
-.about-content,
-.contact-info {
-  user-select: text;
-  cursor: text;
+p, dd { overflow-wrap: break-word; }
+
+a { color: inherit; text-underline-offset: .23em; }
+
+a:hover { text-decoration-thickness: .13em; }
+
+img, video { display: block; max-width: 100%; }
+
+input, select, button { font: inherit; }
+
+button, select { cursor: pointer; }
+
+button:disabled { cursor: wait; }
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 4px;
 }
 
-/* Prevent orphan words in text content */
-p,
-.text-content,
-.about-content,
-.contact-info,
-.card-body,
-.section-content {
-  text-wrap: pretty;
-  overflow-wrap: break-word;
-  word-break: keep-all;
-  hyphens: auto;
+main:focus, section:focus { outline: none; }
+
+.shell {
+  width: min(100% - 2 * var(--gutter), 79rem);
+  margin-inline: auto;
 }
 
-/* Interactive elements */
-button,
-.btn,
-.btn-modern,
-[role="button"],
-a,
-.nav-link {
-  cursor: pointer;
-  user-select: none;
+.section { padding-block: var(--section-space); }
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  margin-bottom: .9rem;
+  color: var(--muted);
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .115em;
+  line-height: 1.35;
+  text-transform: uppercase;
 }
 
-/* Form elements */
-input,
-textarea,
-select,
-.form-control,
-.form-control-modern {
-  cursor: text;
-  user-select: text;
+.eyebrow::before {
+  flex: 0 0 1.65rem;
+  height: .22rem;
+  background: var(--violet);
+  content: "";
 }
 
-/* Decorative elements */
-.hero-title,
-.hero-motto,
-.brand-text,
-.section-title,
-.card-title {
-  cursor: default;
-  user-select: none;
+.section-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, .7fr);
+  align-items: end;
+  gap: 1.75rem 3rem;
+  margin-bottom: clamp(2rem, 5vw, 3.75rem);
 }
 
-/* Cards */
-.card-modern,
-.pricing-card-modern,
-.contact-form-card {
-  cursor: default;
-  user-select: none;
+.section-heading > p, .club-copy > p:not(.eyebrow, .club-signature),
+.contact-heading > p:not(.eyebrow) {
+  color: var(--muted);
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  line-height: 1.6;
 }
 
-.card-modern:hover,
-.pricing-card-modern:hover {
-  cursor: pointer;
+.button, .text-link, .download-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  font-weight: 700;
 }
 
-/* Service info blocks should remain non-interactive */
-.service-info-block {
-  cursor: default !important;
-  user-select: text;
+.button {
+  justify-content: space-between;
+  min-height: 3.1rem;
+  padding: .7rem 1rem;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  text-decoration: none;
+  line-height: 1.25;
 }
 
-.service-info-block:hover {
-  cursor: default !important;
+.button-primary {
+  color: var(--ink);
+  background: var(--signal);
 }
 
-/* Additional service blocks should remain non-interactive */
-.additional-service-block {
-  cursor: default !important;
-  user-select: text;
+.button-primary:hover { background: var(--signal-hover); }
+
+.text-link { min-height: 2.75rem; }
+
+:is(.button, .text-link, .download-link) svg { flex-shrink: 0; }
+
+@media (max-width: 720px) {
+  .section-heading { grid-template-columns: 1fr; gap: .9rem; }
 }
 
-.additional-service-block:hover {
-  cursor: default !important;
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
 }

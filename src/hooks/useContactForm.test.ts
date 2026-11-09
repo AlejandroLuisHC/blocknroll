@@ -1,196 +1,72 @@
-import { renderHook, act } from "@testing-library/react";
-import { vi, describe, it, expect, beforeEach, afterEach } from "vitest";
+import { act, renderHook } from "@testing-library/react";
+import type { FormEvent } from "react";
+import { afterEach, beforeEach, expect, it, vi } from "vitest";
+import i18n from "../i18n";
 import { useContactForm } from "./useContactForm";
 
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({
-    t: (key: string) => key,
-  }),
-}));
+beforeEach(() => i18n.changeLanguage("es"));
+afterEach(() => vi.unstubAllEnvs());
 
-describe("useContactForm Hook", () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-    vi.stubEnv("VITE_CONTACT_ENDPOINT", "/api/send-email");
-    vi.spyOn(globalThis, "fetch").mockResolvedValue({
-      ok: true,
-      json: async () => ({ ok: true }),
-    } as unknown as Response);
-    vi.spyOn(window, "alert").mockImplementation(() => {});
+const submitEvent = () => ({
+  preventDefault: vi.fn(),
+  currentTarget: document.createElement("form"),
+}) as unknown as FormEvent<HTMLFormElement>;
+
+it("preserves the draft and selected slots when switching enquiry type and programme", () => {
+  const { result } = renderHook(() => useContactForm());
+  act(() => {
+    result.current.setField("fullName", "Ana");
+    result.current.toggleAvailability("mon_18_1930");
+    result.current.setField("inquiryType", "talk");
+  });
+  expect(result.current.formData.availability).toEqual(["mon_18_1930"]);
+
+  act(() => result.current.selectTraining("private"));
+  expect(result.current.formData).toMatchObject({
+    inquiryType: "join", packageType: "private", fullName: "Ana", availability: ["mon_18_1930"],
   });
 
-  afterEach(() => {
-    vi.restoreAllMocks();
-    vi.unstubAllEnvs();
+  act(() => result.current.selectTraining("two_per_week"));
+  expect(result.current.formData.availability).toEqual(["mon_18_1930"]);
+  act(() => result.current.toggleAvailability("mon_18_1930"));
+  expect(result.current.formData.availability).toEqual([]);
+});
+
+it("posts group availability and personal details using the configured endpoint", async () => {
+  vi.stubEnv("VITE_CONTACT_ENDPOINT", "/mock-contact");
+  const fetchMock = vi.spyOn(globalThis, "fetch").mockResolvedValue({ ok: true } as Response);
+  const { result } = renderHook(() => useContactForm());
+  act(() => {
+    result.current.setField("fullName", " Ana Example ");
+    result.current.setField("email", " ana@example.com ");
+    result.current.setField("phone", "+34 600 000 000");
+    result.current.setField("level", "Intermedio");
+    result.current.selectTraining("two_per_week");
+    result.current.toggleAvailability("thu_1930_21");
   });
 
-  it("initializes with correct default values", () => {
-    const { result } = renderHook(() => useContactForm());
+  await act(() => result.current.handleSubmit(submitEvent()));
 
-    expect(result.current.formData.inquiryType).toBe("join");
-    expect(result.current.formData.fullName).toBe("");
-    expect(result.current.formData.email).toBe("");
+  expect(fetchMock.mock.calls[0][0]).toBe("/mock-contact");
+  const payload = JSON.parse(String(fetchMock.mock.calls[0][1]?.body));
+  expect(payload.meta).toMatchObject({
+    fullName: "Ana Example", email: "ana@example.com", level: "Intermedio", packageType: "two_per_week",
+    phone: "+34 600 000 000", availability: ["thu_1930_21"],
   });
+  expect(payload.message).toContain("Dos entrenos por semana");
+  expect(result.current.submission).toEqual({ status: "success", inquiryType: "join" });
+  expect(result.current.formData.fullName).toBe("");
+});
 
-  it("updates form data when handleChange is called", () => {
-    const { result } = renderHook(() => useContactForm());
-
-    act(() => {
-      result.current.handleChange({
-        target: { name: "fullName", value: "John Doe" },
-      } as React.ChangeEvent<HTMLInputElement>);
-    });
-
-    expect(result.current.formData.fullName).toBe("John Doe");
+it("retains data when the network fails", async () => {
+  vi.spyOn(globalThis, "fetch").mockRejectedValue(new TypeError("Offline"));
+  const { result } = renderHook(() => useContactForm());
+  act(() => {
+    result.current.setField("fullName", "Ana Example");
+    result.current.setField("email", "ana@example.com");
   });
+  await act(() => result.current.handleSubmit(submitEvent()));
 
-  it("handles form submission with valid data", async () => {
-    const { result } = renderHook(() => useContactForm());
-
-    // Set up form data
-    act(() => {
-      result.current.handleChange({
-        target: { name: "fullName", value: "John Doe" },
-      } as React.ChangeEvent<HTMLInputElement>);
-    });
-
-    act(() => {
-      result.current.handleChange({
-        target: { name: "email", value: "john@example.com" },
-      } as React.ChangeEvent<HTMLInputElement>);
-    });
-
-    await act(async () => {
-      await result.current.handleSubmit({
-        preventDefault: vi.fn(),
-      } as unknown as React.FormEvent);
-    });
-
-    expect(fetch).toHaveBeenCalledWith(
-      "/api/send-email",
-      expect.objectContaining({ method: "POST" })
-    );
-    // Success is now indicated via internal state, not alert
-    expect(result.current.formData.fullName).toBe("");
-  });
-
-  it("resets form after successful submission", async () => {
-    const { result } = renderHook(() => useContactForm());
-
-    // Fill form data
-    act(() => {
-      result.current.handleChange({
-        target: { name: "fullName", value: "John Doe" },
-      } as React.ChangeEvent<HTMLInputElement>);
-    });
-
-    await act(async () => {
-      await result.current.handleSubmit({
-        preventDefault: vi.fn(),
-      } as unknown as React.FormEvent);
-    });
-
-    // Check that form is reset to initial values
-    expect(result.current.formData.fullName).toBe("");
-  });
-
-  it("handles different input types correctly", () => {
-    const { result } = renderHook(() => useContactForm());
-
-    // Test select input
-    act(() => {
-      result.current.handleChange({
-        target: { name: "packageType", value: "two_per_week" },
-      } as React.ChangeEvent<HTMLSelectElement>);
-    });
-
-    expect(result.current.formData.packageType).toBe("two_per_week");
-  });
-
-  it("handles form submission with different program values", async () => {
-    const { result } = renderHook(() => useContactForm());
-
-    // Test with two_per_week
-    act(() => {
-      result.current.handleChange({
-        target: { name: "packageType", value: "two_per_week" },
-      } as React.ChangeEvent<HTMLSelectElement>);
-    });
-
-    act(() => {
-      result.current.handleChange({
-        target: { name: "fullName", value: "Test User" },
-      } as React.ChangeEvent<HTMLInputElement>);
-    });
-
-    // Submit form
-    const mockEvent = { preventDefault: vi.fn() };
-    await act(async () => {
-      await result.current.handleSubmit(mockEvent as unknown as React.FormEvent);
-    });
-
-    // Verify form resets properly
-    expect(result.current.formData.fullName).toBe("");
-  });
-
-  it("handles form submission with all fields filled", async () => {
-    const { result } = renderHook(() => useContactForm());
-
-    // Fill required fields
-    act(() => {
-      result.current.handleChange({
-        target: { name: "fullName", value: "John Doe" },
-      } as React.ChangeEvent<HTMLInputElement>);
-    });
-
-    // Submit form
-    const mockEvent = { preventDefault: vi.fn() };
-    await act(async () => {
-      await result.current.handleSubmit(mockEvent as unknown as React.FormEvent);
-    });
-
-    // Verify form resets to initial state
-    expect(result.current.formData.fullName).toBe("");
-  });
-
-  it("handles form submission with empty optional fields", async () => {
-    const { result } = renderHook(() => useContactForm());
-
-    // Fill only required fields
-    act(() => {
-      result.current.handleChange({
-        target: { name: "fullName", value: "Jane Doe" },
-      } as React.ChangeEvent<HTMLInputElement>);
-    });
-
-    act(() => {
-      result.current.handleChange({
-        target: { name: "email", value: "jane@example.com" },
-      } as React.ChangeEvent<HTMLInputElement>);
-    });
-    
-    // Submit form
-    const mockEvent = { preventDefault: vi.fn() };
-    await act(async () => {
-      await result.current.handleSubmit(mockEvent as unknown as React.FormEvent);
-    });
-
-    // Verify form resets properly
-    expect(result.current.formData.fullName).toBe("");
-  });
-
-  it("sets error status when API returns non-ok", async () => {
-    const { result } = renderHook(() => useContactForm());
-    (globalThis.fetch as unknown as { mockResolvedValueOnce: (value: unknown) => void }).mockResolvedValueOnce({
-      ok: false,
-      json: async () => ({ error: "boom" }),
-    } as unknown as Response);
-
-    await act(async () => {
-      await result.current.handleSubmit({ preventDefault: vi.fn() } as unknown as React.FormEvent);
-    });
-
-    expect(result.current.submitError).not.toBeNull();
-    expect(result.current.status).toBe("error");
-  });
+  expect(result.current.submission.status).toBe("error");
+  expect(result.current.formData.email).toBe("ana@example.com");
 });

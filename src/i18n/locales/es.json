@@ -1,266 +1,170 @@
 {
+  "meta": {
+    "title": "Block n’ Roll — Club de vóley playa en Barcelona"
+  },
   "nav": {
-    "home": "Inicio",
-    "about": "Nosotros",
+    "main": "Navegación principal",
+    "skip": "Saltar al contenido",
     "services": "Entrenamientos",
-    "gallery": "Galería",
+    "about": "El club",
+    "gallery": "En pista",
     "contact": "Contacto",
-    "joinNow": "Únete",
+    "language": "Idioma",
     "openMenu": "Abrir menú",
     "closeMenu": "Cerrar menú"
   },
   "hero": {
-    "title": "Block n' Roll",
-    "motto": "We will Block n' Roll!",
-    "subtitle": "Club de Vóley Playa · Barcelona",
-    "description": "Entrenamientos dinámicos, comunidad activa... y mucha arena",
-    "description2": "¿Buscas mejorar tu vóley playa, conocer gente con buen rollo y disfrutar entrenando en Barcelona?\n\n¡Ven a probar una clase gratis y empieza a vivir el vóley playa de otra forma!",
-    "joinButton": "Únete a la familia",
-    "videoButton": "Conoce más",
-    "stats": {
-      "completeTraining": "Entrenamientos completos",
-      "players": "Máx. 8 personas",
-      "sessions": "Sesiones 1h30",
-      "freeTrial": "Sesión gratuita",
-      "privateTraining": "Opción entrenos privados",
-      "experience": "6+ años experiencia"
+    "kicker": "Club de vóley playa",
+    "headline": "Vóley playa",
+    "city": "en Barcelona",
+    "intro": "Entrena en las pistas de arena del CEM Vall d’Hebron, en grupos reducidos y con sesiones adaptadas a tu nivel.",
+    "training": "Ver entrenamientos",
+    "trial": "Pedir una clase de prueba",
+    "caption": "Block n’ Roll en pista",
+    "photoAlt": "Un entrenador muestra la posición de recepción a un grupo de jugadoras en una pista de arena",
+    "facts": {
+      "players": "Personas por grupo como máximo",
+      "duration": "Por entrenamiento",
+      "season": "Temporada"
     }
   },
-  "about": {
-    "badge": "¿Quiénes somos?",
-    "title": "¿Quiénes somos?",
-    "description1": "¡Hola a todxs! Somos Sara, Jesús y David, apasionadxs del vóley playa y del rock 🎸. Tras años entrenando y compitiendo, hemos decidido crear el Block n' Roll Club de Vóley Playa: un espacio donde aprender, mejorar, disfrutar y construir una comunidad.",
-    "description2": "Queremos compartir nuestra pasión por este deporte con entrenamientos dinámicos, intensos y adaptados a cada persona, ¡todo en un ambiente cercano, divertido y lleno de arena!",
-    "trainersTitle": "Nuestros entrenadores",
-    "trainer1": "Jesús García",
-    "trainer2": "David Bardina",
-    "trainersCredentials": "Certificación oficial de Vóley Playa Nivel 1",
-    "trainersExperience": "Más de 6 años compitiendo, entrenando y creciendo en el deporte",
-    "trainersPassion": "Amantes del vóley y del buen ambiente, dentro y fuera de la pista",
-    "stats": {
-      "experience": "6+",
-      "experienceLabel": "Años Experiencia",
-      "players": "50+",
-      "playersLabel": "Jugadores Felices"
-    },
-    "features": {
-      "excellence": {
-        "title": "Entrenamientos dinámicos",
-        "description": "Sesiones intensas y personalizadas que optimizan cada minuto en la pista."
-      },
-      "community": {
-        "title": "Comunidad activa",
-        "description": "Más que un club, somos una familia con buen rollo y mucha arena."
-      },
-      "goals": {
-        "title": "Para todos los niveles",
-        "description": "Desde iniciación hasta avanzado, adaptamos cada entrenamiento a tu ritmo."
-      },
-      "passion": {
-        "title": "Pasión rock & volley",
-        "description": "Combinamos nuestra amor por el vóley playa con la energía del rock."
-      }
-    },
-    "visualTitle": "Rock & Vóley",
-    "visualSubtitle": "Donde la arena se encuentra con la música"
-  },
-  "services": {
-    "badge": "Entrenamientos",
-    "title": "Nuestros Entrenamientos",
-    "subtitle": "Grupos reducidos, entrenadores acreditados y metodología propia para optimizar tu experiencia.",
+  "training": {
+    "title": "Entrena a tu ritmo",
+    "intro": "Entrenamos en grupos de hasta 8 personas, con sesiones de 90 minutos para adultos y menores de todos los niveles.",
+    "perMonth": "/ mes",
+    "customPrice": "A consultar",
+    "choose": "Consultar plaza",
     "programs": {
-      "basic": {
-        "title": "1 Entreno/Semana",
-        "description": "Perfecto para empezar o mantener tu nivel con un entrenamiento semanal.",
-        "features": [
-          "Grupos máx. 8 personas",
-          "Sesiones de 1h30",
-          "Entrenadores acreditados",
-          "Entrenamientos dinámicos"
-        ],
-        "price": "35€/mes"
+      "one_per_week": {
+        "title": "Un entreno por semana",
+        "description": "Para empezar o mantener la práctica con una sesión semanal."
       },
-      "competitive": {
-        "title": "2 Entrenos/Semana",
-        "description": "Para quienes buscan progresar más rápidamente con entrenamientos regulares.",
-        "features": [
-          "Grupos máx. 8 personas",
-          "Sesiones de 1h30",
-          "Entrenadores acreditados",
-          "Mejora más sostenida"
-        ],
-        "price": "65€/mes"
+      "two_per_week": {
+        "title": "Dos entrenos por semana",
+        "description": "Más tiempo en pista para afianzar lo que aprendes en cada sesión."
       },
-      "elite": {
-        "title": "Entrenamientos Privados",
-        "description": "Sesiones personalizadas para objetivos específicos y grupos reducidos.",
-        "features": [
-          "Horarios flexibles",
-          "Metodología personalizada",
-          "Grupos super reducidos",
-          "Consulta disponibilidad"
-        ],
-        "price": "Consultar"
+      "private": {
+        "title": "Entrenamiento privado",
+        "description": "Una sesión a medida, con objetivos y horarios acordados con el equipo."
       }
     },
-    "popular": "Más Popular",
-    "joinButton": "Información",
-    "downloadInfo": "Descargar info detallada",
-    "additionalTitle": "¿Qué incluimos?",
-    "additional": {
-      "tournaments": {
-        "title": "Licencia Federativa",
-        "description": "35€/año incluye seguro deportivo. Te la tramitamos sin coste adicional."
-      },
-      "clinics": {
-        "title": "Metodología Propia",
-        "description": "Enfoque integral: capacidades físicas, técnicas y tácticas adaptadas."
-      },
-      "schedule": {
-        "title": "Instalaciones Premium",
-        "description": "Pistas outdoor, iluminación nocturna, vestuarios y bar en CEM Vall d'Hebron."
-      },
-      "trial": {
-        "title": "Sesión de prueba gratuita",
-        "description": "Prueba nuestros entrenamientos y descubre cómo podemos ayudarte a mejorar."
-      }
-    }
+    "scheduleTitle": "Horarios",
+    "schedule": "De lunes a jueves, de 18:00 a 22:30, en tres turnos.",
+    "seasonDates": "Temporada de {{start}} a {{end}}.",
+    "licenseTitle": "Licencia federativa",
+    "license": "Obligatoria para entrenar en Vall d’Hebron. Incluye seguro deportivo y cuesta unos {{amount}} al año. El club puede tramitarla sin coste adicional.",
+    "licenseWithoutPrice": "Obligatoria para entrenar en Vall d’Hebron. Incluye seguro deportivo y el club puede tramitarla.",
+    "trialTitle": "Clase de prueba",
+    "guides": "Documentos de la temporada",
+    "download": "Descargar {{title}} (PDF en español)",
+    "priceNote": "Tarifas para grupos de 8. Los grupos con entrenador de alto nivel pueden tener un suplemento de {{supplement}}/mes. El pago con tarjeta en Cluber tiene un coste de gestión aproximado del {{fee}} % más IVA.",
+    "trialTerms": "La prueba es gratuita y sin compromiso. Si te apuntas, la sesión se incluye en la cuota proporcional del mes.",
+    "guide": "Guía del club",
+    "rules": "Normativa",
+    "seeSchedule": "Ver horarios por grupo"
+  },
+  "club": {
+    "title": "De la pista salió un club",
+    "story": "Somos Sara, Jesús y David. Después de años entrenando y compitiendo, creamos Block n’ Roll para compartir el vóley playa y reunir a gente con ganas de jugar.",
+    "approach": "En la pista trabajamos la técnica y el juego a tu ritmo, desde los primeros toques hasta la competición.",
+    "trainers": "En pista con",
+    "credentials": "Jesús y David cuentan con certificación oficial de vóley playa de nivel 1 y más de seis años entrenando y compitiendo."
   },
   "gallery": {
-    "badge": "Galería",
-    "title": "Nuestra Comunidad",
-    "subtitle": "Momentos especiales, entrenamientos y la energía que compartimos en Block n' Roll.",
-    "categories": {
-      "all": "Todos",
-      "training": "Entrenamientos",
-      "competition": "Competición",
-      "celebration": "Celebración",
-      "events": "Eventos"
+    "title": "Así se vive en la arena",
+    "profile": "Ver perfil en Instagram",
+    "play": "Reproducir «{{title}}»",
+    "posts": {
+      "training": "Entrenos de la temporada",
+      "schedule": "Horario de entrenamientos",
+      "competition": "Liga de Clubes",
+      "join": "Únete al club",
+      "practice": "Un día de entreno",
+      "zaragoza": "Microvlog de torneo de Zaragoza"
     },
-    "noImages": "Próximamente más fotos",
-    "noImagesDescription": "Estamos preparando una galería increíble para compartir contigo.",
-    "loading": "Cargando contenido de Instagram...",
-    "refresh": "Actualizar",
-    "lastUpdate": "Última actualización",
-    "error": "Error",
-    "filters": "Filtros de galería",
-    "viewMore": "Ver más en Instagram",
-    "watchOnInstagram": "Ver en Instagram",
-    "ctaText": "Mantente al día con nuestras últimas sesiones de entrenamiento y momentos de la comunidad",
-    "followButton": "Seguir @blocknrollbeachvolleybcn",
-    "swipeHint": "Desliza para ver más",
-    "status": {
-      "instagram": "Contenido desde Instagram",
-      "fallback": "Galería de muestra"
+    "imageDescriptions": {
+      "training": "Cartel de entrenamientos de la temporada 2026–27 con una demostración de recepción en la arena",
+      "schedule": "Horarios de lunes a jueves en tres turnos, con grupos femeninos, masculinos y mixtos",
+      "competition": "Los cinco equipos del club en Primera Catalana y Segunda Nacional, en categorías femenina y masculina",
+      "join": "Cartel del club que invita a sumarse a los entrenamientos"
     }
   },
   "contact": {
-    "badge": "Contacto",
-    "title": "¿Te interesa unirte?",
-    "subtitle": "¡Nos encantaría tenerte en la familia Block n' Roll! ¡Ponte en contacto con nosotros!",
+    "title": "Nos vemos en la arena",
+    "intro": "Cuéntanos qué entreno te interesa o escríbenos para resolver tus dudas. El equipo te responderá por correo.",
+    "locationLabel": "Dónde entrenamos",
+    "venue": "CEM Eurofitness Vall d’Hebron",
+    "address": "Pg. de la Vall d’Hebron, 178 · 08035 Barcelona",
+    "directions": "Cómo llegar",
+    "emailLabel": "Correo electrónico",
     "form": {
-      "title": "Formulario sin compromiso",
-      "description": "Enviando este formulario, no te comprometes a nada. ¡Te atenderemos lo antes posible!",
-      "name": "Nombre completo",
-      "email": "Email",
-      "phone": "Teléfono",
-      "program": "Interés",
-      "message": "Cuéntanos",
-      "send": "Enviar",
-      "namePlaceholder": "Tu nombre",
-      "emailPlaceholder": "tu@email.com",
-      "phonePlaceholder": "+34 600 000 000",
-      "messagePlaceholder": "Cuéntanos tu nivel, disponibilidad o cualquier pregunta...",
-      "required": "*",
-      "errorMessage": "Hubo un problema al enviar tu solicitud. Inténtalo de nuevo.",
-      "inquiryTypeLabel": "Tipo de consulta",
+      "title": "Escríbenos",
+      "trialSelected": "Solicitud de clase de prueba",
+      "inquiryTypeLabel": "¿En qué te ayudamos?",
       "inquiryOptions": {
-        "join": "Quiero unirme al club",
-        "talk": "Quiero más información"
+        "join": "Quiero entrenar",
+        "talk": "Quiero información"
       },
-      "playersLabel": "¿Cuántos jugadores sois?",
-      "levelLabel": "Nivel estimado",
-      "packageLabel": "¿Qué paquete te interesa?",
+      "name": "Nombre completo",
+      "email": "Correo electrónico",
+      "phone": "Teléfono (opcional)",
+      "question": "¿Qué te gustaría saber? (opcional)",
+      "playersLabel": "Número de jugadores",
+      "levelLabel": "Nivel aproximado",
+      "packageLabel": "Modalidad",
       "levels": {
         "iniciacion": "Iniciación",
         "basico": "Básico",
         "intermedio": "Intermedio",
         "avanzado": "Avanzado"
       },
-      "packages": {
-        "onePerWeek": "1 entrenamiento/semana",
-        "twoPerWeek": "2 entrenamientos/semana",
-        "private": "Entrenamiento privado"
-      },
-      "selectPlaceholder": "- Selecciona -",
-      "availabilityLabel": "Disponibilidad horaria (L-V)",
+      "selectPlaceholder": "Indicar nivel (opcional)",
+      "availabilityLabel": "Disponibilidad horaria (opcional)",
+      "time": "Hora",
       "availability": {
-        "days": { "mon": "Lun", "tue": "Mar", "wed": "Mié", "thu": "Jue", "fri": "Vie" },
-        "slots": { "18_1930": "18:00-19:30", "1930_21": "19:30-21:00", "21_2230": "21:00-22:30" }
+        "days": {
+          "mon": "Lun",
+          "tue": "Mar",
+          "wed": "Mié",
+          "thu": "Jue"
+        },
+        "slots": {
+          "18_1930": "18:00–19:30",
+          "1930_21": "19:30–21:00",
+          "21_2230": "21:00–22:30"
+        },
+        "dayNames": {
+          "mon": "Lunes",
+          "tue": "Martes",
+          "wed": "Miércoles",
+          "thu": "Jueves"
+        }
       },
-      "programs": {
-        "basic": "1 Entreno/Semana",
-        "competitive": "2 Entrenos/Semana",
-        "elite": "Entrenamientos Privados",
-        "other": "Solo información"
-      },
-      "successMessage": "¡Gracias! Te contactaremos pronto para coordinar tu sesión gratuita."
+      "send": "Enviar solicitud",
+      "sending": "Enviando…",
+      "nameError": "Introduce un nombre de al menos dos caracteres.",
+      "emailError": "Introduce una dirección de correo válida.",
+      "errorMessage": "No hemos podido enviar tu solicitud. Tus datos siguen aquí. Vuelve a intentarlo.",
+      "successJoin": "Solicitud enviada. Te escribiremos para coordinar el entrenamiento.",
+      "successTalk": "Consulta enviada. Te responderemos por correo."
     },
     "email": {
-      "typeJoin": "Tipo de consulta: Quiero unirme al club",
-      "typeTalk": "Tipo de consulta: Quiero más información",
+      "typeJoin": "Tipo de consulta: quiero entrenar",
+      "trial": "Interés: clase de prueba",
+      "typeTalk": "Tipo de consulta: quiero información",
       "name": "Nombre",
-      "email": "Email",
+      "email": "Correo electrónico",
       "phone": "Teléfono",
-      "players": "¿Cuántos jugadores sois?",
-      "level": "Nivel estimado",
-      "package": "¿Qué paquete te interesa?",
+      "players": "Número de jugadores",
+      "level": "Nivel aproximado",
+      "package": "Modalidad",
       "availability": "Disponibilidad horaria",
       "availabilityNone": "Sin preferencia"
     },
-    "info": {
-      "title": "Información de contacto",
-      "description": "Estamos aquí para resolver todas tus dudas. ¡Escríbenos y te contamos todo!",
-      "location": {
-        "title": "Dónde entrenamos",
-        "content": "CEM Eurofitness Vall d'Hebron, Barcelona",
-        "description": "Pg. de la Vall d'Hebron, 178, Horta-Guinardó"
-      },
-      "phone": {
-        "title": "WhatsApp",
-        "content": "Contacta por redes sociales",
-        "description": "Respuesta rápida por Instagram o email"
-      },
-      "email": {
-        "title": "Email",
-        "content": "blocknroll.bcnclub@gmail.com",
-        "description": "Te respondemos en menos de 24 horas"
-      },
-      "schedule": {
-        "title": "Horarios",
-        "content": "Lun-Vie: 18:00-22:30",
-        "description": "Inicio oficial: Septiembre 2025"
-      }
-    }
+    "transit": "Metro: Montbau (L3) o Vall d’Hebron (L5)."
   },
   "footer": {
-    "description": "Club de Vóley Playa en Barcelona. Entrenamientos dinámicos, comunidad activa y mucha arena. ¡We will Block n' Roll! 🎸",
-    "followUs": "Síguenos en",
-    "quickLinks": "Enlaces rápidos",
-    "contactInfo": "Contacto",
-    "newsletter": {
-      "title": "Mantente al día",
-      "description": "Recibe noticias sobre entrenamientos y eventos",
-      "placeholder": "Tu email",
-      "subscribe": "Suscribirse"
-    },
-    "copyright": "Todos los derechos reservados.",
-    "privacy": "Privacidad",
-    "terms": "Términos"
-  },
-  "common": {
-    "years": "Años Experiencia",
-    "players": "Jugadores Felices",
-    "month": "mes"
+    "description": "Club de vóley playa en Barcelona.",
+    "top": "Volver al inicio"
   }
 }

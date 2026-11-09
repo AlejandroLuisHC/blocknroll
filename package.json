@@ -15,7 +15,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "check:translations": "tsc --noEmit",
+    "check:translations": "tsc --noEmit -p tsconfig.app.json",
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:run": "vitest run",
