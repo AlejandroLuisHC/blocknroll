@@ -125,34 +125,6 @@ Styles are organized using CSS modules:
 - `src/styles/components/` - Component-specific styles
 - `src/styles/utils/` - Utility classes and responsive helpers
 
-### Edit season information in Vercel
-
-1. In the `blocknroll` project, open **Storage** and upload the guide and rules from `src/assets/docs/` to a **public Blob** store. Copy both public URLs.
-2. In **Global Config**, add the `clubSeason` item shown below to the store's **Items** editor. Replace both PDF URLs with the actual Blob URLs and save. Connect the store to the project so Vercel provides the server-side `GLOBAL_CONFIG` variable.
-3. Deploy the integration once. For future changes, edit `clubSeason` and save it in the dashboard. To replace a PDF, upload the new version under a new filename and update its URL in the same item.
-
-```json
-{
-  "clubSeason": {
-    "startsOn": "2026-09",
-    "endsOn": "2027-06",
-    "prices": {
-      "one_per_week": 40,
-      "two_per_week": 75,
-      "coachSupplement": 5,
-      "annualLicence": 37,
-      "processingFeePercent": 4
-    },
-    "documents": {
-      "guide": "https://<store-id>.public.blob.vercel-storage.com/guia-club-2026-27.pdf",
-      "rules": "https://<store-id>.public.blob.vercel-storage.com/normativa-club-2026-27.pdf"
-    }
-  }
-}
-```
-
-Enter dates as `YYYY-MM` and prices as numbers in euros. Enter the payment fee as a percentage, for example `4` for 4%. Dates and prices are formatted in the visitor's selected language. The public response is cached at Vercel for up to 30 seconds. Local previews and deployments without a connected store use the bundled season. If a connected store is unavailable or its data is invalid, the site displays a contact option for pricing and hides the PDF links until it can load valid content.
-
 ## 📷 Instagram Integration *(to-do)*
 
 The gallery should automatically display Instagram posts when configured:
@@ -188,8 +160,7 @@ npm run test:coverage
 ## 🎯 To-Do List
 
 - [ ] Instagram app integration
-- [ ] SEO optimization
-- [ ] Blog functionality 
+- [ ] Blog functionality (?)
 - [ ] Payment integration (?)
 - [ ] Member dashboard (?)
 - [ ] Events calendar/management (?)
