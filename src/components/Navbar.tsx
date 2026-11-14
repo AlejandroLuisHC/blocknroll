@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Menu, X } from "lucide-react";
+import { useLocation } from "react-router-dom";
 import { CLUB_NAME } from "../constants/club";
+import { languageFromPath } from "../seo/site";
 import LanguageSelector from "./LanguageSelector";
 
 const NAV_LINKS = [
@@ -13,6 +15,8 @@ const NAV_LINKS = [
 
 const Navbar = () => {
   const { t } = useTranslation();
+  const { pathname } = useLocation();
+  const homePath = languageFromPath(pathname) ? "" : "/";
   const [isOpen, setIsOpen] = useState(false);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const navigationRef = useRef<HTMLElement>(null);
@@ -32,7 +36,7 @@ const Navbar = () => {
           }
         }}
       >
-        <a className="wordmark" href="#home" onClick={() => setIsOpen(false)}>
+        <a className="wordmark" href={homePath + "#home"} onClick={() => setIsOpen(false)}>
           <img src="/brand-mark.avif" width="44" height="40" alt="" />
           <span>{CLUB_NAME}</span>
         </a>
@@ -44,7 +48,8 @@ const Navbar = () => {
           data-open={isOpen}
         >
           {NAV_LINKS.map(({ key, href }) => (
-            <a key={key} href={href} onClick={() => setIsOpen(false)}>
+            <a key={key} href={homePath + href} className={key === "contact" ? "nav-contact" : undefined}
+              onClick={() => setIsOpen(false)}>
               {t(`nav.${key}`)}
             </a>
           ))}

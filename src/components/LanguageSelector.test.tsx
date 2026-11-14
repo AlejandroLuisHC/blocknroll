@@ -1,8 +1,12 @@
-import { render, screen } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
+import type { ReactNode } from "react";
+import { render as renderUI, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, expect, it } from "vitest";
 import i18n from "../i18n";
 import LanguageSelector from "./LanguageSelector";
+
+const render = (ui: ReactNode) => renderUI(<MemoryRouter>{ui}</MemoryRouter>);
 
 beforeEach(() => i18n.changeLanguage("es"));
 

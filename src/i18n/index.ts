@@ -2,10 +2,11 @@ import i18n from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import { initReactI18next } from "react-i18next";
 import { es, en, ca } from "./locales";
+import { applyDocumentMetadata, languageFromPath } from "../seo/site";
 
 i18n.on("languageChanged", () => {
-  document.documentElement.lang = i18n.resolvedLanguage ?? "es";
-  document.title = i18n.t("meta.title");
+  const language = i18n.resolvedLanguage;
+  if (language === "es" || language === "ca" || language === "en") applyDocumentMetadata(language);
 });
 
 void i18n.use(LanguageDetector).use(initReactI18next).init({
@@ -15,6 +16,7 @@ void i18n.use(LanguageDetector).use(initReactI18next).init({
     ca: { translation: ca },
   },
   supportedLngs: ["es", "ca", "en"],
+  lng: languageFromPath(window.location.pathname) ?? "es",
   load: "languageOnly",
   fallbackLng: "es",
   interpolation: { escapeValue: false },

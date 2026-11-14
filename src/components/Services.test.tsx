@@ -16,7 +16,7 @@ it("compares all current options and forwards the selected package", () => {
   expect(screen.getByText("A consultar")).toBeInTheDocument();
   expect(screen.getByText(/suplemento de 5 €/)).toBeInTheDocument();
   expect(screen.getByText(/37 € al año/)).toBeInTheDocument();
-  expect(screen.getByText(/cuota proporcional del mes/)).toBeInTheDocument();
+  expect(screen.getByText(/cuota proporcional del mes/, { selector: "dd" })).toBeInTheDocument();
   expect(screen.getByText(/de lunes a jueves/i)).toBeInTheDocument();
   expect(screen.getByRole("link", { name: "Ver horarios por grupo" })).toHaveAttribute("href", TRAINING_SCHEDULE_URL);
 
