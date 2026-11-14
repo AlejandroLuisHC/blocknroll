@@ -1,6 +1,8 @@
 {
   "meta": {
-    "title": "Block n’ Roll — Club de vòlei platja a Barcelona"
+    "title": "Block n’ Roll | Club de vòlei platja a Barcelona",
+    "description": "Classes de vòlei platja a Barcelona, al CEM Vall d’Hebron. Grups de fins a 8 persones, sessions de 90 minuts i prova gratuïta. Entrena al teu nivell.",
+    "imageAlt": "Block n’ Roll, club de vòlei platja a Barcelona, i un entrenament a la sorra."
   },
   "nav": {
     "main": "Navegació principal",
@@ -61,14 +63,15 @@
     "trialTerms": "La prova és gratuïta i sense compromís. Si t’hi apuntes, la sessió s’inclou en la quota proporcional del mes.",
     "guide": "Guia del club",
     "rules": "Normativa",
-    "seeSchedule": "Veure els horaris per grup"
+    "seeSchedule": "Veure els horaris per grup",
+    "kicker": "Classes de vòlei platja"
   },
   "club": {
     "title": "De la pista va néixer un club",
     "story": "Som la Sara, el Jesús i el David. Després d’anys entrenant i competint, vam crear Block n’ Roll per compartir el vòlei platja i reunir gent amb ganes de jugar.",
     "approach": "A la pista treballem la tècnica i el joc al teu ritme, des dels primers tocs fins a la competició.",
     "trainers": "A la pista amb",
-    "credentials": "El Jesús i el David tenen la certificació oficial de vòlei platja de nivell 1 i més de sis anys entrenant i competint."
+    "credentials": "El Jesús i el David tenen la certificació oficial de vòlei platja de nivell 1 i més de set anys entrenant i competint."
   },
   "gallery": {
     "title": "Així es viu a la sorra",
@@ -166,5 +169,29 @@
   "footer": {
     "description": "Club de vòlei platja a Barcelona.",
     "top": "Torna a l’inici"
+  },
+  "faq": {
+    "title": "Abans de començar",
+    "level": {
+      "question": "Puc començar sense experiència?",
+      "answer": "Sí. Els entrenaments de vòlei platja s’adrecen a adults i menors de tots els nivells, des de la iniciació fins a la competició. Treballem la tècnica i el joc en grups de fins a 8 persones."
+    },
+    "place": {
+      "question": "On entreneu a Barcelona?",
+      "answer": "Entrenem a les pistes de sorra del CEM Eurofitness Vall d’Hebron, al passeig de la Vall d’Hebron, 178. Hi pots arribar amb metro des de Montbau (L3) o Vall d’Hebron (L5)."
+    },
+    "trial": {
+      "question": "Com funciona la classe de prova?",
+      "answer": "Demana una classe de prova al formulari i l’equip et respondrà per correu per coordinar-la. És gratuïta i sense compromís. Si t’hi apuntes, la sessió s’inclou en la quota proporcional del mes."
+    },
+    "private": {
+      "question": "Puc demanar un entrenament privat?",
+      "answer": "Sí. A més de les modalitats d’un o dos entrenaments setmanals en grup, oferim sessions privades amb objectius i horaris acordats amb l’equip. Selecciona entrenament privat al formulari per consultar-ho."
+    }
+  },
+  "notFound": {
+    "title": "Aquesta pàgina no és a la pista",
+    "text": "L’adreça que has obert no existeix. Pots tornar a l’inici per veure els entrenaments o contactar amb el club.",
+    "home": "Tornar a l’inici"
   }
 }

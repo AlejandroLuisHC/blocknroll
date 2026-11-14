@@ -17,7 +17,7 @@ const Hero = ({ onTrial, season }: { onTrial: () => void; season: ClubSeason | n
 
   return (
     <section id="home" className="hero" aria-labelledby="hero-title" tabIndex={-1}>
-      <div className="shell">
+      <div className="hero-stage">
         <div className="hero-layout">
           <div className="hero-copy">
             <p className="eyebrow">{t("hero.kicker")}</p>
@@ -51,7 +51,9 @@ const Hero = ({ onTrial, season }: { onTrial: () => void; season: ClubSeason | n
             </figcaption>
           </figure>
         </div>
-        <dl className="hero-facts">
+      </div>
+      <div className="hero-facts-band">
+        <dl className="shell hero-facts">
           {FACTS.map(({ value, label }) => (
             <div key={label}>
               <dt>{t(`hero.facts.${label}`)}</dt>

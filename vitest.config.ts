@@ -18,6 +18,8 @@ export default defineConfig({
         "**/*.d.ts",
         "**/*.config.*",
         "dist/",
+        ".prerender/**", // Generated build-only server bundle
+        "scripts/**", // Build scripts are exercised by pnpm build and check:seo
         // Exclude files that don't need test coverage
         "src/main.tsx", // App entry point
         "src/App.tsx", // Simple app wrapper
@@ -37,12 +39,10 @@ export default defineConfig({
       ],
       // Set coverage thresholds for remaining files
       thresholds: {
-        global: {
-          statements: 90,
-          branches: 85,
-          functions: 90,
-          lines: 90,
-        },
+        statements: 90,
+        branches: 85,
+        functions: 90,
+        lines: 90,
       },
     },
     // Ensure JSDOM environment is properly configured
