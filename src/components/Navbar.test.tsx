@@ -1,7 +1,11 @@
-import { fireEvent, render, screen, within } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
+import type { ReactNode } from "react";
+import { fireEvent, render as renderUI, screen, within } from "@testing-library/react";
 import { beforeEach, expect, it } from "vitest";
 import i18n from "../i18n";
 import Navbar from "./Navbar";
+
+const render = (ui: ReactNode) => renderUI(<MemoryRouter>{ui}</MemoryRouter>);
 
 beforeEach(() => i18n.changeLanguage("es"));
 

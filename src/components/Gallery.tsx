@@ -12,10 +12,6 @@ import practiceVideo from "../assets/video/gallery/entreno-playa.mp4";
 import zaragozaVideo from "../assets/video/gallery/micro-vlog-torneo-zaragoza.mp4";
 
 const POSTS = [
-  { key: "training", image: training, href: TRAINING_POST_URL },
-  { key: "schedule", image: schedule, href: TRAINING_SCHEDULE_URL },
-  { key: "competition", image: competition, href: "https://www.instagram.com/p/DfRwhKeiIZu/" },
-  { key: "join", image: join, href: "https://www.instagram.com/p/DfPT7UbiLAn/" },
   {
     key: "practice",
     image: practicePoster,
@@ -28,6 +24,10 @@ const POSTS = [
     video: zaragozaVideo,
     href: null,
   },
+  { key: "training", image: training, href: TRAINING_POST_URL },
+  { key: "schedule", image: schedule, href: TRAINING_SCHEDULE_URL },
+  { key: "competition", image: competition, href: "https://www.instagram.com/p/DfRwhKeiIZu/" },
+  { key: "join", image: join, href: "https://www.instagram.com/p/DfPT7UbiLAn/" },
 ] as const;
 
 const Gallery = () => {
@@ -50,7 +50,7 @@ const Gallery = () => {
           {POSTS.map((post) => {
             const label = t(`gallery.posts.${post.key}`);
             return (
-              <figure className="gallery-piece" key={post.key}>
+              <figure className={`gallery-piece${"video" in post ? " gallery-piece--video" : ""}`} key={post.key}>
                 <div className="gallery-media">
                   {"video" in post ? (
                     playing === post.key ? (

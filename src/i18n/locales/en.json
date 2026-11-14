@@ -1,6 +1,8 @@
 {
   "meta": {
-    "title": "Block n’ Roll — Beach volleyball club in Barcelona"
+    "title": "Block n’ Roll | Beach volleyball club in Barcelona",
+    "description": "Beach volleyball classes in Barcelona at CEM Vall d’Hebron. Groups of up to 8, 90-minute sessions and a free trial. Training for beginners and experienced players.",
+    "imageAlt": "Block n’ Roll, a beach volleyball club in Barcelona, and a training session on the sand."
   },
   "nav": {
     "main": "Main navigation",
@@ -61,14 +63,15 @@
     "trialTerms": "The trial is free and comes with no commitment. If you join, the trial session is included in the prorated monthly fee.",
     "guide": "Club guide",
     "rules": "Club rules",
-    "seeSchedule": "See training times by group"
+    "seeSchedule": "See training times by group",
+    "kicker": "Beach volleyball classes"
   },
   "club": {
     "title": "It started on the court",
     "story": "We’re Sara, Jesús and David. After years of training and competing, we started Block n’ Roll to share beach volleyball and bring together people who want to play.",
     "approach": "On court we work on technique and gameplay at your pace, from your first touches to competition.",
     "trainers": "On court with",
-    "credentials": "Jesús and David hold official Level 1 beach volleyball certification and have over six years of training and competition experience."
+    "credentials": "Jesús and David hold official Level 1 beach volleyball certification and have over seven years of training and competition experience."
   },
   "gallery": {
     "title": "Life on the sand",
@@ -166,5 +169,29 @@
   "footer": {
     "description": "Beach volleyball club in Barcelona.",
     "top": "Back to top"
+  },
+  "faq": {
+    "title": "Before you start",
+    "level": {
+      "question": "Can I join without any experience?",
+      "answer": "Yes. Our beach volleyball training is open to adults and younger players of all levels, from beginners to competition. We work on technique and gameplay in groups of up to 8."
+    },
+    "place": {
+      "question": "Where do you train in Barcelona?",
+      "answer": "We train on the sand courts at CEM Eurofitness Vall d’Hebron, at Pg. de la Vall d’Hebron, 178. The nearest metro options are Montbau (L3) and Vall d’Hebron (L5)."
+    },
+    "trial": {
+      "question": "How does the trial session work?",
+      "answer": "Request a trial using the form and the team will reply by email to arrange it. The trial is free and carries no commitment. If you join, the session is included in your prorated monthly fee."
+    },
+    "private": {
+      "question": "Can I book private training?",
+      "answer": "Yes. Alongside one or two weekly group sessions, we offer private training with goals and times agreed with the team. Select private training in the form to enquire."
+    }
+  },
+  "notFound": {
+    "title": "This page is out of bounds",
+    "text": "The address you opened does not exist. Return to the homepage to explore training or contact the club.",
+    "home": "Back to home"
   }
 }

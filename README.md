@@ -125,6 +125,34 @@ Styles are organized using CSS modules:
 - `src/styles/components/` - Component-specific styles
 - `src/styles/utils/` - Utility classes and responsive helpers
 
+## Search visibility and multilingual pages
+
+`pnpm build` creates complete HTML pages for Spanish (`/`), Catalan (`/ca`) and English (`/en`) before generating the sitemap and robots file. React hydrates the same content in the browser. The language selector changes the URL and metadata without clearing the contact draft. Direct visits use the URL language, regardless of browser settings or a previously saved preference. Crawlable language links also appear in the footer.
+
+The build includes localized titles, descriptions, Open Graph and Twitter metadata, canonical URLs, reciprocal `hreflang` links and JSON-LD for the sports organization, website and page. The training venue is represented as a location, not as an assertion that the club owns the facility. Current prices and documents continue to load from `/api/club-season`; they are deliberately excluded from the static structured data so changes in Vercel do not leave outdated price claims in metadata.
+
+The production origin defaults to the project's verified domain, `https://blocknroll.vercel.app`. Set `VITE_SITE_URL` to the final HTTPS origin if the club moves to a custom domain. Redirect the previous domain to the new one through Vercel and update the Search Console property when moving.
+
+Vercel preview builds automatically receive `noindex`. Set `VITE_NOINDEX=true` for any other staging build. Leave it false in production. `vercel.json` serves the generated language pages with clean URLs, normalizes trailing slashes and redirects `/es` to `/`. Unknown production paths use the generated `404.html`; there is intentionally no catch-all rewrite that would turn missing pages into successful homepages.
+
+### Checks
+
+- `pnpm check:seo` checks the existing production output. It also runs automatically at the end of `pnpm build`.
+- It validates content without JavaScript, all three languages, canonical and alternate URLs, structured data, image/script/style references, the sitemap and the noindex 404 page.
+- `pnpm test:cover` covers language navigation, back navigation, contact draft retention, metadata updates, invalid canonical configuration and the existing email flow.
+- The build-only React renderer lives in `.prerender/`, which is ignored by Git and is outside Vercel's `dist` output. No server-rendering dependency is sent to the browser.
+
+### After publishing
+
+1. Confirm `/`, `/ca`, `/en`, `/robots.txt` and `/sitemap.xml` respond successfully on the production domain. Check an invented path returns HTTP 404. Verify production pages do not contain `noindex`.
+2. Verify the production URL-prefix property in [Google Search Console](https://search.google.com/search-console). For HTML-tag verification, put Google's public token in `VITE_GOOGLE_SITE_VERIFICATION` and deploy. DNS verification is another option for a custom domain.
+3. Submit `https://blocknroll.vercel.app/sitemap.xml` (or the equivalent on the configured custom domain), inspect the three language URLs and request indexing.
+4. Validate the published structured data in [Schema Markup Validator](https://validator.schema.org/) and inspect the rendered page with Search Console. Markup describes the club; it does not guarantee an enhanced search result.
+5. Use the same club name, training address and production website in the club's Instagram bio and other existing official profiles. Maintain an eligible Google Business Profile if the club has one, with accurate contact and location details.
+6. Track indexed pages, non-brand queries, impressions, clicks and enquiries. Review queries around vóley playa Barcelona, vòlei platja Barcelona, beach volleyball Barcelona and Vall d’Hebron using actual Search Console data before creating additional pages.
+
+These account-level actions and production publication are separate from the local code changes. No Search Console verification token or indexing submission is fabricated or assumed.
+
 ## 📷 Instagram Integration *(to-do)*
 
 The gallery should automatically display Instagram posts when configured:
@@ -160,6 +188,8 @@ npm run test:coverage
 ## 🎯 To-Do List
 
 - [ ] Instagram app integration
+- [x] Technical SEO and multilingual prerendering
+- [ ] Search Console verification and sitemap submission after publication
 - [ ] Blog functionality (?)
 - [ ] Payment integration (?)
 - [ ] Member dashboard (?)

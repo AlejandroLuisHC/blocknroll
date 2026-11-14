@@ -3,29 +3,48 @@ import { defineConfig } from "vitest/config";
 import react from "@vitejs/plugin-react";
 import { loadEnv, type Plugin } from "vite";
 
-function siteMetadata(siteUrl: string | undefined): Plugin {
+function localPages(): Plugin {
   return {
-    name: "blocknroll-site-metadata",
-    transformIndexHtml(html) {
-      if (!siteUrl) return;
-      const origin = new URL(siteUrl);
-      if (origin.protocol !== "https:" && origin.protocol !== "http:") {
-        throw new Error("VITE_SITE_URL must be an HTTP or HTTPS URL.");
-      }
-      const pageUrl = origin.origin + "/";
-      return {
-        html: html.replaceAll('content="/club-social.jpg"', 'content="' + pageUrl + 'club-social.jpg"'),
-        tags: [
-          { tag: "link", attrs: { rel: "canonical", href: pageUrl } },
-          { tag: "meta", attrs: { property: "og:url", content: pageUrl } },
-        ],
-      };
+    name: "blocknroll-local-pages",
+    configureServer(server) {
+      server.middlewares.use((req, res, next) => {
+        const path = req.originalUrl?.split("?")[0];
+        if (path !== "/es" && path !== "/es/") return next();
+        res.statusCode = 308;
+        res.setHeader("Location", "/");
+        res.end();
+      });
+      // The standalone Vite server has no Vercel Functions runtime.
+      server.middlewares.use("/api/club-season", (_req, res) => {
+        res.statusCode = 204;
+        res.end();
+      });
+    },
+    async transformIndexHtml(html, context) {
+      if (!context.server) return;
+      const path = context.originalUrl?.split("?")[0].replace(/\/$/, "") || "/";
+      const language = path === "/ca" ? "ca" : path === "/en" ? "en" : "es";
+      const { renderPage } = await context.server.ssrLoadModule("/src/entry-server.tsx");
+      const page = await renderPage(language, !["/", "/ca", "/en"].includes(path));
+      return html.replace('<html lang="es">', '<html lang="' + language + '">')
+        .replace("<!--seo-head-->", page.head)
+        .replace('<div id="root"></div>', '<div id="root">' + page.body + '</div>');
     },
   };
 }
 
 export default defineConfig(({ mode }) => ({
-  plugins: [react(), siteMetadata(loadEnv(mode, ".", "VITE_").VITE_SITE_URL)],
+  plugins: [react(), localPages()],
+  // Resolve React Router's ESM exports consistently in development and prerendering.
+  ssr: {
+    noExternal: ["react-router-dom", "react-router"],
+    resolve: { conditions: ["module", "module-sync", "node", "development|production"] },
+  },
+  define: {
+    "import.meta.env.VITE_NOINDEX": JSON.stringify(
+      loadEnv(mode, ".", "VERCEL_").VERCEL_ENV === "preview" || loadEnv(mode, ".", "VITE_").VITE_NOINDEX === "true" ? "true" : "false"
+    ),
+  },
   server: {
     port: 3000,
   },

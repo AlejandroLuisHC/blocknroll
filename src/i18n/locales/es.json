@@ -1,6 +1,8 @@
 {
   "meta": {
-    "title": "Block n’ Roll — Club de vóley playa en Barcelona"
+    "title": "Block n’ Roll | Club de vóley playa en Barcelona",
+    "description": "Clases de vóley playa en Barcelona, en el CEM Vall d’Hebron. Grupos de hasta 8 personas, sesiones de 90 minutos y prueba gratuita. Entrena a tu nivel.",
+    "imageAlt": "Block n’ Roll, club de vóley playa en Barcelona, y un entrenamiento en la arena."
   },
   "nav": {
     "main": "Navegación principal",
@@ -61,14 +63,15 @@
     "trialTerms": "La prueba es gratuita y sin compromiso. Si te apuntas, la sesión se incluye en la cuota proporcional del mes.",
     "guide": "Guía del club",
     "rules": "Normativa",
-    "seeSchedule": "Ver horarios por grupo"
+    "seeSchedule": "Ver horarios por grupo",
+    "kicker": "Clases de vóley playa"
   },
   "club": {
     "title": "De la pista salió un club",
     "story": "Somos Sara, Jesús y David. Después de años entrenando y compitiendo, creamos Block n’ Roll para compartir el vóley playa y reunir a gente con ganas de jugar.",
     "approach": "En la pista trabajamos la técnica y el juego a tu ritmo, desde los primeros toques hasta la competición.",
     "trainers": "En pista con",
-    "credentials": "Jesús y David cuentan con certificación oficial de vóley playa de nivel 1 y más de seis años entrenando y compitiendo."
+    "credentials": "Jesús y David cuentan con certificación oficial de vóley playa de nivel 1 y más de siete años entrenando y compitiendo."
   },
   "gallery": {
     "title": "Así se vive en la arena",
@@ -166,5 +169,29 @@
   "footer": {
     "description": "Club de vóley playa en Barcelona.",
     "top": "Volver al inicio"
+  },
+  "faq": {
+    "title": "Antes de empezar",
+    "level": {
+      "question": "¿Puedo empezar sin experiencia?",
+      "answer": "Sí. Los entrenamientos de vóley playa están dirigidos a adultos y menores de todos los niveles, desde iniciación hasta competición. Trabajamos la técnica y el juego en grupos de hasta 8 personas."
+    },
+    "place": {
+      "question": "¿Dónde entrenáis en Barcelona?",
+      "answer": "Entrenamos en las pistas de arena del CEM Eurofitness Vall d’Hebron, en el paseo de la Vall d’Hebron, 178. Puedes llegar en metro desde Montbau (L3) o Vall d’Hebron (L5)."
+    },
+    "trial": {
+      "question": "¿Cómo funciona la clase de prueba?",
+      "answer": "Pide una clase de prueba en el formulario y el equipo te responderá por correo para coordinarla. Es gratuita y sin compromiso. Si te apuntas, la sesión se incluye en la cuota proporcional del mes."
+    },
+    "private": {
+      "question": "¿Puedo pedir un entrenamiento privado?",
+      "answer": "Sí. Además de las modalidades de uno o dos entrenamientos semanales en grupo, ofrecemos sesiones privadas con objetivos y horarios acordados con el equipo. Selecciona entrenamiento privado en el formulario para consultar."
+    }
+  },
+  "notFound": {
+    "title": "Esta página no está en pista",
+    "text": "La dirección que has abierto no existe. Puedes volver al inicio para ver los entrenamientos o contactar con el club.",
+    "home": "Volver al inicio"
   }
 }

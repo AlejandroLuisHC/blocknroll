@@ -1,4 +1,4 @@
-.club { border-block: 1px solid var(--line); }
+.club { background: var(--paper); border-top: 1px solid var(--line); }
 
 .club-layout {
   display: grid;
@@ -28,30 +28,33 @@
 .trainer-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: .65rem;
+  align-items: start;
+  gap: 1rem;
 }
 
-.trainer-grid figure { background: var(--sand); }
+.trainer-grid figure { background: var(--signal); }
 
-.trainer-grid figure:nth-child(2) { background: #ded0b9; }
+.trainer-grid figure:nth-child(2) { margin-top: 3rem; background: #d8c9ff; }
 
 .trainer-grid img {
   width: 100%;
   height: auto;
-  aspect-ratio: 1 / 1.02;
-  padding: 8% 9% 0;
+  aspect-ratio: 4 / 5;
+  padding: 9% 3% 0;
   object-fit: contain;
   object-position: bottom center;
 }
 
 .trainer-grid figcaption {
-  padding: .65rem .7rem;
-  border-top: 1px solid #aa9d89;
+  padding: 1rem;
+  color: var(--light);
+  background: var(--ink);
+  font-size: clamp(1rem, 1.7vw, 1.4rem);
   font-weight: 800;
   line-height: 1.2;
 }
 
-.trainer-credentials { margin-top: .7rem; color: var(--muted); font-size: .89rem; }
+.trainer-credentials { margin-top: 1.25rem; color: var(--muted); font-size: .89rem; }
 
 @media (max-width: 720px) {
   .club-layout { grid-template-columns: 1fr; }

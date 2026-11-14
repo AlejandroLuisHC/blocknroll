@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { TRAINING_PROGRAMS, TRAINING_SCHEDULE_URL } from "../constants/club";
 import type { ClubSeason, PackageType } from "../types";
 import PDFDownloadButton from "./services/PDFDownloadButton";
+import TrainingFAQ from "./TrainingFAQ";
 
 const Services = ({
   onSelectTraining,
@@ -31,7 +32,7 @@ const Services = ({
       <div className="shell">
         <div className="section-heading">
           <div>
-            <p className="eyebrow">{t("nav.services")}</p>
+            <p className="eyebrow">{t("training.kicker")}</p>
             <h2 id="training-title">{t("training.title")}</h2>
           </div>
           <p>{t("training.intro")}</p>
@@ -118,6 +119,7 @@ const Services = ({
             />
           </div>
         )}
+        <TrainingFAQ />
       </div>
     </section>
   );

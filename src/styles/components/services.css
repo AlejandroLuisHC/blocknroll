@@ -17,8 +17,13 @@
 }
 
 .training-number {
-  align-self: start;
-  color: var(--muted);
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--ink);
   font-size: .875rem;
   font-variant-numeric: tabular-nums;
   letter-spacing: .045em;
@@ -32,6 +37,10 @@
 }
 
 .training-description p { max-width: 47ch; color: var(--muted); }
+
+.training-row:hover { background: var(--paper); }
+.training-action { text-decoration: none; border-bottom: 2px solid var(--signal); }
+.training-action:hover { border-color: var(--ink); }
 
 .training-price {
   font-size: clamp(1.5rem, 2.75vw, 2.2rem);
@@ -100,8 +109,27 @@
 
 .download-link small { color: var(--muted); font-size: .65rem; }
 
+.training-faq {
+  display: grid;
+  grid-template-columns: minmax(0, .65fr) minmax(0, 1.35fr);
+  gap: 1.5rem 3rem;
+  margin-top: clamp(3rem, 5vw, 5rem);
+}
+
+.training-faq h3 { font-size: clamp(1.6rem, 3vw, 2.5rem); letter-spacing: -.045em; }
+.training-faq details { border-top: 1px solid var(--line); }
+.training-faq details:last-child { border-bottom: 1px solid var(--line); }
+.training-faq summary { padding-block: 1.1rem; cursor: pointer; font-weight: 700; }
+.training-faq summary::marker { color: var(--violet-ink); }
+.training-faq details p { padding-bottom: 1.25rem; color: var(--muted); max-width: 65ch; }
+
+@media (max-width: 720px) {
+  .training-faq { grid-template-columns: 1fr; }
+}
+
 @media (max-width: 820px) {
   .training-row { grid-template-columns: 2rem minmax(0, 1fr) 8.4rem auto; }
+  .training-number { width: 2rem; height: 2rem; }
 }
 
 @media (max-width: 640px) {

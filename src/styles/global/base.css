@@ -7,9 +7,9 @@
 
 :root {
   color-scheme: light;
-  --paper: #ede5d8;
-  --light: #fbf8f1;
-  --sand: #e5d9c6;
+  --paper: #f4f0e7;
+  --light: #fffdf8;
+  --sand: #e8dfce;
   --ink: #1a171e;
   --muted: #554b58;
   --line: #c4baaa;
@@ -20,7 +20,7 @@
   --focus: var(--violet-ink);
   --font-brand: "Feast of Flesh", Impact, sans-serif;
   --gutter: clamp(1.125rem, 5vw, 4rem);
-  --section-space: clamp(3.75rem, 8vw, 7rem);
+  --section-space: clamp(4rem, 8vw, 8rem);
 }
 
 * { box-sizing: border-box; }
@@ -45,8 +45,9 @@ h1, h2, h3 { line-height: 1; }
 
 h2 {
   max-inline-size: 17ch;
-  font-size: clamp(2.375rem, 5.35vw, 5rem);
-  letter-spacing: -.069em;
+  font-size: clamp(2.5rem, 5.35vw, 5rem);
+  font-weight: 800;
+  letter-spacing: -.065em;
   text-wrap: balance;
 }
 
@@ -125,7 +126,7 @@ main:focus, section:focus { outline: none; }
   min-height: 3.1rem;
   padding: .7rem 1rem;
   border: 1px solid var(--ink);
-  border-radius: 0;
+  border-radius: .2rem;
   text-decoration: none;
   line-height: 1.25;
 }
@@ -138,6 +139,10 @@ main:focus, section:focus { outline: none; }
 .button-primary:hover { background: var(--signal-hover); }
 
 .text-link { min-height: 2.75rem; }
+
+.not-found { min-height: 60vh; }
+.not-found h1 { max-width: 18ch; font-size: clamp(2.5rem, 6vw, 5rem); letter-spacing: -.06em; }
+.not-found > p:not(.eyebrow) { max-width: 50ch; margin-block: 1.5rem; }
 
 :is(.button, .text-link, .download-link) svg { flex-shrink: 0; }
 
