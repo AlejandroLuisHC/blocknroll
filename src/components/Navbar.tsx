@@ -22,7 +22,7 @@ const Navbar = () => {
   const navigationRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    if (isOpen) navigationRef.current?.querySelector("a")?.focus();
+    if (isOpen) navigationRef.current?.querySelector("a")?.focus({ preventScroll: true });
   }, [isOpen]);
 
   return (
@@ -32,7 +32,7 @@ const Navbar = () => {
         onKeyDown={(event) => {
           if (isOpen && event.key === "Escape") {
             setIsOpen(false);
-            toggleRef.current?.focus();
+            toggleRef.current?.focus({ preventScroll: true });
           }
         }}
       >
