@@ -1,4 +1,4 @@
-.contact { background: var(--light); }
+.contact { background: var(--plum-light); }
 
 .contact-layout {
   display: grid;
@@ -10,7 +10,7 @@
 }
 
 .contact-heading { grid-area: heading; }
-.contact-heading h2 { margin-bottom: 1rem; }
+.contact-heading h2 { margin-bottom: 1rem; color: var(--plum); font-family: var(--font-display); font-weight: 900; font-style: italic; letter-spacing: -.015em; font-size: clamp(3rem, 5vw, 4.75rem); }
 
 .contact-details {
   grid-area: details;
@@ -23,10 +23,8 @@
 .contact-details dt {
   margin-bottom: .2rem;
   color: var(--muted);
-  font-size: .8rem;
+  font-size: 1rem;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .06em;
 }
 
 .contact-details .text-link { overflow-wrap: anywhere; }
@@ -37,18 +35,17 @@
   grid-area: form;
   min-width: 0;
   padding: clamp(1rem, 3vw, 2rem);
-  border: 1px solid var(--line);
-  border-top: 4px solid var(--violet);
-  background: var(--paper);
+  border-radius: 1rem;
+  background: var(--light);
 }
 
-.contact-form h3 { margin-bottom: 1.1rem; font-size: 1.55rem; letter-spacing: -.045em; }
+.contact-form h3 { margin-bottom: 1.5rem; font-size: 1.75rem; letter-spacing: -.02em; }
 
 .trial-selection {
   margin: -.35rem 0 1rem;
   padding: .5rem .7rem;
-  border-left: .22rem solid var(--signal);
-  background: var(--paper);
+  border-radius: var(--radius-control);
+  background: var(--plum-light);
   font-weight: 700;
 }
 
@@ -61,7 +58,7 @@
 
 .inquiry-options legend, .form-field label, .availability caption {
   color: var(--ink);
-  font-size: .875rem;
+  font-size: 1rem;
   font-weight: 700;
 }
 
@@ -77,20 +74,22 @@
   align-items: center;
   gap: .45rem;
   min-height: 2.8rem;
-  padding: .42rem .55rem;
-  border: 1px solid #8d8070;
+  padding: .6rem 0;
+  border: 0;
+  border-bottom: 2px solid var(--line);
   cursor: pointer;
-  font-size: .86rem;
+  font-size: 1rem;
   line-height: 1.3;
 }
 
 .inquiry-options label:has(:checked) {
-  border-color: var(--ink);
-  background: var(--signal);
+  border-color: var(--plum);
   font-weight: 700;
 }
 
-:is(.inquiry-options, .availability) input { accent-color: var(--ink); cursor: pointer; }
+:is(.inquiry-options, .availability) input { accent-color: var(--plum); cursor: pointer; }
+.inquiry-options label:hover { border-color: var(--plum); }
+.inquiry-options label:focus-within { outline: 2px solid var(--focus); outline-offset: 2px; }
 
 .form-grid {
   display: grid;
@@ -103,9 +102,9 @@
 .form-field input, .form-field select, .form-field textarea {
   width: 100%;
   min-height: 2.75rem;
-  border: 1px solid #8d8070;
-  border-radius: 0;
-  background: #fffdf8;
+  border: 1px solid #97869f;
+  border-radius: var(--radius-control);
+  background: var(--light);
   color: var(--ink);
   padding: .38rem .55rem;
 }
@@ -127,7 +126,7 @@
   margin-top: 1rem;
   border-collapse: collapse;
   table-layout: fixed;
-  font-size: .8rem;
+  font-size: .875rem;
 }
 
 .availability caption {
@@ -152,7 +151,7 @@
 
 .availability-cell {
   display: grid;
-  min-height: 2.2rem;
+  min-height: 2.75rem;
   place-items: center;
   cursor: pointer;
 }
@@ -163,13 +162,19 @@
   margin: 0;
 }
 
+.availability-cell:has(:checked) { background: var(--plum-light); }
+.availability-cell:focus-within { outline: 2px solid var(--focus); outline-offset: -3px; }
+
 .form-submit { margin-top: 1.1rem; }
 .form-submit:disabled { opacity: .65; }
+.loading-spinner { animation: loading-turn 1s linear infinite; }
+@keyframes loading-turn { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .loading-spinner { animation: none; } }
 
 .submission-success, .submission-error {
   margin-top: .85rem;
   padding: .6rem .75rem;
-  border-left: .22rem solid currentColor;
+  border-radius: var(--radius-control);
   font-weight: 700;
 }
 
@@ -186,6 +191,10 @@
 
 @media (max-width: 520px) {
   .form-grid { grid-template-columns: 1fr; }
-  .availability { font-size: .7rem; }
-  .availability th:first-child { width: 35%; }
+  .availability { width: calc(100% + 1rem); margin-inline: -.5rem; }
+  .availability th:first-child { width: 27%; padding-inline: .25rem; }
+}
+
+@media (max-width: 360px) {
+  .inquiry-options > div { grid-template-columns: 1fr; }
 }

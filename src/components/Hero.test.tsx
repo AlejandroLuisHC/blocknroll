@@ -6,11 +6,12 @@ import Hero from "./Hero";
 
 beforeEach(() => i18n.changeLanguage("es"));
 
-it("prioritises training and offers a trial as a separate action", () => {
+it("introduces the club with direct access to training and a trial", () => {
   const onTrial = vi.fn();
   render(<Hero onTrial={onTrial} season={DEFAULT_SEASON} />);
 
   expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("Vóley playa en Barcelona");
+  expect(screen.getByRole("link", { name: "Conoce el club" })).toHaveAttribute("href", "#about");
   expect(screen.getByRole("link", { name: "Ver entrenamientos" })).toHaveAttribute("href", "#services");
   const trial = screen.getByRole("link", { name: "Pedir una clase de prueba" });
   expect(trial).toHaveAttribute("href", "#contact");
@@ -24,6 +25,6 @@ it("shows the court photo and the current season without a carousel", () => {
   const photo = screen.getByRole("img");
   expect(photo).toHaveAccessibleName();
   expect(photo).toHaveAttribute("src", "/court.avif");
-  expect(screen.getByText("26/27")).toBeInTheDocument();
+  expect(screen.getByText(/26\/27/)).toBeInTheDocument();
   expect(container.querySelector("video")).toBeNull();
 });

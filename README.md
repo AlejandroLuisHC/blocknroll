@@ -165,6 +165,10 @@ The gallery should automatically display Instagram posts when configured:
    - ✅ Manual refresh capability
    - ✅ Redirect to post/account
 
+## Legal information
+
+Legal notice, privacy and browser-storage pages are available in all three languages. The contact form includes a privacy summary. Legal identity and email-provider details are still unverified: complete `src/config/legal.ts` and follow [the publication notes](docs/legal-launch.md) before treating these documents as final. Draft pages are marked visibly, use `noindex` and are excluded from the sitemap. Language selection now uses the URL without storing a browser preference.
+
 ## 📧 Email Sending
 
 Emails are sent from a Serverless Function (`api/send-email.js`) using Nodemailer over SMTP.

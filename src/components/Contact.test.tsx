@@ -57,7 +57,14 @@ it("validates fields and retains the question and availability when retrying an 
   render(<HomePage />);
 
   expect(screen.getByRole("link", { name: "Cómo llegar" })).toHaveAttribute("href", DIRECTIONS_URL);
-  expect(screen.getByRole("link", { name: CLUB_EMAIL })).toHaveAttribute("href", "mailto:" + CLUB_EMAIL);
+  const privacy = screen.getByRole("link", { name: /política de privacidad/i });
+  expect(privacy).toHaveAttribute("href", "/privacidad");
+  expect(privacy).toHaveAttribute("target", "_blank");
+  expect(screen.getByRole("form", { name: "Escríbenos" })).toHaveAccessibleDescription(/atender tu consulta/i);
+  expect(screen.getAllByRole("link", { name: CLUB_EMAIL })).toHaveLength(1);
+  for (const link of screen.getAllByRole("link", { name: CLUB_EMAIL })) {
+    expect(link).toHaveAttribute("href", "mailto:" + CLUB_EMAIL);
+  }
 
   await user.click(screen.getByRole("radio", { name: "Quiero información" }));
   expect(screen.queryByLabelText("Modalidad")).not.toBeInTheDocument();

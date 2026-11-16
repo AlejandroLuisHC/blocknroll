@@ -1,22 +1,22 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Menu, X } from "lucide-react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import { CLUB_NAME } from "../constants/club";
-import { languageFromPath } from "../seo/site";
+import { languageFromPath, languagePath, pageFromPath } from "../seo/site";
 import LanguageSelector from "./LanguageSelector";
 
 const NAV_LINKS = [
-  { key: "services", href: "#services" },
   { key: "about", href: "#about" },
   { key: "gallery", href: "#gallery" },
+  { key: "services", href: "#services" },
   { key: "contact", href: "#contact" },
 ] as const;
 
 const Navbar = () => {
   const { t } = useTranslation();
   const { pathname } = useLocation();
-  const homePath = languageFromPath(pathname) ? "" : "/";
+  const homePath = pageFromPath(pathname) === "home" ? "" : languagePath(languageFromPath(pathname) ?? "es");
   const [isOpen, setIsOpen] = useState(false);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const navigationRef = useRef<HTMLElement>(null);
@@ -38,7 +38,7 @@ const Navbar = () => {
       >
         <a className="wordmark" href={homePath + "#home"} onClick={() => setIsOpen(false)}>
           <img src="/brand-mark.avif" width="44" height="40" alt="" />
-          <span>{CLUB_NAME}</span>
+          <span translate="no">{CLUB_NAME}</span>
         </a>
         <nav
           ref={navigationRef}
@@ -51,6 +51,7 @@ const Navbar = () => {
             <a key={key} href={homePath + href} className={key === "contact" ? "nav-contact" : undefined}
               onClick={() => setIsOpen(false)}>
               {t(`nav.${key}`)}
+              {key === "contact" && <ArrowUpRight size={17} aria-hidden="true" />}
             </a>
           ))}
         </nav>

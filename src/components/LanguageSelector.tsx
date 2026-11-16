@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
-import { languagePath, type SiteLanguage } from "../seo/site";
+import { languagePath, pageFromPath, type SiteLanguage } from "../seo/site";
 
 const LanguageSelector = () => {
   const { i18n, t } = useTranslation();
@@ -15,7 +15,8 @@ const LanguageSelector = () => {
       onChange={(event) => {
         const language = event.target.value as SiteLanguage;
         void i18n.changeLanguage(language);
-        navigate(languagePath(language) + location.hash);
+        const page = pageFromPath(location.pathname) ?? "home";
+        navigate(languagePath(language, page) + (page === "home" ? location.hash : ""));
       }}
     >
       <option value="es" lang="es">Español</option>

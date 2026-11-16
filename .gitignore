@@ -13,6 +13,19 @@ dist-ssr
 .prerender/
 *.local
 .env
+ARCHITECTURE.md
+
+# Agents
+.agents
+.agents/*
+.codex
+.codex/*
+.codex-attachments
+.codex-attachments/*
+.impeccable
+.impeccable/*
+product.md
+skills-lock.json
 
 # Coverage reports
 coverage/

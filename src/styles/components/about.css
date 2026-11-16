@@ -1,61 +1,26 @@
-.club { background: var(--paper); border-top: 1px solid var(--line); }
-
-.club-layout {
-  display: grid;
-  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
-  align-items: center;
-  gap: 2.25rem clamp(2rem, 6vw, 6rem);
-}
-
-.club-copy h2 { margin-bottom: 1.3rem; }
-
-.club-copy > p + p { margin-top: .8rem; }
-
-.club-copy .club-signature {
-  width: fit-content;
-  margin-top: 1.6rem;
-  border-bottom: .22rem solid var(--signal);
-  font: 400 clamp(1.45rem, 3vw, 2.1rem)/1.15 var(--font-brand);
-}
-
-.trainers h3 {
-  margin-bottom: .8rem;
-  font-size: .78rem;
-  letter-spacing: .105em;
-  text-transform: uppercase;
-}
-
-.trainer-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: start;
-  gap: 1rem;
-}
-
-.trainer-grid figure { background: var(--signal); }
-
-.trainer-grid figure:nth-child(2) { margin-top: 3rem; background: #d8c9ff; }
-
-.trainer-grid img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 4 / 5;
-  padding: 9% 3% 0;
-  object-fit: contain;
-  object-position: bottom center;
-}
-
-.trainer-grid figcaption {
-  padding: 1rem;
-  color: var(--light);
-  background: var(--ink);
-  font-size: clamp(1rem, 1.7vw, 1.4rem);
-  font-weight: 800;
-  line-height: 1.2;
-}
-
-.trainer-credentials { margin-top: 1.25rem; color: var(--muted); font-size: .89rem; }
-
-@media (max-width: 720px) {
+.club { position: relative; background: var(--paper); padding-top: calc(var(--section-space) + 1rem); }
+.club-layout { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); align-items: center; gap: 2.5rem clamp(2rem, 4vw, 4rem); }
+.club-copy h2 { margin-bottom: 1.5rem; color: var(--plum); font-family: var(--font-display); font-weight: 900; font-style: italic; letter-spacing: -.015em; max-width: 13ch; font-size: clamp(3rem, 5vw, 4.75rem); }
+.club-copy > p + p { margin-top: 1rem; }
+.club-signoff { display: flex; align-items: center; gap: 1rem; margin-top: 1.75rem; }
+.club-signoff > img { width: 3.25rem; height: 5rem; object-fit: contain; transform: rotate(-12deg); }
+.club-copy .club-signature { color: var(--plum); font: 400 clamp(1.35rem, 2.2vw, 1.9rem)/1.15 var(--font-brand); }
+.trainers h3 { margin-bottom: 1rem; font-size: 1.125rem; font-weight: 400; }
+.trainer-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; gap: 1.25rem; }
+.trainer-grid figure { overflow: hidden; padding: .5rem; border-radius: .4rem; background: var(--light); box-shadow: 0 16px 32px #291c2d18; transform: rotate(-4deg); }
+.trainer-grid figure:nth-child(2) { margin-top: 3.5rem; transform: rotate(5deg); }
+.trainer-grid figure:nth-child(3) { margin-top: 1rem; transform: rotate(-3deg); }
+.trainer-grid img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: top center; background: var(--plum-light); }
+.trainer-grid figure:nth-child(2) img { background: var(--sand); }
+.trainer-grid figure:nth-child(3) img { background: var(--plum-deep); }
+.trainer-grid figcaption { padding: .9rem .5rem; color: var(--ink); background: var(--light); text-align: center; font-size: clamp(1.05rem, 1.6vw, 1.35rem); font-weight: 600; line-height: 1.25; }
+.trainer-credentials { margin-top: 2rem; color: var(--muted); font-size: .9375rem; line-height: 1.6; }
+@media (max-width: 1000px) {
   .club-layout { grid-template-columns: 1fr; }
+  .club-copy > p { max-width: 62ch; }
+  .trainer-grid { max-width: 46rem; }
+}
+@media (max-width: 760px) {
+  .trainer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 32rem; }
+  .trainer-grid figure:nth-child(3) { grid-column: 1 / -1; justify-self: center; width: calc((100% - 1.25rem) / 2); margin-top: 0; }
 }

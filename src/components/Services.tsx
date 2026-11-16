@@ -32,19 +32,17 @@ const Services = ({
       <div className="shell">
         <div className="section-heading">
           <div>
-            <p className="eyebrow">{t("training.kicker")}</p>
             <h2 id="training-title">{t("training.title")}</h2>
           </div>
           <p>{t("training.intro")}</p>
         </div>
         <ul className="training-list">
-          {TRAINING_PROGRAMS.map((id, index) => {
+          {TRAINING_PROGRAMS.map((id) => {
             const title = t(`training.programs.${id}.title`);
             const amount = id === "private" ? undefined : season?.prices[id];
             const unknownPrice = season === undefined && id !== "private" ? "—" : t("training.customPrice");
             return (
               <li className="training-row" key={id}>
-                <span className="training-number" aria-hidden="true">0{index + 1}</span>
                 <div className="training-description">
                   <h3>{title}</h3>
                   <p>{t(`training.programs.${id}.description`)}</p>
