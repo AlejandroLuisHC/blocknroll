@@ -23,9 +23,10 @@ function localPages(): Plugin {
     async transformIndexHtml(html, context) {
       if (!context.server) return;
       const path = context.originalUrl?.split("?")[0].replace(/\/$/, "") || "/";
-      const language = path === "/ca" ? "ca" : path === "/en" ? "en" : "es";
-      const { renderPage } = await context.server.ssrLoadModule("/src/entry-server.tsx");
-      const page = await renderPage(language, !["/", "/ca", "/en"].includes(path));
+      const { renderPage, languageFromPath, pageFromPath } = await context.server.ssrLoadModule("/src/entry-server.tsx");
+      const language = languageFromPath(path) ?? "es";
+      const kind = pageFromPath(path);
+      const page = await renderPage(language, !kind, kind ?? "home");
       return html.replace('<html lang="es">', '<html lang="' + language + '">')
         .replace("<!--seo-head-->", page.head)
         .replace('<div id="root"></div>', '<div id="root">' + page.body + '</div>');

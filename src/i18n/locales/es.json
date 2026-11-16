@@ -16,6 +16,8 @@
     "closeMenu": "Cerrar menú"
   },
   "hero": {
+    "community": "Gente con ganas de jugar. Arena, equipo y mucho vóley. Así somos en Block n’ Roll.",
+    "discover": "Conoce el club",
     "kicker": "Club de vóley playa",
     "headline": "Vóley playa",
     "city": "en Barcelona",
@@ -71,19 +73,21 @@
     "story": "Somos Sara, Jesús y David. Después de años entrenando y compitiendo, creamos Block n’ Roll para compartir el vóley playa y reunir a gente con ganas de jugar.",
     "approach": "En la pista trabajamos la técnica y el juego a tu ritmo, desde los primeros toques hasta la competición.",
     "trainers": "En pista con",
-    "credentials": "Jesús y David cuentan con certificación oficial de vóley playa de nivel 1 y más de siete años entrenando y compitiendo."
+    "credentials": "Los entrenadores cuentan con certificación oficial de vóley playa de nivel 1 y más de siete años entrenando y compitiendo."
   },
   "gallery": {
     "title": "Así se vive en la arena",
     "profile": "Ver perfil en Instagram",
     "play": "Reproducir «{{title}}»",
+    "close": "Cerrar vídeo",
     "posts": {
       "training": "Entrenos de la temporada",
       "schedule": "Horario de entrenamientos",
       "competition": "Liga de Clubes",
       "join": "Únete al club",
       "practice": "Un día de entreno",
-      "zaragoza": "Microvlog de torneo de Zaragoza"
+      "zaragoza": "Microvlog de torneo de Zaragoza",
+      "nightPractice": "Entreno de noche"
     },
     "imageDescriptions": {
       "training": "Cartel de entrenamientos de la temporada 2026–27 con una demostración de recepción en la arena",

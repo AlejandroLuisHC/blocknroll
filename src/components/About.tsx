@@ -1,10 +1,13 @@
 import { useTranslation } from "react-i18next";
 import jesus from "../assets/img/jesus.avif";
 import david from "../assets/img/david.avif";
+import manu from "../assets/img/manu-nieto.avif";
+import rockHand from "../assets/img/hand-rock.avif";
 
 const TRAINER_PORTRAITS = [
   { name: "Jesús García", portrait: jesus },
   { name: "David Bardina", portrait: david },
+  { name: "Manu Nieto", portrait: manu },
 ] as const;
 
 const About = () => {
@@ -14,11 +17,13 @@ const About = () => {
     <section id="about" className="section club" aria-labelledby="club-title" tabIndex={-1}>
       <div className="shell club-layout">
         <div className="club-copy">
-          <p className="eyebrow">{t("nav.about")}</p>
           <h2 id="club-title">{t("club.title")}</h2>
           <p>{t("club.story")}</p>
           <p>{t("club.approach")}</p>
-          <p className="club-signature" lang="en">We will Block n’ Roll!</p>
+          <div className="club-signoff">
+            <img src={rockHand} alt="" width="80" height="120" loading="lazy" />
+            <p className="club-signature" lang="en">We will Block n’ Roll!</p>
+          </div>
         </div>
         <div className="trainers">
           <h3>{t("club.trainers")}</h3>

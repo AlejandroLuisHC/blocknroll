@@ -14,7 +14,7 @@ it("preserves the homepage anchors and one language control", () => {
   const navigation = screen.getByRole("navigation", { name: "Navegación principal" });
 
   expect(within(navigation).getAllByRole("link").map((link) => link.getAttribute("href")))
-    .toEqual(["#services", "#about", "#gallery", "#contact"]);
+    .toEqual(["#about", "#gallery", "#services", "#contact"]);
   expect(screen.getByRole("link", { name: "Block n’ Roll" })).toHaveAttribute("href", "#home");
   expect(screen.getAllByRole("combobox", { name: "Idioma" })).toHaveLength(1);
 });
@@ -22,7 +22,7 @@ it("preserves the homepage anchors and one language control", () => {
 it("moves keyboard focus to the menu and restores it on Escape", () => {
   render(<Navbar />);
   const menu = screen.getByRole("button", { name: "Abrir menú" });
-  const firstLink = screen.getByRole("link", { name: "Entrenamientos" });
+  const firstLink = screen.getByRole("link", { name: "El club" });
 
   fireEvent.click(menu);
   expect(menu).toHaveAttribute("aria-expanded", "true");

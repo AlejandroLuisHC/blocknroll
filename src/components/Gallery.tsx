@@ -2,26 +2,41 @@ import { useState } from "react";
 import { ArrowUpRight, Play } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { INSTAGRAM_URL, TRAINING_POST_URL, TRAINING_SCHEDULE_URL } from "../constants/club";
+import GalleryVideoDialog from "./GalleryVideoDialog";
 import training from "../assets/img/gallery/temporada-entrenos.avif";
 import schedule from "../assets/img/gallery/temporada-horarios.avif";
 import competition from "../assets/img/gallery/temporada-competicion.avif";
 import join from "../assets/img/gallery/temporada-unete.avif";
-import practicePoster from "../assets/img/gallery/court.avif";
+import practicePoster from "../assets/img/gallery/entreno-playa.avif";
 import zaragozaPoster from "../assets/img/gallery/torneo-zaragoza.avif";
+import nightPracticePoster from "../assets/img/gallery/entreno-noche.avif";
 import practiceVideo from "../assets/video/gallery/entreno-playa.mp4";
 import zaragozaVideo from "../assets/video/gallery/micro-vlog-torneo-zaragoza.mp4";
+import nightPracticeVideo from "../assets/video/gallery/entreno-noche.mp4";
 
 const POSTS = [
   {
     key: "practice",
     image: practicePoster,
     video: practiceVideo,
+    width: 720,
+    height: 1280,
     href: "https://www.instagram.com/blocknrollbeachvolleybcn/reel/DK-MXtRIlAA/",
   },
   {
     key: "zaragoza",
     image: zaragozaPoster,
     video: zaragozaVideo,
+    width: 720,
+    height: 1280,
+    href: "https://www.instagram.com/blocknrollbeachvolleybcn/reel/DdW_NX6oFVa/",
+  },
+  {
+    key: "nightPractice",
+    image: nightPracticePoster,
+    video: nightPracticeVideo,
+    width: 720,
+    height: 1280,
     href: null,
   },
   { key: "training", image: training, href: TRAINING_POST_URL },
@@ -30,16 +45,17 @@ const POSTS = [
   { key: "join", image: join, href: "https://www.instagram.com/p/DfPT7UbiLAn/" },
 ] as const;
 
+type VideoPost = Extract<(typeof POSTS)[number], { video: string }>;
+
 const Gallery = () => {
   const { t } = useTranslation();
-  const [playing, setPlaying] = useState<string | null>(null);
+  const [activeVideo, setActiveVideo] = useState<{ post: VideoPost; trigger: HTMLButtonElement } | null>(null);
 
   return (
     <section id="gallery" className="section gallery" aria-labelledby="gallery-title" tabIndex={-1}>
       <div className="shell">
         <div className="section-heading">
           <div>
-            <p className="eyebrow">{t("nav.gallery")}</p>
             <h2 id="gallery-title">{t("gallery.title")}</h2>
           </div>
           <a className="text-link" href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
@@ -53,28 +69,16 @@ const Gallery = () => {
               <figure className={`gallery-piece${"video" in post ? " gallery-piece--video" : ""}`} key={post.key}>
                 <div className="gallery-media">
                   {"video" in post ? (
-                    playing === post.key ? (
-                      <video
-                        ref={(element) => { element?.focus(); }}
-                        src={post.video}
-                        poster={post.image}
-                        aria-label={label}
-                        controls
-                        autoPlay
-                        playsInline
-                        tabIndex={0}
-                      />
-                    ) : (
-                      <button
-                        className="gallery-play"
-                        type="button"
-                        onClick={() => setPlaying(post.key)}
-                        aria-label={t("gallery.play", { title: label })}
-                      >
-                        <img src={post.image} alt="" width="480" height="600" loading="lazy" />
-                        <span><Play size={22} aria-hidden="true" /></span>
-                      </button>
-                    )
+                    <button
+                      className="gallery-play"
+                      type="button"
+                      onClick={(event) => setActiveVideo({ post, trigger: event.currentTarget })}
+                      aria-label={t("gallery.play", { title: label })}
+                      aria-haspopup="dialog"
+                    >
+                      <img src={post.image} alt="" width={post.width} height={post.height} loading="lazy" />
+                      <span><Play size={22} aria-hidden="true" /></span>
+                    </button>
                   ) : (
                     <img
                       src={post.image}
@@ -100,6 +104,17 @@ const Gallery = () => {
           })}
         </div>
       </div>
+      {activeVideo && (
+        <GalleryVideoDialog
+          src={activeVideo.post.video}
+          poster={activeVideo.post.image}
+          title={t(`gallery.posts.${activeVideo.post.key}`)}
+          width={activeVideo.post.width}
+          height={activeVideo.post.height}
+          trigger={activeVideo.trigger}
+          onClose={() => setActiveVideo(null)}
+        />
+      )}
     </section>
   );
 };

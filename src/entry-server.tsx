@@ -6,16 +6,17 @@ import MainLayout from "./layouts/MainLayout";
 import AppRoutes from "./routes/AppRoutes";
 import NotFoundPage from "./pages/NotFoundPage";
 import { es, ca, en } from "./i18n/locales";
-import { languagePath, pageMetadata, serializedStructuredData, type SiteLanguage } from "./seo/site";
+import { languagePath, pageMetadata, serializedStructuredData, type SiteLanguage, type SitePage } from "./seo/site";
+export { languageFromPath, pageFromPath } from "./seo/site";
 
-export async function renderPage(language: SiteLanguage, notFound = false) {
+export async function renderPage(language: SiteLanguage, notFound = false, page: SitePage = "home") {
   const translations = createInstance();
   await translations.use(initReactI18next).init({
     lng: language, fallbackLng: "es",
     resources: { es: { translation: es }, ca: { translation: ca }, en: { translation: en } },
     interpolation: { escapeValue: false },
   });
-  const metadata = pageMetadata(language);
+  const metadata = pageMetadata(language, page);
   const head = renderToStaticMarkup(
     <>
       <title>{notFound ? "404 · " + translations.t("notFound.title") + " · Block n’ Roll" : metadata.title}</title>
@@ -35,7 +36,7 @@ export async function renderPage(language: SiteLanguage, notFound = false) {
   );
   const body = renderToString(
     <I18nextProvider i18n={translations}>
-      <StaticRouter location={notFound ? "/404" : languagePath(language)}>
+      <StaticRouter location={notFound ? "/404" : languagePath(language, page)}>
         <MainLayout>{notFound ? <NotFoundPage /> : <AppRoutes />}</MainLayout>
       </StaticRouter>
     </I18nextProvider>

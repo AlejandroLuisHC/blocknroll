@@ -1,10 +1,11 @@
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight, LoaderCircle } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { CLUB_EMAIL, DIRECTIONS_URL, TRAINING_PROGRAMS } from "../constants/club";
 import type { useContactForm } from "../hooks/useContactForm";
 import type { EstimatedLevel, PackageType } from "../types";
 import AvailabilityGrid from "./ui/AvailabilityGrid";
 import FormField from "./ui/FormField";
+import ContactPrivacy from "./ContactPrivacy";
 
 const LEVELS = [
   { key: "iniciacion", value: "Iniciación" },
@@ -27,12 +28,11 @@ const Contact = ({ form }: { form: ReturnType<typeof useContactForm> }) => {
     <section id="contact" className="section contact" aria-labelledby="contact-title" tabIndex={-1}>
       <div className="shell contact-layout">
         <div className="contact-heading">
-          <p className="eyebrow">{t("nav.contact")}</p>
           <h2 id="contact-title">{t("contact.title")}</h2>
           <p>{t("contact.intro")}</p>
         </div>
         <form className="contact-form" noValidate onSubmit={form.handleSubmit}
-          aria-labelledby="contact-form-title">
+          aria-labelledby="contact-form-title" aria-describedby="contact-purpose">
           <h3 id="contact-form-title">{t("contact.form.title")}</h3>
           {isTraining && formData.trialRequested && (
             <p className="trial-selection">{t("contact.form.trialSelected")}</p>
@@ -91,15 +91,17 @@ const Contact = ({ form }: { form: ReturnType<typeof useContactForm> }) => {
               </div>
             )}
             <AvailabilityGrid selected={formData.availability ?? []} onToggle={form.toggleAvailability} />
+            <ContactPrivacy />
             <button className="button button-primary form-submit" type="submit">
               {t(isLoading ? "contact.form.sending" : "contact.form.send")}
-              <ArrowRight size={17} aria-hidden="true" />
+              {isLoading ? <LoaderCircle className="loading-spinner" size={17} aria-hidden="true" /> : <ArrowRight size={17} aria-hidden="true" />}
             </button>
           </fieldset>
           {submission.status === "error" && (
             <p className="submission-error" role="alert">{t("contact.form.errorMessage")}</p>
           )}
-          <div role="status">
+          <div role="status" aria-atomic="true">
+            {isLoading && <p className="submission-pending">{t("contact.form.sending")}</p>}
             {submission.status === "success" && (
               <p className="submission-success">
                 {t(submission.inquiryType === "join" ? "contact.form.successJoin" : "contact.form.successTalk")}
