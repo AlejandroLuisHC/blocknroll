@@ -22,13 +22,13 @@ const publishedSeason: ClubSeason = {
 
 beforeEach(() => i18n.changeLanguage("es"));
 
-it("shows training before club, gallery and contact, with the original anchors", async () => {
+it("introduces the club and life on court before training, preserving all anchors", async () => {
   vi.spyOn(globalThis, "fetch").mockResolvedValue(new Response(null, { status: 204 }));
   render(<HomePage />);
 
   expect(screen.getAllByRole("region").map((section) => section.id))
-    .toEqual(["home", "services", "about", "gallery", "contact"]);
-  expect(await screen.findByText("26/27")).toBeInTheDocument();
+    .toEqual(["home", "about", "gallery", "services", "contact"]);
+  expect(await screen.findByText(/26\/27/)).toBeInTheDocument();
   expect(screen.getByText("40 €")).toBeInTheDocument();
 });
 
@@ -36,7 +36,7 @@ it("uses the published season and PDFs without a rebuild", async () => {
   const fetchMock = vi.spyOn(globalThis, "fetch").mockResolvedValue(Response.json(publishedSeason));
   const { unmount } = render(<HomePage />);
 
-  expect(await screen.findByText("27/28")).toBeInTheDocument();
+  expect(await screen.findByText(/27\/28/)).toBeInTheDocument();
   expect(screen.getByText("45 €")).toBeInTheDocument();
   expect(screen.getByText("Temporada de septiembre de 2027 a junio de 2028.")).toBeInTheDocument();
   expect(screen.getByRole("link", { name: /descargar guía del club/i }))

@@ -16,6 +16,8 @@
     "closeMenu": "Tanca el menú"
   },
   "hero": {
+    "community": "Gent amb ganes de jugar. Sorra, equip i molt de vòlei. Així som a Block n’ Roll.",
+    "discover": "Coneix el club",
     "kicker": "Club de vòlei platja",
     "headline": "Vòlei platja",
     "city": "a Barcelona",
@@ -71,19 +73,21 @@
     "story": "Som la Sara, el Jesús i el David. Després d’anys entrenant i competint, vam crear Block n’ Roll per compartir el vòlei platja i reunir gent amb ganes de jugar.",
     "approach": "A la pista treballem la tècnica i el joc al teu ritme, des dels primers tocs fins a la competició.",
     "trainers": "A la pista amb",
-    "credentials": "El Jesús i el David tenen la certificació oficial de vòlei platja de nivell 1 i més de set anys entrenant i competint."
+    "credentials": "Els entrenadors tenen la certificació oficial de vòlei platja de nivell 1 i més de set anys entrenant i competint."
   },
   "gallery": {
     "title": "Així es viu a la sorra",
     "profile": "Veure el perfil a Instagram",
     "play": "Reprodueix «{{title}}»",
+    "close": "Tanca el vídeo",
     "posts": {
       "training": "Entrenaments de la temporada",
       "schedule": "Horari d’entrenaments",
       "competition": "Lliga de Clubs",
       "join": "Uneix-te al club",
       "practice": "Un dia d’entrenament",
-      "zaragoza": "Microvlog d’un torneig a Saragossa"
+      "zaragoza": "Microvlog d’un torneig a Saragossa",
+      "nightPractice": "Entrenament de nit"
     },
     "imageDescriptions": {
       "training": "Cartell d’entrenaments de la temporada 2026–27 amb una demostració de recepció a la sorra",

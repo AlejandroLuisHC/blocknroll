@@ -1,90 +1,53 @@
-.gallery {
-  --focus: var(--signal);
-  --muted: #d5c9b7;
-  background: var(--ink);
-  color: var(--paper);
-}
-
+.gallery { --focus: var(--signal); --muted: #e6d8e8; position: relative; background: var(--plum-deep); color: var(--light); }
+.gallery::before { position: absolute; inset: -2rem 0 auto; height: 2.1rem; background: var(--plum-deep); clip-path: polygon(0 100%, 100% 0, 100% 100%); content: ""; }
+.gallery h2 { font-family: var(--font-display); font-weight: 900; font-style: italic; letter-spacing: -.015em; max-width: 16ch; font-size: clamp(3rem, 5vw, 4.75rem); }
 .gallery .section-heading > a { justify-self: end; }
-.gallery .eyebrow::before { background: var(--signal); }
-
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(2rem, 4vw, 3.5rem) clamp(.85rem, 2vw, 1.6rem);
-}
-
-.gallery-piece--video { grid-column: span 2; }
-.gallery-piece--video .gallery-media { aspect-ratio: 16 / 10; }
-.gallery-piece--video .gallery-caption { font-size: clamp(1rem, 1.8vw, 1.35rem); }
-
-.gallery-media {
-  position: relative;
-  overflow: clip;
-  aspect-ratio: 4 / 5;
-  background: #0e0c11;
-}
-
-.gallery-media img, .gallery-play, .gallery-media video {
-  width: 100%;
-  height: 100%;
-}
-
+.gallery .section-heading > a:hover { color: var(--signal); }
+.gallery-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: clamp(2rem, 4vw, 3.5rem) clamp(.85rem, 2vw, 1.6rem); }
+.gallery-piece { grid-column: span 3; }
+.gallery-piece--video { grid-column: span 4; }
+.gallery-piece--video .gallery-media { aspect-ratio: 16 / 11; }
+.gallery-piece--video:nth-child(2) { margin-top: 4rem; }
+.gallery-piece--video .gallery-caption { font-size: clamp(1.05rem, 1.8vw, 1.35rem); }
+.gallery-media { position: relative; overflow: hidden; aspect-ratio: 4 / 5; border-radius: .4rem; background: var(--ink); }
+.gallery-media img, .gallery-play { width: 100%; height: 100%; }
 .gallery-media img { object-fit: cover; }
 .gallery-piece--video img { object-position: center 40%; }
-.gallery-media video { object-fit: contain; }
-
-.gallery-play {
-  display: block;
-  padding: 0;
-  border: 0;
-  background: transparent;
-}
-
-.gallery-play span {
-  position: absolute;
-  bottom: 1.25rem;
-  left: 1.25rem;
-  display: grid;
-  width: 3.75rem;
-  height: 3.75rem;
-  border-radius: 50%;
-  place-items: center;
-  color: var(--ink);
-  background: var(--signal);
-}
-
+.gallery-play { display: block; padding: 0; border: 0; background: transparent; }
+.gallery-play span { position: absolute; bottom: 1.25rem; left: 1.25rem; display: grid; width: 3.75rem; height: 3.75rem; border-radius: 50%; place-items: center; color: var(--ink); background: var(--signal); transition: background-color 160ms ease; }
 .gallery-play:hover span { background: var(--signal-hover); }
-.gallery-play:focus-visible { outline-offset: -4px; }
+.gallery-play:focus-visible { outline-offset: -5px; }
 .gallery-play svg { fill: currentColor; }
-
-.gallery-piece figcaption {
-  margin-top: .6rem;
-}
-
-.gallery-piece .gallery-caption {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  min-height: 2.75rem;
-  gap: .35rem;
-  font-weight: 700;
-  text-decoration: none;
-  line-height: 1.25;
-}
-
+.gallery-piece figcaption { margin-top: .6rem; }
+.gallery-piece .gallery-caption { display: flex; justify-content: space-between; align-items: center; min-height: 2.75rem; gap: .35rem; font-weight: 600; text-decoration: none; line-height: 1.35; }
 .gallery-piece figcaption a:hover { text-decoration: underline; }
-
 .gallery-piece figcaption svg { flex-shrink: 0; color: var(--signal); }
-
-@media (max-width: 720px) {
-  .gallery .section-heading > a { justify-self: start; }
+.gallery-viewer { --focus: var(--signal); position: fixed; inset: 0; width: 100%; max-width: none; height: 100%; max-height: none; margin: 0; padding: 0; border: 0; overflow: hidden; color: var(--light); background: transparent; }
+.gallery-viewer[open] { display: grid; place-items: center; }
+.gallery-viewer::backdrop { background: #100a14de; animation: gallery-backdrop-in 300ms ease both; }
+.gallery-viewer-frame { position: relative; width: min(calc(100vw - 2.5rem), calc((100dvh - 8rem) * var(--video-ratio)), 70rem); aspect-ratio: var(--video-ratio); }
+.gallery-viewer-heading { position: absolute; left: 50%; bottom: calc(100% + .5rem); width: max(100%, min(20rem, calc(100vw - 2.5rem))); display: flex; align-items: center; justify-content: space-between; gap: .75rem; min-height: 2.75rem; transform: translateX(-50%); animation: gallery-backdrop-in 180ms 260ms ease both; }
+.gallery-viewer-heading p { font-size: 1rem; font-weight: 600; line-height: 1.25; }
+.gallery-viewer-close { display: grid; flex: 0 0 2.75rem; width: 2.75rem; height: 2.75rem; padding: 0; place-items: center; border: 0; color: var(--light); background: transparent; transition: color 160ms ease; }
+.gallery-viewer-close:hover { color: var(--signal); }
+.gallery-viewer-media { position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: .4rem; background: var(--ink); transform-origin: top left; }
+.gallery-viewer-media video, .gallery-viewer-poster { width: 100%; height: 100%; object-fit: contain; }
+.gallery-viewer-poster { position: absolute; inset: 0; pointer-events: none; animation: gallery-poster-out 160ms 320ms ease forwards; }
+.gallery-viewer--closing::backdrop { animation: gallery-backdrop-out 240ms ease both; }
+.gallery-viewer--closing .gallery-viewer-heading { animation: gallery-backdrop-out 120ms ease both; }
+@keyframes gallery-backdrop-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes gallery-backdrop-out { from { opacity: 1; } to { opacity: 0; } }
+@keyframes gallery-poster-out { to { opacity: 0; visibility: hidden; } }
+@media (prefers-reduced-motion: reduce) {
+  .gallery-viewer-poster { display: none; }
+  .gallery-viewer::backdrop { animation: none; }
 }
-
 @media (max-width: 760px) {
-  .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 1.1rem; }
-
-  .gallery-piece .gallery-caption { font-size: .85rem; }
-  .gallery-piece--video { margin-bottom: 1rem; }
-  .gallery-piece--video .gallery-caption { font-size: 1.1rem; }
+  .gallery .section-heading > a { justify-self: start; }
+  .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 1.5rem; }
+  .gallery-piece { grid-column: auto; }
+  .gallery-piece .gallery-caption { font-size: .9375rem; }
+  .gallery-piece--video { grid-column: span 2; margin-bottom: .5rem; }
+  .gallery-piece--video:nth-child(2) { margin-top: 0; }
+  .gallery-piece--video .gallery-caption { font-size: 1.15rem; }
 }

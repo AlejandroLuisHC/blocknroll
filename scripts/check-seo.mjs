@@ -5,6 +5,7 @@ import { JSDOM } from "jsdom";
 const output = new URL("../dist/", import.meta.url);
 const languages = ["es", "ca", "en"];
 let origin;
+const indexedPages = [];
 for (const language of languages) {
   const file = language === "es" ? "index.html" : `${language}.html`;
   const html = await readFile(new URL(file, output), "utf8");
@@ -45,6 +46,7 @@ for (const language of languages) {
     await access(new URL(url.slice(1), output));
   }
   const robots = document.querySelector('meta[name="robots"]').content;
+  if (!robots.includes("noindex")) indexedPages.push(canonical);
   assert.ok(robots.includes("follow"));
   if (process.env.VERCEL_ENV === "preview" || process.env.VITE_NOINDEX === "true") {
     assert.ok(robots.includes("noindex"), `${file}: staging builds must not be indexed`);
@@ -53,7 +55,33 @@ for (const language of languages) {
 }
 
 const sitemap = new JSDOM(await readFile(new URL("sitemap.xml", output), "utf8"), { contentType: "application/xml" }).window.document;
-assert.deepEqual(Array.from(sitemap.querySelectorAll("loc"), (element) => element.textContent), [origin + "/", origin + "/ca", origin + "/en"]);
+const legalPaths = {
+  es: ["/aviso-legal", "/privacidad", "/cookies"],
+  ca: ["/ca/avis-legal", "/ca/privacitat", "/ca/cookies"],
+  en: ["/en/legal-notice", "/en/privacy", "/en/cookies"],
+};
+for (let kind = 0; kind < 3; kind++) {
+  for (const language of languages) {
+    const path = legalPaths[language][kind];
+    const file = path.slice(1) + ".html";
+    const document = new JSDOM(await readFile(new URL(file, output), "utf8")).window.document;
+    assert.equal(document.documentElement.lang, language, `${file}: document language`);
+    assert.equal(document.querySelectorAll("h1").length, 1);
+    assert.ok(document.querySelector(".legal-body").textContent.length > 1000, `${file}: legal content without JavaScript`);
+    assert.equal(document.querySelector('link[rel="canonical"]')?.href, origin + path);
+    assert.equal(document.querySelector('meta[property="og:url"]')?.content, origin + path);
+    assert.ok(document.title.includes(document.querySelector("h1").textContent));
+    for (const other of [...languages, "x-default"]) {
+      const alternate = origin + legalPaths[other === "x-default" ? "es" : other][kind];
+      assert.equal(document.querySelector(`link[hreflang="${other}"]`)?.href, alternate);
+    }
+    const noindex = document.querySelector('meta[name="robots"]').content.includes("noindex");
+    if (document.querySelector(".legal-draft")) assert.ok(noindex, `${file}: unfinished legal details must not be indexed`);
+    if (!noindex) indexedPages.push(origin + path);
+    console.log(`${file}: legal content, localized metadata and language alternates OK.`);
+  }
+}
+assert.deepEqual(Array.from(sitemap.querySelectorAll("loc"), (element) => element.textContent), indexedPages);
 assert.ok((await readFile(new URL("robots.txt", output), "utf8")).includes(`Sitemap: ${origin}/sitemap.xml`));
 const missing = new JSDOM(await readFile(new URL("404.html", output), "utf8")).window.document;
 assert.ok(missing.querySelector('meta[name="robots"]').content.includes("noindex"));

@@ -1,15 +1,16 @@
 import i18n from "i18next";
-import LanguageDetector from "i18next-browser-languagedetector";
 import { initReactI18next } from "react-i18next";
 import { es, en, ca } from "./locales";
-import { applyDocumentMetadata, languageFromPath } from "../seo/site";
+import { applyDocumentMetadata, languageFromPath, pageFromPath } from "../seo/site";
 
 i18n.on("languageChanged", () => {
   const language = i18n.resolvedLanguage;
-  if (language === "es" || language === "ca" || language === "en") applyDocumentMetadata(language);
+  if (language === "es" || language === "ca" || language === "en") {
+    applyDocumentMetadata(language, pageFromPath(window.location.pathname) ?? "home");
+  }
 });
 
-void i18n.use(LanguageDetector).use(initReactI18next).init({
+void i18n.use(initReactI18next).init({
   resources: {
     es: { translation: es },
     en: { translation: en },
@@ -20,10 +21,6 @@ void i18n.use(LanguageDetector).use(initReactI18next).init({
   load: "languageOnly",
   fallbackLng: "es",
   interpolation: { escapeValue: false },
-  detection: {
-    order: ["localStorage", "navigator", "htmlTag"],
-    caches: ["localStorage"],
-  },
 });
 
 export type { TranslationSchema, TypedResources } from "./types";

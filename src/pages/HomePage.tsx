@@ -13,9 +13,9 @@ const HomePage = () => {
   return (
     <>
       <Hero onTrial={() => form.selectTraining()} season={season} />
-      <Services onSelectTraining={form.selectTraining} season={season} />
       <About />
       <Gallery />
+      <Services onSelectTraining={form.selectTraining} season={season} />
       <Contact form={form} />
     </>
   );

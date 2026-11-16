@@ -2,12 +2,17 @@ import { ArrowUp, ArrowUpRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router-dom";
 import { CLUB_EMAIL, CLUB_NAME, INSTAGRAM_URL } from "../constants/club";
-import { LANGUAGES, LANGUAGE_NAMES, languageFromPath, languagePath } from "../seo/site";
+import { LANGUAGES, LANGUAGE_NAMES, languageFromPath, languagePath, pageFromPath } from "../seo/site";
+import { LEGAL_PAGES } from "../config/legal";
+import { LEGAL_COPY } from "../content/legal";
 
 const Footer = () => {
   const { t } = useTranslation();
   const { pathname } = useLocation();
-  const homePath = languageFromPath(pathname) ? "" : "/";
+  const language = languageFromPath(pathname) ?? "es";
+  const page = pageFromPath(pathname) ?? "home";
+  const copy = LEGAL_COPY[language];
+  const homePath = pageFromPath(pathname) === "home" ? "" : languagePath(language);
 
   return (
     <footer className="site-footer">
@@ -30,9 +35,16 @@ const Footer = () => {
           </a>
         </div>
       </div>
+      <nav className="shell footer-legal" aria-label={copy.navigation}>
+        {LEGAL_PAGES.map((legalPage) => (
+          <Link key={legalPage} to={languagePath(language, legalPage)}>
+            {copy.pages[legalPage].title}
+          </Link>
+        ))}
+      </nav>
       <nav className="shell footer-languages" aria-label={t("nav.language")}>
         {LANGUAGES.map((language) => (
-          <Link key={language} to={languagePath(language)} hrefLang={language} lang={language}>
+          <Link key={language} to={languagePath(language, page)} hrefLang={language} lang={language}>
             {LANGUAGE_NAMES[language]}
           </Link>
         ))}

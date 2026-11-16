@@ -16,6 +16,8 @@
     "closeMenu": "Close menu"
   },
   "hero": {
+    "community": "People who love to play. Sand, teammates and plenty of volleyball. That’s Block n’ Roll.",
+    "discover": "Meet the club",
     "kicker": "Beach volleyball club",
     "headline": "Beach volleyball",
     "city": "in Barcelona",
@@ -71,19 +73,21 @@
     "story": "We’re Sara, Jesús and David. After years of training and competing, we started Block n’ Roll to share beach volleyball and bring together people who want to play.",
     "approach": "On court we work on technique and gameplay at your pace, from your first touches to competition.",
     "trainers": "On court with",
-    "credentials": "Jesús and David hold official Level 1 beach volleyball certification and have over seven years of training and competition experience."
+    "credentials": "The coaches hold official Level 1 beach volleyball certification and have over seven years of training and competition experience."
   },
   "gallery": {
     "title": "Life on the sand",
     "profile": "See the Instagram profile",
     "play": "Play “{{title}}”",
+    "close": "Close video",
     "posts": {
       "training": "Season training",
       "schedule": "Training timetable",
       "competition": "Club League",
       "join": "Join the club",
       "practice": "A day of training",
-      "zaragoza": "A Zaragoza tournament microvlog"
+      "zaragoza": "A Zaragoza tournament microvlog",
+      "nightPractice": "Night training"
     },
     "imageDescriptions": {
       "training": "2026–27 season training poster showing a receiving demonstration on the sand",

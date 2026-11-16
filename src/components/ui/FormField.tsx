@@ -42,6 +42,7 @@ const FormField = ({
           value={value}
           onChange={(event) => onChange(event.target.value)}
           autoComplete={autoComplete}
+          spellCheck={type === "email" ? false : undefined}
           required={required}
           aria-invalid={error ? true : undefined}
           aria-describedby={error ? errorId : undefined}

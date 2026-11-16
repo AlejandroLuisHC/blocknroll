@@ -3,27 +3,29 @@ import { Navigate, Routes, Route, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { HomePage } from "../pages";
 import NotFoundPage from "../pages/NotFoundPage";
-import { applyDocumentMetadata, languageFromPath } from "../seo/site";
+import LegalPage from "../pages/LegalPage";
+import { applyDocumentMetadata, languageFromPath, pageFromPath } from "../seo/site";
 
 const LocalizedPage = () => {
   const { pathname } = useLocation();
   const { i18n } = useTranslation();
   const language = languageFromPath(pathname);
+  const page = pageFromPath(pathname);
 
   useEffect(() => {
-    if (!language) return;
+    if (!language || !page) return;
     if (i18n.resolvedLanguage !== language) void i18n.changeLanguage(language);
-    applyDocumentMetadata(language);
-  }, [language, i18n]);
+    applyDocumentMetadata(language, page);
+  }, [language, page, i18n]);
 
   if (pathname === "/es" || pathname === "/es/") return <Navigate to="/" replace />;
-  return language ? <HomePage /> : <NotFoundPage />;
+  if (!language || !page) return <NotFoundPage />;
+  return page === "home" ? <HomePage /> : <LegalPage language={language} page={page} />;
 };
 
 const AppRoutes = () => (
   <Routes>
-    <Route path="/:language?" element={<LocalizedPage />} />
-    <Route path="*" element={<NotFoundPage />} />
+    <Route path="*" element={<LocalizedPage />} />
   </Routes>
 );
 

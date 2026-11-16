@@ -1,4 +1,12 @@
 # Changelog
+## [0.7.0] (2026-11-15)
+### Features
+
+- Refactor UX and UI for better user experience and accessibility
+- Changes for season 2026 and 2027:
+  - Dynamic content updates for usefuld files and prices
+  - Prepare new section for the clubs league
+- Draft of legal notice for the website, including privacy policy and cookie policy
 
 ## [0.6.0] (2025-08-14)
 
