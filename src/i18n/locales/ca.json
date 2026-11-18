@@ -80,7 +80,9 @@
     "title": "Així es viu a la sorra",
     "profile": "Veure el perfil a Instagram",
     "play": "Reprodueix «{{title}}»",
+    "enlarge": "Amplia «{{title}}»",
     "close": "Tanca el vídeo",
+    "closeImage": "Tanca la imatge",
     "posts": {
       "training": "Entrenaments de la temporada",
       "schedule": "Horari d’entrenaments",

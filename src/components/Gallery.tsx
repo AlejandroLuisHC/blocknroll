@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ArrowUpRight, Play } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { INSTAGRAM_URL, TRAINING_POST_URL, TRAINING_SCHEDULE_URL } from "../constants/club";
-import GalleryVideoDialog from "./GalleryVideoDialog";
+import GalleryMediaDialog from "./GalleryMediaDialog";
 import training from "../assets/img/gallery/temporada-entrenos.avif";
 import schedule from "../assets/img/gallery/temporada-horarios.avif";
 import competition from "../assets/img/gallery/temporada-competicion.avif";
@@ -45,11 +45,11 @@ const POSTS = [
   { key: "join", image: join, href: "https://www.instagram.com/p/DfPT7UbiLAn/" },
 ] as const;
 
-type VideoPost = Extract<(typeof POSTS)[number], { video: string }>;
+type GalleryPost = (typeof POSTS)[number];
 
 const Gallery = () => {
   const { t } = useTranslation();
-  const [activeVideo, setActiveVideo] = useState<{ post: VideoPost; trigger: HTMLButtonElement } | null>(null);
+  const [activePost, setActivePost] = useState<{ post: GalleryPost; trigger: HTMLButtonElement } | null>(null);
 
   return (
     <section id="gallery" className="section gallery" aria-labelledby="gallery-title" tabIndex={-1}>
@@ -72,7 +72,7 @@ const Gallery = () => {
                     <button
                       className="gallery-play"
                       type="button"
-                      onClick={(event) => setActiveVideo({ post, trigger: event.currentTarget })}
+                      onClick={(event) => setActivePost({ post, trigger: event.currentTarget })}
                       aria-label={t("gallery.play", { title: label })}
                       aria-haspopup="dialog"
                     >
@@ -80,13 +80,21 @@ const Gallery = () => {
                       <span><Play size={22} aria-hidden="true" /></span>
                     </button>
                   ) : (
-                    <img
-                      src={post.image}
-                      alt={t(`gallery.imageDescriptions.${post.key}`)}
-                      width="800"
-                      height="1000"
-                      loading="lazy"
-                    />
+                    <button
+                      className="gallery-enlarge"
+                      type="button"
+                      onClick={(event) => setActivePost({ post, trigger: event.currentTarget })}
+                      aria-label={t("gallery.enlarge", { title: label })}
+                      aria-haspopup="dialog"
+                    >
+                      <img
+                        src={post.image}
+                        alt={t(`gallery.imageDescriptions.${post.key}`)}
+                        width="800"
+                        height="1000"
+                        loading="lazy"
+                      />
+                    </button>
                   )}
                 </div>
                 <figcaption>
@@ -104,15 +112,24 @@ const Gallery = () => {
           })}
         </div>
       </div>
-      {activeVideo && (
-        <GalleryVideoDialog
-          src={activeVideo.post.video}
-          poster={activeVideo.post.image}
-          title={t(`gallery.posts.${activeVideo.post.key}`)}
-          width={activeVideo.post.width}
-          height={activeVideo.post.height}
-          trigger={activeVideo.trigger}
-          onClose={() => setActiveVideo(null)}
+      {activePost && (
+        <GalleryMediaDialog
+          {...("video" in activePost.post ? {
+            kind: "video",
+            src: activePost.post.video,
+            poster: activePost.post.image,
+            width: activePost.post.width,
+            height: activePost.post.height,
+          } : {
+            kind: "image",
+            src: activePost.post.image,
+            alt: t(`gallery.imageDescriptions.${activePost.post.key}`),
+            width: 800,
+            height: 1000,
+          })}
+          title={t(`gallery.posts.${activePost.post.key}`)}
+          trigger={activePost.trigger}
+          onClose={() => setActivePost(null)}
         />
       )}
     </section>
