@@ -80,7 +80,9 @@
     "title": "Life on the sand",
     "profile": "See the Instagram profile",
     "play": "Play “{{title}}”",
+    "enlarge": "Enlarge “{{title}}”",
     "close": "Close video",
+    "closeImage": "Close image",
     "posts": {
       "training": "Season training",
       "schedule": "Training timetable",

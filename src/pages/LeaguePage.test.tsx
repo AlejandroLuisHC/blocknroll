@@ -34,6 +34,23 @@ it("filters teams, distinguishes pending from zero, and reveals pending lineups"
   expect(screen.getByText("La clasificación está pendiente de publicación.")).toBeInTheDocument();
 });
 
+it.each([
+  { team: "1ª catalana femenino", pairs: ["Pareja ficticia", null] },
+  { team: "2ª nacional masculino", pairs: ["Pareja ficticia", null, null] },
+])("displays the applicable lineup from the API for $team", async ({ team, pairs }) => {
+  vi.spyOn(globalThis, "fetch").mockResolvedValue(Response.json({ ...data, fixtures: [
+    { ...base, id: "lineup", team, opponent: "Club ficticio", pairs },
+  ] }));
+  const user = userEvent.setup();
+  show();
+  const fixture = (await screen.findByRole("heading", { name: /Club ficticio/ })).closest("li")!;
+  await user.click(within(fixture).getByText("Alineación de Block n’ Roll"));
+  expect(fixture.querySelector("details")).toHaveAttribute("open");
+  expect(within(fixture).getAllByRole("term").map(term => term.textContent)).toEqual(pairs.map((_, index) => `Pareja ${index + 1}`));
+  expect(within(fixture).getByText("Pareja ficticia")).toBeInTheDocument();
+  expect(within(fixture).getAllByText("Pendiente")).toHaveLength(pairs.length - 1);
+});
+
 it("shows a recoverable error and can retry", async () => {
   vi.spyOn(globalThis, "fetch").mockRejectedValueOnce(new Error("offline")).mockResolvedValueOnce(Response.json(data));
   const user = userEvent.setup();

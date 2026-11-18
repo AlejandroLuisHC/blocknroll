@@ -21,6 +21,28 @@ it("preserves a genuine zero and partial scores, and reads amended pair names wi
   expect(data.fixtures[1]).toMatchObject({ won: 1, lost: null });
 }, 15000);
 
+it.each([
+  ["1ª catalana femenino", 2],
+  ["1a catalana masculino", 2],
+  ["1.ª Catalana Femenina", 2],
+  ["PRIMERA CATALANA FEMENINA", 2],
+  ["Block n’ Roll — 1ª catalana masculino", 2],
+  ["2ª nacional femenino", 3],
+  ["2ª nacional masculino", 3],
+  ["11ª catalana femenino", 3],
+  ["Equipo de prueba", 3],
+])("reads the applicable lineup slots for %s, keeping unconfirmed pairs pending", async (team, pairCount) => {
+  const data = await parseLeagueWorkbook(await variant((sheet) => {
+    sheet.getCell("C2").value = team;
+    sheet.getCell("C3").value = team;
+    sheet.getCell("I2").value = "Pareja ficticia 2";
+    sheet.getCell("J2").value = "Pareja ficticia 3";
+  }));
+  const expected = [null, "Pareja ficticia 2", "Pareja ficticia 3"].slice(0, pairCount);
+  expect(data.fixtures[0].pairs).toEqual(expected);
+  expect(data.fixtures[1].pairs).toEqual(Array(pairCount).fill(null));
+}, 15000);
+
 it("omits rows without the minimum fields and rejects impossible textual dates", async () => {
   const data = await parseLeagueWorkbook(await variant((sheet) => {
     sheet.getCell("E2").value = " ";
