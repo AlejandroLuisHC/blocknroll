@@ -55,3 +55,66 @@ it("does not turn a broken workbook into a successful empty calendar", async () 
   expect(res.status).toHaveBeenCalledWith(503);
   expect(res.setHeader).toHaveBeenCalledWith("Cache-Control", "no-store");
 });
+
+it("rejects unsupported methods without accessing the config or workbook", async () => {
+  const fetch = vi.spyOn(globalThis, "fetch");
+  const res = response();
+  await handler({ method: "POST" }, res);
+  expect(res.status).toHaveBeenCalledWith(405);
+  expect(res.setHeader).toHaveBeenCalledWith("Allow", "GET");
+  expect(fetch).not.toHaveBeenCalled();
+});
+
+it("reuses a recent workbook, then refreshes it after the cache expires", async () => {
+  const first = await createLeagueWorkbookBuffer();
+  const updated = await createLeagueWorkbookBuffer(sheet => { sheet.getCell("F2").value = 0; });
+  const now = vi.spyOn(Date, "now").mockReturnValue(2000000000000);
+  const fetch = vi.spyOn(globalThis, "fetch")
+    .mockResolvedValueOnce(Response.json(config)).mockResolvedValueOnce(new Response(first))
+    .mockResolvedValueOnce(Response.json(config))
+    .mockResolvedValueOnce(Response.json(config)).mockResolvedValueOnce(new Response(updated));
+  await handler({ method: "GET" }, response());
+  await handler({ method: "GET" }, response());
+  expect(fetch).toHaveBeenCalledTimes(3);
+  now.mockReturnValue(2000000030001);
+  const res = response();
+  await handler({ method: "GET" }, res);
+  expect(fetch).toHaveBeenCalledTimes(5);
+  expect(res.json.mock.calls[0][0].fixtures[0].won).toBe(0);
+}, 15000);
+
+it.each([
+  { status: 404 },
+  { status: 200, headers: { "Content-Length": String(5 * 1024 * 1024 + 1) } },
+])("rejects a failed or oversized download: %j", async options => {
+  vi.spyOn(globalThis, "fetch").mockResolvedValueOnce(Response.json(config)).mockResolvedValueOnce(new Response("not a workbook", options));
+  vi.spyOn(console, "error").mockImplementation(() => {});
+  const res = response();
+  await handler({ method: "GET" }, res);
+  expect(res.status).toHaveBeenCalledWith(503);
+  expect(res.setHeader).not.toHaveBeenCalledWith("Cache-Control", expect.stringContaining("public"));
+});
+
+it("enforces the download limit even when Content-Length is absent", async () => {
+  const cancel = vi.fn();
+  const stream = new ReadableStream({ start(controller) { controller.enqueue(new Uint8Array(5 * 1024 * 1024 + 1)); }, cancel });
+  vi.spyOn(globalThis, "fetch").mockResolvedValueOnce(Response.json(config)).mockResolvedValueOnce(new Response(stream));
+  vi.spyOn(console, "error").mockImplementation(() => {});
+  const res = response();
+  await handler({ method: "GET" }, res);
+  expect(res.status).toHaveBeenCalledWith(503);
+  expect(cancel).toHaveBeenCalledOnce();
+});
+
+it("reports skipped rows without exposing them and leaves invalid season dates pending", async () => {
+  const buffer = await createLeagueWorkbookBuffer(sheet => { sheet.getCell("E3").value = ""; });
+  vi.spyOn(globalThis, "fetch").mockResolvedValueOnce(Response.json({ ...config, startsOn: 2030, endsOn: "2031-13" })).mockResolvedValueOnce(new Response(buffer));
+  const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
+  const res = response();
+  await handler({ method: "GET" }, res);
+  expect(res.status).toHaveBeenCalledWith(200);
+  expect(res.json.mock.calls[0][0]).toMatchObject({ season: { startsOn: null, endsOn: null } });
+  expect(res.json.mock.calls[0][0].fixtures).toHaveLength(1);
+  expect(res.json.mock.calls[0][0]).not.toHaveProperty("skippedRows");
+  expect(warn).toHaveBeenCalledWith(expect.stringContaining("1 incomplete row"));
+}, 15000);
