@@ -2,24 +2,23 @@ import { useLayoutEffect, useRef, useState, type CSSProperties } from "react";
 import { X } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
-type GalleryVideoDialogProps = {
+type GalleryMediaDialogProps = {
   src: string;
-  poster: string;
   title: string;
   width: number;
   height: number;
   trigger: HTMLButtonElement;
   onClose: () => void;
-};
+} & ({ kind: "video"; poster: string } | { kind: "image"; alt: string });
 
-// Match the gallery's cover crop without stretching the video during the move.
-function thumbnailFrame(frame: HTMLElement, trigger: HTMLButtonElement) {
+// Match the gallery's cover crop without stretching the media during the move.
+function thumbnailFrame(frame: HTMLElement, trigger: HTMLButtonElement, cropPosition: number) {
   const target = frame.getBoundingClientRect();
   const origin = trigger.getBoundingClientRect();
   const scale = origin.width / target.width;
   const scaledHeight = target.height * scale;
   const croppedHeight = Math.max(0, scaledHeight - origin.height);
-  const cropTop = croppedHeight * .4;
+  const cropTop = croppedHeight * cropPosition;
 
   return {
     transform: `translate(${origin.left - target.left}px, ${origin.top - target.top - cropTop}px) scale(${scale})`,
@@ -27,16 +26,19 @@ function thumbnailFrame(frame: HTMLElement, trigger: HTMLButtonElement) {
   };
 }
 
-const GalleryVideoDialog = ({ src, poster, title, width, height, trigger, onClose }: GalleryVideoDialogProps) => {
+const GalleryMediaDialog = (props: GalleryMediaDialogProps) => {
+  const { src, title, width, height, trigger, onClose, kind } = props;
   const { t } = useTranslation();
   const dialogRef = useRef<HTMLDialogElement>(null);
   const frameRef = useRef<HTMLDivElement>(null);
   const mediaRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
   const animationRef = useRef<Animation | null>(null);
   const closingRef = useRef(false);
   const [closing, setClosing] = useState(false);
   const [ratio, setRatio] = useState(width / height);
+  const cropPosition = kind === "video" ? .4 : .5;
 
   useLayoutEffect(() => {
     const dialog = dialogRef.current!;
@@ -44,11 +46,11 @@ const GalleryVideoDialog = ({ src, poster, title, width, height, trigger, onClos
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     dialog.showModal();
-    videoRef.current?.focus({ preventScroll: true });
+    (videoRef.current ?? closeRef.current)?.focus({ preventScroll: true });
 
     if (media.animate && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       animationRef.current = media.animate([
-        thumbnailFrame(frameRef.current!, trigger),
+        thumbnailFrame(frameRef.current!, trigger, cropPosition),
         { transform: "none", clipPath: "inset(0% 0 0% round .4rem)" },
       ], { duration: 440, easing: "cubic-bezier(.16, 1, .3, 1)" });
     }
@@ -59,7 +61,7 @@ const GalleryVideoDialog = ({ src, poster, title, width, height, trigger, onClos
       document.body.style.overflow = previousOverflow;
       trigger.focus({ preventScroll: true });
     };
-  }, [trigger]);
+  }, [trigger, cropPosition]);
 
   const close = () => {
     if (closingRef.current) return;
@@ -78,7 +80,7 @@ const GalleryVideoDialog = ({ src, poster, title, width, height, trigger, onClos
     animationRef.current?.cancel();
     const animation = media.animate([
       currentFrame,
-      thumbnailFrame(frameRef.current!, trigger),
+      thumbnailFrame(frameRef.current!, trigger, cropPosition),
     ], { duration: 240, easing: "cubic-bezier(.4, 0, 1, 1)", fill: "forwards" });
     animationRef.current = animation;
     void animation.finished.then(onClose, () => {});
@@ -88,39 +90,46 @@ const GalleryVideoDialog = ({ src, poster, title, width, height, trigger, onClos
     <dialog
       ref={dialogRef}
       className={`gallery-viewer${closing ? " gallery-viewer--closing" : ""}`}
-      aria-labelledby="gallery-video-title"
+      aria-labelledby="gallery-media-title"
       onCancel={(event) => { event.preventDefault(); close(); }}
       onClick={(event) => { if (event.target === event.currentTarget) close(); }}
     >
-      <div className="gallery-viewer-frame" ref={frameRef} style={{ "--video-ratio": ratio } as CSSProperties}>
+      <div className="gallery-viewer-frame" ref={frameRef} style={{ "--media-ratio": ratio } as CSSProperties}>
         <div className="gallery-viewer-heading">
-          <p id="gallery-video-title">{title}</p>
-          <button className="gallery-viewer-close" type="button" onClick={close} aria-label={t("gallery.close")}>
+          <p id="gallery-media-title">{title}</p>
+          <button ref={closeRef} className="gallery-viewer-close" type="button" onClick={close}
+            aria-label={t(kind === "video" ? "gallery.close" : "gallery.closeImage")}>
             <X size={22} aria-hidden="true" />
           </button>
         </div>
         <div className="gallery-viewer-media" ref={mediaRef}>
-          <video
-            ref={videoRef}
-            src={src}
-            poster={poster}
-            aria-label={title}
-            width={width}
-            height={height}
-            onLoadedMetadata={(event) => {
-              const video = event.currentTarget;
-              if (video.videoWidth && video.videoHeight) setRatio(video.videoWidth / video.videoHeight);
-            }}
-            controls
-            autoPlay
-            playsInline
-            tabIndex={0}
-          />
-          <img className="gallery-viewer-poster" src={poster} alt="" width={width} height={height} />
+          {props.kind === "video" ? (
+            <>
+              <video
+                ref={videoRef}
+                src={src}
+                poster={props.poster}
+                aria-label={title}
+                width={width}
+                height={height}
+                onLoadedMetadata={(event) => {
+                  const video = event.currentTarget;
+                  if (video.videoWidth && video.videoHeight) setRatio(video.videoWidth / video.videoHeight);
+                }}
+                controls
+                autoPlay
+                playsInline
+                tabIndex={0}
+              />
+              <img className="gallery-viewer-poster" src={props.poster} alt="" width={width} height={height} />
+            </>
+          ) : (
+            <img className="gallery-viewer-image" src={src} alt={props.alt} width={width} height={height} />
+          )}
         </div>
       </div>
     </dialog>
   );
 };
 
-export default GalleryVideoDialog;
+export default GalleryMediaDialog;

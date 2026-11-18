@@ -80,7 +80,9 @@
     "title": "Así se vive en la arena",
     "profile": "Ver perfil en Instagram",
     "play": "Reproducir «{{title}}»",
+    "enlarge": "Ampliar «{{title}}»",
     "close": "Cerrar vídeo",
+    "closeImage": "Cerrar imagen",
     "posts": {
       "training": "Entrenos de la temporada",
       "schedule": "Horario de entrenamientos",
