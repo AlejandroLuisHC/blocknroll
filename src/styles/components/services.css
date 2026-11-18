@@ -18,7 +18,7 @@
 .download-link { min-height: 2.75rem; padding-block: .4rem; color: var(--plum); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: .35em; }
 .download-link:hover { text-decoration-color: currentColor; }
 .download-link small { color: var(--muted); font-size: .75rem; }
-.training-faq { display: grid; grid-template-columns: minmax(0, .65fr) minmax(0, 1.35fr); gap: 1.5rem 3rem; margin-top: clamp(3rem, 5vw, 5rem); }
+.training-faq { display: grid; grid-template-columns: minmax(0, .65fr) minmax(0, 1.35fr); gap: 1.5rem 3rem; margin-top: clamp(2.5rem, 4vw, 4rem); }
 .training-faq h3 { font-size: clamp(1.75rem, 3vw, 2.5rem); letter-spacing: -.025em; }
 .training-faq details { border-top: 1px solid var(--line); }
 .training-faq details:last-child { border-bottom: 1px solid var(--line); }

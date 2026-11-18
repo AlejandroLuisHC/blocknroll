@@ -13,13 +13,13 @@
 }
 @font-face {
   font-family: "Barlow";
-  src: url("/fonts/Barlow-Regular.ttf") format("truetype");
+  src: url("/fonts/Barlow-Regular.woff2") format("woff2"), url("/fonts/Barlow-Regular.ttf") format("truetype");
   font-weight: 400;
   font-display: swap;
 }
 @font-face {
   font-family: "Barlow";
-  src: url("/fonts/Barlow-SemiBold.ttf") format("truetype");
+  src: url("/fonts/Barlow-SemiBold.woff2") format("woff2"), url("/fonts/Barlow-SemiBold.ttf") format("truetype");
   font-weight: 600 900;
   font-display: swap;
 }
@@ -37,11 +37,11 @@
   --plum-deep: #291c2d;
   --plum-light: #e6d8ec;
   --focus: var(--plum);
-  --font-brand: "Feast of Flesh", sans-serif;
-  --font-display: "Barlow Condensed", "Barlow", sans-serif;
-  --font-body: "Barlow", Arial, sans-serif;
+  --font-brand: "Feast of Flesh", "Feast Fallback", "Feast Fallback Android", sans-serif;
+  --font-display: "Barlow Condensed", "Barlow Condensed Narrow Fallback", "Barlow Condensed Fallback", "Barlow Condensed Fallback Android", "Barlow", sans-serif;
+  --font-body: "Barlow", "Barlow Fallback", "Barlow Fallback Android", Arial, sans-serif;
   --gutter: clamp(1.25rem, 5vw, 4rem);
-  --section-space: clamp(3.5rem, 7vw, 7rem);
+  --section-space: clamp(3rem, 5.5vw, 5.5rem);
   --radius-control: .125rem;
   --radius-media: .75rem;
 }
@@ -68,7 +68,7 @@ section[id], h2[id], :is(input, select, textarea, button, a) { scroll-margin-top
 .shell { width: min(100% - 2 * var(--gutter), 79rem); margin-inline: auto; }
 .section { padding-block: var(--section-space); }
 .eyebrow { margin-bottom: 1rem; color: var(--muted); }
-.section-heading { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); align-items: end; gap: 1.75rem 4rem; margin-bottom: clamp(2rem, 4vw, 3.5rem); }
+.section-heading { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); align-items: end; gap: 1.75rem 4rem; margin-bottom: clamp(1.75rem, 3.5vw, 2.75rem); }
 .section-heading > p, .club-copy > p:not(.club-signature), .contact-heading > p { color: var(--muted); font-size: 1.125rem; line-height: 1.65; }
 .button, .text-link, .download-link { display: inline-flex; align-items: center; gap: .55rem; font-weight: 600; }
 .button { position: relative; isolation: isolate; justify-content: space-between; min-height: 3.25rem; padding: .8rem 1.25rem; border: 0; border-radius: 0; text-decoration: none; line-height: 1.25; }

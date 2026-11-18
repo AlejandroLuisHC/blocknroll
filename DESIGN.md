@@ -34,7 +34,7 @@ rounded:
   round: "50%"
 spacing:
   gutter: "clamp(1.25rem, 5vw, 4rem)"
-  section: "clamp(3.5rem, 7vw, 7rem)"
+  section: "clamp(3rem, 5.5vw, 5.5rem)"
   half: ".5rem"
   one: "1rem"
   one-half: "1.5rem"
@@ -86,7 +86,7 @@ La expresividad se concentra en la marca, las imágenes y las transiciones entre
 
 ## Typography
 
-**Brand Font:** Feast of Flesh, con fallback sans-serif. **Display Font:** Barlow Condensed Black Italic, con Barlow y sans-serif como alternativas. **Body Font:** Barlow, con Arial y sans-serif como alternativas. Las familias se sirven localmente con `font-display: swap`.
+**Brand Font:** Feast of Flesh. **Display Font:** Barlow Condensed Black Italic. **Body Font:** Barlow. Las familias se sirven localmente con `font-display: swap`; las cuatro caras del primer viewport se precargan desde el HTML. Regular y SemiBold usan WOFF2, con sus TTF originales como respaldo. Mientras cargan, las reservas locales de Arial, Arial Narrow o Roboto ajustan ancho y métricas verticales para reducir el cambio de distribución. La tipografía final y su cobertura de caracteres se conservan; los cálculos y la regeneración están documentados en `public/fonts/README.md`.
 
 Feast of Flesh se reserva para la marca y las firmas fijas, sin acentos: su archivo carece de vocales acentuadas. Los titulares traducibles de club, galería y contacto usan Barlow Condensed Black Italic en mayúsculas, peso 900 y cursiva real, siguiendo la dirección elegida de letras deportivas, fuertes y compactas. Incluye glifos propios para español y catalán (tildes, diéresis, ñ, ç y punto volado). Barlow contiene navegación, explicación, tarifas, preguntas y formulario; sus archivos locales son Regular y SemiBold, este último declarado para pesos 600–900. Las licencias SIL OFL 1.1 de Barlow Condensed y Barlow están en `public/fonts/`.
 

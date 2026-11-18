@@ -1,6 +1,7 @@
 import { CLUB_EMAIL, CLUB_NAME, DIRECTIONS_URL, INSTAGRAM_URL } from "../constants/club";
 import { es, ca, en } from "../i18n/locales";
 import { LEGAL_COPY } from "../content/legal";
+import { LEAGUE_COPY } from "../content/league";
 import { hasPendingLegalDetails, type LegalPageKind } from "../config/legal";
 
 export const LANGUAGES = ["es", "ca", "en"] as const;
@@ -8,12 +9,12 @@ export type SiteLanguage = typeof LANGUAGES[number];
 export const LANGUAGE_NAMES = { es: "Español", ca: "Català", en: "English" };
 const LOCALES = { es: "es_ES", ca: "ca_ES", en: "en_GB" };
 const TRANSLATIONS = { es, ca, en };
-export type SitePage = "home" | LegalPageKind;
-export const SITE_PAGES: SitePage[] = ["home", "notice", "privacy", "cookies"];
+export type SitePage = "home" | "league" | LegalPageKind;
+export const SITE_PAGES: SitePage[] = ["home", "notice", "privacy", "cookies", "league"];
 const PAGE_PATHS: Record<SiteLanguage, Record<SitePage, string>> = {
-  es: { home: "/", notice: "/aviso-legal", privacy: "/privacidad", cookies: "/cookies" },
-  ca: { home: "/ca", notice: "/ca/avis-legal", privacy: "/ca/privacitat", cookies: "/ca/cookies" },
-  en: { home: "/en", notice: "/en/legal-notice", privacy: "/en/privacy", cookies: "/en/cookies" },
+  es: { home: "/", league: "/liga-clubes", notice: "/aviso-legal", privacy: "/privacidad", cookies: "/cookies" },
+  ca: { home: "/ca", league: "/ca/lliga-clubs", notice: "/ca/avis-legal", privacy: "/ca/privacitat", cookies: "/ca/cookies" },
+  en: { home: "/en", league: "/en/clubs-league", notice: "/en/legal-notice", privacy: "/en/privacy", cookies: "/en/cookies" },
 };
 
 export function languagePath(language: SiteLanguage, page: SitePage = "home") {
@@ -41,12 +42,12 @@ export function siteOrigin(value = import.meta.env.VITE_SITE_URL || "https://blo
 
 export function pageMetadata(language: SiteLanguage, page: SitePage = "home") {
   const copy = TRANSLATIONS[language];
-  const legal = page === "home" ? null : LEGAL_COPY[language].pages[page];
-  const title = legal ? legal.title + " · " + CLUB_NAME : copy.meta.title;
-  const description = legal?.description ?? copy.meta.description;
+  const pageCopy = page === "home" ? null : page === "league" ? LEAGUE_COPY[language] : LEGAL_COPY[language].pages[page];
+  const title = pageCopy ? pageCopy.title + " · " + CLUB_NAME : copy.meta.title;
+  const description = pageCopy?.description ?? copy.meta.description;
   const origin = siteOrigin();
   const url = origin + languagePath(language, page);
-  const indexable = import.meta.env.VITE_NOINDEX !== "true" && (page === "home" || !hasPendingLegalDetails);
+  const indexable = import.meta.env.VITE_NOINDEX !== "true" && (page === "home" || page === "league" || !hasPendingLegalDetails);
   const image = origin + "/club-social.jpg";
   return {
     language, url, origin, indexable, title,

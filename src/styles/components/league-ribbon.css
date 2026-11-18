@@ -1,0 +1,27 @@
+.league-ribbon { position: relative; display: flex; align-items: stretch; overflow: clip; background: var(--signal); color: var(--plum-deep); }
+.league-ribbon + .gallery::before { display: none; }
+.league-ribbon-link { display: flex; flex: 1; align-items: center; overflow: hidden; min-width: 0; padding-block: 1.1rem; text-decoration: none; }
+.league-ribbon-link:focus-visible { outline-offset: -5px; }
+.league-ribbon-track { display: flex; flex: none; width: max-content; animation: league-ribbon-scroll 38s linear infinite; animation-play-state: paused; }
+.league-ribbon-track[data-running="true"] { animation-play-state: running; }
+.league-ribbon-link:focus-visible .league-ribbon-track { animation-play-state: paused; }
+.league-ribbon-group, .league-ribbon-phrase { display: flex; flex: none; align-items: center; gap: clamp(1.5rem, 4vw, 3.5rem); }
+.league-ribbon-group { padding-right: clamp(1.5rem, 4vw, 3.5rem); }
+.league-ribbon-phrase { font: italic 900 clamp(1.8rem, 3vw, 3rem)/1.15 var(--font-display); text-transform: uppercase; white-space: nowrap; }
+.league-ribbon-competition { -webkit-text-stroke: 1px var(--plum-deep); color: transparent; }
+.league-ribbon-phrase svg { flex-shrink: 0; width: clamp(1.6rem, 2.8vw, 2.8rem); height: auto; stroke-width: 2.5; }
+.league-ribbon-toggle { display: grid; flex: none; align-self: center; place-items: center; width: 2.75rem; height: 2.75rem; margin-inline: .25rem .75rem; padding: 0; border: 0; border-radius: var(--radius-control); color: var(--plum-deep); background: transparent; }
+.league-ribbon-toggle:hover { background: var(--signal-hover); }
+.league-ribbon-toggle:focus-visible { outline-offset: -5px; }
+@media (hover: hover) and (pointer: fine) {
+  .league-ribbon-link:hover .league-ribbon-track { animation-play-state: paused; }
+}
+@keyframes league-ribbon-scroll { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  .league-ribbon-link { padding: 1.1rem var(--gutter); }
+  .league-ribbon-track { width: 100%; animation: none; }
+  .league-ribbon-group { flex: 1; min-width: 0; padding: 0; }
+  .league-ribbon-phrase { flex: 1; min-width: 0; flex-wrap: wrap; gap: .4rem 1rem; white-space: normal; }
+  .league-ribbon-phrase span { max-width: 100%; }
+  .league-ribbon-group + .league-ribbon-group, .league-ribbon-phrase + .league-ribbon-phrase, .league-ribbon-toggle { display: none; }
+}

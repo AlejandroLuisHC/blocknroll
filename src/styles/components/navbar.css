@@ -55,6 +55,20 @@
 
 .site-nav a:hover { color: var(--signal); text-decoration: underline; }
 
+.site-nav .nav-league {
+  position: relative;
+  isolation: isolate;
+  gap: .4rem;
+  min-height: 3rem;
+  padding: .35rem 1rem;
+  color: var(--plum-deep);
+}
+
+.nav-league::before { position: absolute; z-index: -1; inset: 0; content: ""; background: var(--signal); transform: skewX(-16deg); transition: background-color 160ms ease; }
+.site-nav .nav-league:is(:hover, [aria-current="page"]) { color: var(--plum-deep); }
+.site-nav .nav-league:hover::before { background: var(--signal-hover); }
+.site-nav .nav-league[aria-current="page"] { text-decoration: underline; text-underline-offset: .25em; }
+
 .site-nav .nav-contact {
   gap: .5rem;
   color: var(--signal);
@@ -171,6 +185,9 @@
   .site-nav[data-open="true"] { display: grid; }
 
   .site-nav a { border-top: 1px solid var(--line); }
+
+  .site-nav .nav-league { justify-content: space-between; margin-block: .4rem; border: 0; padding-inline: 1rem; }
+  .nav-league::before { inset-inline: .5rem; }
 
   .site-nav .nav-contact { justify-content: space-between; }
 
