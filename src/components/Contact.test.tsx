@@ -1,9 +1,13 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render as renderUI, screen } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
+import type { ReactNode } from "react";
 import userEvent from "@testing-library/user-event";
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
 import { CLUB_EMAIL, DIRECTIONS_URL } from "../constants/club";
 import i18n from "../i18n";
 import HomePage from "../pages/HomePage";
+
+const render = (ui: ReactNode) => renderUI(<MemoryRouter>{ui}</MemoryRouter>);
 
 vi.mock("../hooks/useClubSeason", () => ({ useClubSeason: () => undefined }));
 

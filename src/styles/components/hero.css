@@ -6,8 +6,9 @@
 .hero-visual::after { position: absolute; inset: 0; content: ""; background: linear-gradient(90deg, #241326f5 0%, #241326e8 29%, #24132699 48%, #24132612 75%), linear-gradient(0deg, #24132685, transparent 35%); }
 .hero-content { position: relative; z-index: 1; padding-block: 4rem 5rem; }
 .hero-brand { margin-left: -.06em; color: var(--light); font: 400 clamp(3.5rem, 9.2vw, 8.5rem)/1 var(--font-brand); white-space: nowrap; text-transform: uppercase; }
-.hero-title { max-width: 17ch; margin-top: 1.75rem; font-size: clamp(1.9rem, 3.1vw, 2.8rem); font-weight: 600; line-height: 1.1; letter-spacing: -.025em; text-wrap: balance; }
-.hero-intro { max-width: 33ch; margin-top: 1.25rem; font-size: clamp(1.0625rem, 1.5vw, 1.25rem); line-height: 1.55; }
+/* Preserve Barlow's 17ch/33ch measures without depending on the fallback's zero glyph. */
+.hero-title { max-width: 9.656em; margin-top: 1.75rem; font-size: clamp(1.9rem, 3.1vw, 2.8rem); font-weight: 600; line-height: 1.1; letter-spacing: -.025em; text-wrap: balance; }
+.hero-intro { max-width: 18.645em; margin-top: 1.25rem; font-size: clamp(1.0625rem, 1.5vw, 1.25rem); line-height: 1.55; }
 .hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: .6rem 1.5rem; margin-top: 1.75rem; max-width: 36rem; }
 .hero-actions .button { gap: 1.5rem; }
 .hero-actions .text-link, .hero-training { font-size: .9375rem; }
@@ -30,7 +31,7 @@
   .hero-content { margin-top: -4.5rem; padding-block: 0 3rem; }
   .hero-brand { font-size: clamp(2.7rem, 10.6vw, 5rem); }
   .hero-title { max-width: none; margin-top: .85rem; font-size: 1.5rem; text-wrap: initial; }
-  .hero-intro { max-width: 36ch; margin-top: 1rem; }
+  .hero-intro { max-width: 20.34em; margin-top: 1rem; }
   .hero-actions { flex-direction: row; gap: .4rem 1rem; margin-top: 1.25rem; }
   .hero-signature { padding-block: .8rem; }
   .hero-signature span:first-child { font-size: 1.5rem; }

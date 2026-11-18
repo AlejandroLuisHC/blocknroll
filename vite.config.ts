@@ -19,6 +19,33 @@ function localPages(): Plugin {
         res.statusCode = 204;
         res.end();
       });
+      // Run the same server parser locally. A local file is an explicit dev-only preview override.
+      server.middlewares.use("/api/clubs-league", async (req, res) => {
+        try {
+          if (process.env.CLUBS_LEAGUE_FILE) {
+            const { readFile } = await import("node:fs/promises");
+            const { parseLeagueWorkbook } = await server.ssrLoadModule("/lib/league-workbook.js");
+            const { fixtures, standings } = await parseLeagueWorkbook(await readFile(process.env.CLUBS_LEAGUE_FILE));
+            res.setHeader("Content-Type", "application/json");
+            res.end(JSON.stringify({ fixtures, standings, season: { startsOn: null, endsOn: null } }));
+          } else {
+            const env = loadEnv(server.config.mode, server.config.root, ["GLOBAL_CONFIG", "EDGE_CONFIG"]);
+            for (const [key, value] of Object.entries(env)) process.env[key] ??= value;
+            const { default: handler } = await server.ssrLoadModule("/api/clubs-league.js");
+            const response = {
+              setHeader: (name: string, value: string) => res.setHeader(name, value),
+              status: (code: number) => { res.statusCode = code; return response; },
+              json: (body: unknown) => { res.setHeader("Content-Type", "application/json"); res.end(JSON.stringify(body)); },
+              end: () => res.end(),
+            };
+            await handler({ method: req.method }, response);
+          }
+        } catch {
+          res.statusCode = 503;
+          res.setHeader("Content-Type", "application/json");
+          res.end(JSON.stringify({ error: "League information unavailable" }));
+        }
+      });
     },
     async transformIndexHtml(html, context) {
       if (!context.server) return;

@@ -11,5 +11,6 @@ it("introduces the club founders and shows the coaches and their credentials", (
   expect(screen.getByText(/Somos Sara, Jesús y David/)).toBeInTheDocument();
   expect(screen.getByText("Jesús García")).toBeInTheDocument();
   expect(screen.getByText("David Bardina")).toBeInTheDocument();
-  expect(screen.getByText(/Jesús y David cuentan con certificación oficial/)).toBeInTheDocument();
+  expect(screen.getByText("Manu Nieto")).toBeInTheDocument();
+  expect(screen.getByText(/Los entrenadores cuentan con certificación oficial/)).toBeInTheDocument();
 });

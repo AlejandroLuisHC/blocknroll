@@ -11,6 +11,7 @@ export default defineConfig({
     css: true,
     coverage: {
       provider: "v8",
+      include: ["src/**/*.{ts,tsx,js,jsx}", "api/**/*.{js,ts}", "lib/**/*.{js,ts}"],
       reporter: ["text", "json", "html"],
       exclude: [
         "node_modules/",
@@ -40,7 +41,7 @@ export default defineConfig({
       // Set coverage thresholds for remaining files
       thresholds: {
         statements: 90,
-        branches: 85,
+        branches: 90,
         functions: 90,
         lines: 90,
       },

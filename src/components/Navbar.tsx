@@ -1,28 +1,34 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ArrowUpRight, Menu, X } from "lucide-react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { CLUB_NAME } from "../constants/club";
 import { languageFromPath, languagePath, pageFromPath } from "../seo/site";
 import LanguageSelector from "./LanguageSelector";
+import { prefetchLeague } from "../data/league";
 
 const NAV_LINKS = [
   { key: "about", href: "#about" },
   { key: "gallery", href: "#gallery" },
   { key: "services", href: "#services" },
+  { key: "league", href: "" },
   { key: "contact", href: "#contact" },
 ] as const;
 
 const Navbar = () => {
   const { t } = useTranslation();
   const { pathname } = useLocation();
+  const language = languageFromPath(pathname) ?? "es";
   const homePath = pageFromPath(pathname) === "home" ? "" : languagePath(languageFromPath(pathname) ?? "es");
   const [isOpen, setIsOpen] = useState(false);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const navigationRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    if (isOpen) navigationRef.current?.querySelector("a")?.focus({ preventScroll: true });
+    if (isOpen) {
+      navigationRef.current?.querySelector("a")?.focus({ preventScroll: true });
+      prefetchLeague();
+    }
   }, [isOpen]);
 
   return (
@@ -48,6 +54,10 @@ const Navbar = () => {
           data-open={isOpen}
         >
           {NAV_LINKS.map(({ key, href }) => (
+            key === "league" ? <Link key={key} className="nav-league" to={languagePath(language, "league")}
+              onPointerEnter={prefetchLeague} onFocus={prefetchLeague} onTouchStart={prefetchLeague}
+              aria-current={pageFromPath(pathname) === "league" ? "page" : undefined}
+              onClick={() => setIsOpen(false)}>{t("nav.league")}<ArrowUpRight size={16} aria-hidden="true" /></Link> :
             <a key={key} href={homePath + href} className={key === "contact" ? "nav-contact" : undefined}
               onClick={() => setIsOpen(false)}>
               {t(`nav.${key}`)}

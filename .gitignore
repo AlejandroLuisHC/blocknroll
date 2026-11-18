@@ -30,6 +30,12 @@ skills-lock.json
 # Coverage reports
 coverage/
 
+# Live league workbooks stay outside Git; tests generate fictitious data in memory.
+*.xlsx
+*.xls
+*.xlsm
+*.xlsb
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

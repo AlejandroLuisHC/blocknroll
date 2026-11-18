@@ -1,8 +1,12 @@
-import { act, render, screen, waitFor } from "@testing-library/react";
+import { act, render as renderUI, screen, waitFor } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
+import type { ReactNode } from "react";
 import { beforeEach, expect, it, vi } from "vitest";
 import i18n from "../i18n";
 import type { ClubSeason } from "../types";
 import HomePage from "./HomePage";
+
+const render = (ui: ReactNode) => renderUI(<MemoryRouter>{ui}</MemoryRouter>);
 
 const publishedSeason: ClubSeason = {
   startsOn: "2027-09",

@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter, useLocation, useNavigate } from "react-router-dom";
 import { beforeEach, expect, it, vi } from "vitest";
@@ -46,4 +46,14 @@ it("renders a missing page with noindex instead of a blank successful homepage",
   expect(document.querySelector('link[hreflang]')).toBeNull();
   expect(document.getElementById("club-structured-data")).toBeNull();
   expect(screen.getByRole("link", { name: "Entrenamientos" })).toHaveAttribute("href", "/#services");
+});
+
+it("opens the league from the site navigation at the top of its own page", async () => {
+  const user = userEvent.setup();
+  render(<MemoryRouter><MainLayout><AppRoutes /><HistoryControls /></MainLayout></MemoryRouter>);
+  vi.mocked(window.scrollTo).mockClear();
+  await user.click(within(screen.getByRole("navigation", { name: "Navegación principal" })).getByRole("link", { name: "Liga de Clubes" }));
+  expect(screen.getByTestId("path")).toHaveTextContent("/liga-clubes");
+  expect(screen.getByRole("heading", { level: 1, name: "Liga de Clubes" })).toBeInTheDocument();
+  expect(window.scrollTo).toHaveBeenCalledWith({ top: 0, left: 0, behavior: "instant" });
 });

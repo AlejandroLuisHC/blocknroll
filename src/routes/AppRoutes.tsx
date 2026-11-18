@@ -4,10 +4,11 @@ import { useTranslation } from "react-i18next";
 import { HomePage } from "../pages";
 import NotFoundPage from "../pages/NotFoundPage";
 import LegalPage from "../pages/LegalPage";
+import LeaguePage from "../pages/LeaguePage";
 import { applyDocumentMetadata, languageFromPath, pageFromPath } from "../seo/site";
 
 const LocalizedPage = () => {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   const { i18n } = useTranslation();
   const language = languageFromPath(pathname);
   const page = pageFromPath(pathname);
@@ -18,8 +19,13 @@ const LocalizedPage = () => {
     applyDocumentMetadata(language, page);
   }, [language, page, i18n]);
 
+  useEffect(() => {
+    if (!hash) window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, [page, hash]);
+
   if (pathname === "/es" || pathname === "/es/") return <Navigate to="/" replace />;
   if (!language || !page) return <NotFoundPage />;
+  if (page === "league") return <LeaguePage language={language} />;
   return page === "home" ? <HomePage /> : <LegalPage language={language} page={page} />;
 };
 
