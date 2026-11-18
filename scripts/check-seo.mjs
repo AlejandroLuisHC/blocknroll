@@ -81,6 +81,15 @@ for (let kind = 0; kind < 3; kind++) {
     console.log(`${file}: legal content, localized metadata and language alternates OK.`);
   }
 }
+for (const [language, path] of Object.entries({ es: "/liga-clubes", ca: "/ca/lliga-clubs", en: "/en/clubs-league" })) {
+  const document = new JSDOM(await readFile(new URL(path.slice(1) + ".html", output), "utf8")).window.document;
+  assert.equal(document.documentElement.lang, language);
+  assert.equal(document.querySelectorAll("h1").length, 1);
+  assert.equal(document.querySelector('link[rel="canonical"]').href, origin + path);
+  assert.equal(document.querySelectorAll('link[rel="alternate"][hreflang]').length, 4);
+  assert.ok(document.querySelector('a[href="/api/clubs-league"]') === null);
+  if (!document.querySelector('meta[name="robots"]').content.includes("noindex")) indexedPages.push(origin + path);
+}
 assert.deepEqual(Array.from(sitemap.querySelectorAll("loc"), (element) => element.textContent), indexedPages);
 assert.ok((await readFile(new URL("robots.txt", output), "utf8")).includes(`Sitemap: ${origin}/sitemap.xml`));
 const missing = new JSDOM(await readFile(new URL("404.html", output), "utf8")).window.document;

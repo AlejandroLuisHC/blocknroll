@@ -4,7 +4,7 @@ import { renderPage } from "../.prerender/entry-server.js";
 const output = new URL("../dist/", import.meta.url);
 const template = await readFile(new URL("index.html", output), "utf8");
 const languages = ["es", "ca", "en"];
-const kinds = ["home", "notice", "privacy", "cookies"];
+const kinds = ["home", "notice", "privacy", "cookies", "league"];
 const pages = [];
 
 for (const kind of kinds) {
@@ -40,4 +40,4 @@ const missing = await renderPage("es", true);
 await writeFile(new URL("404.html", output), template
   .replace("<!--seo-head-->", missing.head)
   .replace('<div id="root"></div>', `<div id="root">${missing.body}</div>`));
-console.log("Prerendered home and legal pages in Spanish, Catalan and English, plus 404; generated sitemap.xml and robots.txt (drafts excluded).");
+console.log("Prerendered home, legal and league pages in Spanish, Catalan and English, plus 404; generated sitemap.xml and robots.txt (drafts excluded).");

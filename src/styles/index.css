@@ -1,4 +1,5 @@
 @import "./global/base.css";
+@import "./global/font-fallbacks.css";
 @import "./components/navbar.css";
 @import "./components/hero.css";
 @import "./components/services.css";
@@ -6,3 +7,5 @@
 @import "./components/gallery.css";
 @import "./components/forms.css";
 @import "./components/legal.css";
+@import "./components/league.css";
+@import "./components/league-ribbon.css";

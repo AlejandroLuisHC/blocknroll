@@ -14,7 +14,7 @@ it("preserves the homepage anchors and one language control", () => {
   const navigation = screen.getByRole("navigation", { name: "Navegación principal" });
 
   expect(within(navigation).getAllByRole("link").map((link) => link.getAttribute("href")))
-    .toEqual(["#about", "#gallery", "#services", "#contact"]);
+    .toEqual(["#about", "#gallery", "#services", "/liga-clubes", "#contact"]);
   expect(screen.getByRole("link", { name: "Block n’ Roll" })).toHaveAttribute("href", "#home");
   expect(screen.getAllByRole("combobox", { name: "Idioma" })).toHaveLength(1);
 });

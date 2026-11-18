@@ -35,12 +35,13 @@ Object.defineProperty(window, "scrollTo", {
 
 // Mock IntersectionObserver
 Object.defineProperty(window, "IntersectionObserver", {
+  configurable: true,
   writable: true,
-  value: vi.fn().mockImplementation(() => ({
-    observe: vi.fn(),
-    unobserve: vi.fn(),
-    disconnect: vi.fn(),
-  })),
+  value: class {
+    observe = vi.fn();
+    unobserve = vi.fn();
+    disconnect = vi.fn();
+  },
 });
 
 // Mock ResizeObserver

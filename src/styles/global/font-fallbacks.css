@@ -1,0 +1,86 @@
+/* Widths and vertical metrics calculated by scripts/prepare-fonts.py.
+   These use installed fonts and add no font downloads. */
+@font-face {
+  font-family: "Barlow Fallback";
+  src: local("Arial"), local("ArialMT");
+  font-weight: 400;
+  size-adjust: 95.6106%;
+  ascent-override: 104.5909%;
+  descent-override: 20.9182%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Barlow Fallback";
+  src: local("Arial Bold"), local("Arial-BoldMT");
+  font-weight: 600 900;
+  size-adjust: 90.7883%;
+  ascent-override: 110.1464%;
+  descent-override: 22.0293%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Barlow Fallback Android";
+  src: local("Roboto"), local("Roboto Regular"), local("Roboto-Regular");
+  font-weight: 400;
+  size-adjust: 96.2321%;
+  ascent-override: 103.9154%;
+  descent-override: 20.7831%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Barlow Fallback Android";
+  src: local("Roboto Bold"), local("Roboto-Bold");
+  font-weight: 600 900;
+  size-adjust: 96.6207%;
+  ascent-override: 103.4975%;
+  descent-override: 20.6995%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Barlow Condensed Narrow Fallback";
+  src: local("Arial Narrow Bold Italic"), local("ArialNarrow-BoldItalic");
+  font-style: italic;
+  font-weight: 900;
+  size-adjust: 82.7208%;
+  ascent-override: 120.8886%;
+  descent-override: 24.1777%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Barlow Condensed Fallback";
+  src: local("Arial Bold Italic"), local("Arial-BoldItalicMT");
+  font-style: italic;
+  font-weight: 900;
+  size-adjust: 67.8237%;
+  ascent-override: 147.4410%;
+  descent-override: 29.4882%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Barlow Condensed Fallback Android";
+  src: local("Roboto Black Italic"), local("Roboto-BlackItalic");
+  font-style: italic;
+  font-weight: 900;
+  size-adjust: 75.7043%;
+  ascent-override: 132.0928%;
+  descent-override: 26.4186%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Feast Fallback";
+  src: local("Arial Bold"), local("Arial-BoldMT");
+  font-weight: 400;
+  size-adjust: 67.0033%;
+  ascent-override: 128.5501%;
+  descent-override: 23.9027%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Feast Fallback Android";
+  src: local("Roboto Bold"), local("Roboto-Bold");
+  font-weight: 400;
+  size-adjust: 74.7990%;
+  ascent-override: 115.1523%;
+  descent-override: 21.4115%;
+  line-gap-override: 0%;
+}

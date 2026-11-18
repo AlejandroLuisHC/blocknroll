@@ -26,6 +26,7 @@ const Footer = () => {
           <p>{t("footer.description")}</p>
         </div>
         <div className="footer-links">
+          <Link to={languagePath(language, "league")}>{t("nav.league")}</Link>
           <a href={"mailto:" + CLUB_EMAIL}>{t("contact.emailLabel")}</a>
           <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
             Instagram <ArrowUpRight size={15} aria-hidden="true" />
