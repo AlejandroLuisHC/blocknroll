@@ -155,6 +155,7 @@
       "nameError": "Enter a name with at least two characters.",
       "emailError": "Enter a valid email address.",
       "errorMessage": "We couldn’t send your request. Your details are still here. Please try again.",
+      "rateLimited": "Too many submissions. Wait a minute and try again. Your details are still here.",
       "successJoin": "Request sent. We’ll email you to arrange your training session.",
       "successTalk": "Enquiry sent. We’ll get back to you by email."
     },

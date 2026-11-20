@@ -155,6 +155,7 @@
       "nameError": "Introdueix un nom d’almenys dos caràcters.",
       "emailError": "Introdueix una adreça electrònica vàlida.",
       "errorMessage": "No hem pogut enviar la sol·licitud. Les teves dades encara són aquí. Torna-ho a provar.",
+      "rateLimited": "Hi ha massa enviaments seguits. Espera un minut i torna-ho a provar. Les teves dades encara són aquí.",
       "successJoin": "Sol·licitud enviada. T’escriurem per coordinar l’entrenament.",
       "successTalk": "Consulta enviada. Et respondrem per correu."
     },

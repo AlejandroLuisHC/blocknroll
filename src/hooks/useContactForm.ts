@@ -17,7 +17,7 @@ const INITIAL_FORM: ContactDraft = {
 };
 
 type Submission =
-  | { status: "idle" | "loading" | "error" }
+  | { status: "idle" | "loading" | "error" | "rate-limited" }
   | { status: "success"; inquiryType: InquiryType };
 
 export const useContactForm = () => {
@@ -110,9 +110,10 @@ export const useContactForm = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, phone, message: lines.join("\n"), meta }),
+        signal: AbortSignal.timeout(25000),
       });
       if (!response.ok) {
-        setSubmission({ status: "error" });
+        setSubmission({ status: response.status === 429 ? "rate-limited" : "error" });
         return;
       }
       setFormData({ ...INITIAL_FORM, inquiryType, packageType });

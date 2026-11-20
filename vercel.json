@@ -2,6 +2,9 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": "pnpm build",
   "outputDirectory": "dist",
+  "functions": {
+    "api/send-email.js": { "maxDuration": 20 }
+  },
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [

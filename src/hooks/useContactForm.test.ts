@@ -70,3 +70,18 @@ it("retains data when the network fails", async () => {
   expect(result.current.submission.status).toBe("error");
   expect(result.current.formData.email).toBe("ana@example.com");
 });
+
+it("preserves the draft when Vercel limits submissions", async () => {
+  const fetchMock = vi.spyOn(globalThis, "fetch").mockResolvedValue(new Response(null, { status: 429 }));
+  const { result } = renderHook(() => useContactForm());
+  act(() => {
+    result.current.setField("fullName", "Ana Example");
+    result.current.setField("email", "ana@example.com");
+  });
+
+  await act(() => result.current.handleSubmit(submitEvent()));
+
+  expect(result.current.submission.status).toBe("rate-limited");
+  expect(result.current.formData.email).toBe("ana@example.com");
+  expect(fetchMock).toHaveBeenCalledTimes(1);
+});
