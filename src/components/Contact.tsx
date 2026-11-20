@@ -1,5 +1,6 @@
 import { ArrowRight, ArrowUpRight, LoaderCircle } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import limits from "../../lib/contact-limits.json";
 import { CLUB_EMAIL, DIRECTIONS_URL, TRAINING_PROGRAMS } from "../constants/club";
 import type { useContactForm } from "../hooks/useContactForm";
 import type { EstimatedLevel, PackageType } from "../types";
@@ -57,12 +58,12 @@ const Contact = ({ form }: { form: ReturnType<typeof useContactForm> }) => {
             </fieldset>
             <div className="form-grid">
               <FormField name="fullName" label={t("contact.form.name")} value={formData.fullName}
-                onChange={(value) => setField("fullName", value)} error={form.nameError} autoComplete="name" required />
+                onChange={(value) => setField("fullName", value)} error={form.nameError} autoComplete="name" maxLength={limits.name} required />
               <FormField name="email" label={t("contact.form.email")} value={formData.email}
                 onChange={(value) => setField("email", value)} error={form.emailError} autoComplete="email"
-                type="email" required />
+                type="email" maxLength={limits.email} required />
               <FormField name="phone" label={t("contact.form.phone")} value={formData.phone ?? ""}
-                onChange={(value) => setField("phone", value)} autoComplete="tel" type="tel" />
+                onChange={(value) => setField("phone", value)} autoComplete="tel" type="tel" maxLength={limits.phone} />
               {isTraining && (
                 <>
                   <FormField name="players" label={t("contact.form.playersLabel")}
@@ -86,7 +87,7 @@ const Contact = ({ form }: { form: ReturnType<typeof useContactForm> }) => {
             {!isTraining && (
               <div className="form-field enquiry">
                 <label htmlFor="question">{t("contact.form.question")}</label>
-                <textarea id="question" name="question" rows={4} value={formData.question}
+                <textarea id="question" name="question" rows={4} value={formData.question} maxLength={limits.question}
                   onChange={(event) => setField("question", event.target.value)} />
               </div>
             )}
@@ -97,8 +98,10 @@ const Contact = ({ form }: { form: ReturnType<typeof useContactForm> }) => {
               {isLoading ? <LoaderCircle className="loading-spinner" size={17} aria-hidden="true" /> : <ArrowRight size={17} aria-hidden="true" />}
             </button>
           </fieldset>
-          {submission.status === "error" && (
-            <p className="submission-error" role="alert">{t("contact.form.errorMessage")}</p>
+          {(submission.status === "error" || submission.status === "rate-limited") && (
+            <p className="submission-error" role="alert">
+              {t(submission.status === "rate-limited" ? "contact.form.rateLimited" : "contact.form.errorMessage")}
+            </p>
           )}
           <div role="status" aria-atomic="true">
             {isLoading && <p className="submission-pending">{t("contact.form.sending")}</p>}

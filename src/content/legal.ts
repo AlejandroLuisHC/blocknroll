@@ -47,7 +47,7 @@ export const LEGAL_COPY: Record<"es" | "ca" | "en", LegalCopy> = {
     pages: {
       notice: {
         title: "Aviso legal", description: "Identificación del titular, contacto y condiciones de uso de la web de Block n’ Roll.",
-        intro: "Esta web presenta la actividad de Block n’ Roll y permite solicitar información sobre sus entrenamientos.",
+        intro: "Esta web presenta la actividad de Block n’ Roll, un club deportivo sin ánimo de lucro, y permite solicitar información sobre sus entrenamientos. Las cuotas de entrenamiento se destinan a cubrir gastos de la actividad deportiva del club.",
         sections: [
           { id: "actividad", title: "Información y solicitudes", paragraphs: ["El formulario sirve para realizar consultas y solicitar una clase de prueba o información sobre entrenamientos. Su envío no confirma una plaza, una reserva ni la contratación de un servicio.", "Las modalidades, tarifas y condiciones publicadas corresponden a la temporada indicada. El club debe confirmar la disponibilidad y las condiciones aplicables antes de formalizar una inscripción. La ubicación de entrenamiento no equivale al domicilio legal del titular."] },
           { id: "uso", title: "Uso de la web", paragraphs: ["Utiliza la web y sus canales de contacto de forma lícita y respetuosa. No envíes contenidos ilícitos, suplantaciones de identidad ni información personal de terceros sin una base que lo permita."] },
@@ -98,7 +98,7 @@ export const LEGAL_COPY: Record<"es" | "ca" | "en", LegalCopy> = {
     pages: {
       notice: {
         title: "Avís legal", description: "Identificació del titular, contacte i condicions d’ús de la web de Block n’ Roll.",
-        intro: "Aquesta web presenta l’activitat de Block n’ Roll i permet demanar informació sobre els entrenaments.",
+        intro: "Aquesta web presenta l’activitat de Block n’ Roll, un club esportiu sense ànim de lucre, i permet demanar informació sobre els entrenaments. Les quotes d’entrenament es destinen a cobrir despeses de l’activitat esportiva del club.",
         sections: [
           { id: "activitat", title: "Informació i sol·licituds", paragraphs: ["El formulari serveix per fer consultes i demanar una classe de prova o informació sobre entrenaments. Enviar-lo no confirma cap plaça, reserva ni contractació d’un servei.", "Les modalitats, les tarifes i les condicions publicades corresponen a la temporada indicada. El club ha de confirmar la disponibilitat i les condicions aplicables abans de formalitzar una inscripció. La ubicació d’entrenament no equival al domicili legal del titular."] },
           { id: "us", title: "Ús de la web", paragraphs: ["Fes servir la web i els canals de contacte de manera lícita i respectuosa. No enviïs continguts il·lícits, suplantacions d’identitat ni informació personal de tercers sense una base que ho permeti."] },
@@ -149,7 +149,7 @@ export const LEGAL_COPY: Record<"es" | "ca" | "en", LegalCopy> = {
     pages: {
       notice: {
         title: "Legal notice", description: "Website operator details, contact information and terms of use for the Block n’ Roll website.",
-        intro: "This website presents Block n’ Roll’s activities and lets you request information about training.",
+        intro: "This website presents the activities of Block n’ Roll, a non-profit sports club, and lets you request information about training. Training fees go towards the costs of running the club’s sporting activities.",
         sections: [
           { id: "activity", title: "Information and requests", paragraphs: ["The form lets you ask questions and request a trial class or training information. Submitting it does not confirm a place, a booking or the purchase of a service.", "Published programmes, prices and conditions relate to the season stated. The club must confirm availability and the applicable conditions before an enrolment is completed. The training venue is not necessarily the website operator’s registered address."] },
           { id: "use", title: "Using the website", paragraphs: ["Use the website and contact channels lawfully and respectfully. Do not send unlawful content, impersonate others or share other people’s personal information without a valid basis."] },

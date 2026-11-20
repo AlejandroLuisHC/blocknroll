@@ -155,6 +155,7 @@
       "nameError": "Introduce un nombre de al menos dos caracteres.",
       "emailError": "Introduce una dirección de correo válida.",
       "errorMessage": "No hemos podido enviar tu solicitud. Tus datos siguen aquí. Vuelve a intentarlo.",
+      "rateLimited": "Hay demasiados envíos seguidos. Espera un minuto y vuelve a intentarlo. Tus datos siguen aquí.",
       "successJoin": "Solicitud enviada. Te escribiremos para coordinar el entrenamiento.",
       "successTalk": "Consulta enviada. Te responderemos por correo."
     },

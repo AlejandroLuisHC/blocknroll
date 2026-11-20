@@ -107,6 +107,19 @@ src/
 - `npm run test` - Run tests
 - `npm run test:coverage` - Run tests with coverage
 
+### Photos and video
+
+`pnpm build` checks the files in `dist`, including files copied from `public`. GitHub Actions and Vercel both run this check. The limits are **180 kB per image** and **2 MB per video**. Run `pnpm check:media` to recheck an existing build.
+
+To prepare files locally, install FFmpeg with `ffprobe`, `libx264`, `libaom-av1` and `libwebp` on `PATH`.
+
+```sh
+pnpm media:compress portrait-original.png portrait.avif 840
+pnpm media:compress practice-original.mp4 practice.mp4 768
+```
+
+The optional last argument caps the longest edge in pixels. The script writes to a new path and checks the size before saving. Use AVIF or WebP for photos and MP4 for video. Preview the output before replacing a gallery asset. For long clips, use a smaller export, shorten the clip, or link to the original.
+
 ## 🌐 Customization
 
 ### Content Localization
@@ -191,7 +204,9 @@ Legal notice, privacy and browser-storage pages are available in all three langu
 
 Emails are sent from a Serverless Function (`api/send-email.js`) using Nodemailer over SMTP.
 
-Note: Works with any SMTP provider (e.g., Maileroo, Gmail, etc.) by setting the variables accordingly.
+Scope `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS` and the real `MAIL_TO` to **Production** in Vercel. If an endpoint override is needed in production, scope `VITE_CONTACT_ENDPOINT` there as well so other environments use their own `/api/send-email`. The handler rejects requests in Vercel Preview and Development. Local tests mock SMTP. Vercel applies changes to environment variables on new deployments. To retire credentials used by older previews, replace them in Production, verify delivery on the new deployment, and then revoke the old credential in Maileroo.
+
+In Vercel Firewall, scope the contact rate limit to `POST /api/send-email`. Start with a fixed 60-second window and 10 requests per client IP. Review matches in Log mode, then switch the action on limit to **429**. The form keeps the draft and tells the visitor when to retry.
 
 ## 🧪 Testing
 

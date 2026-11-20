@@ -7,6 +7,12 @@
   - Dynamic content updates for usefuld files and prices
   - Prepare new section for the clubs league
 - Draft of legal notice for the website, including privacy policy and cookie policy
+- Improvements mailer:
+  - Add rate limiting to the contact form to prevent spam and abuse
+  - Better error handling and logging for email sending
+  - Upgrade nodemailer version
+- Media size optimization:
+  - Optimize images and videos for faster loading and better performance
 
 ## [0.6.0] (2025-08-14)
 
