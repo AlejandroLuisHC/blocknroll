@@ -2,14 +2,15 @@
 
 Estado: implementación local preparada; textos en borrador. No equivale a una validación jurídica ni permite dar por cumplidas las obligaciones operativas del club.
 
+## Datos del titular verificados
+
+El Registre d’Entitats Esportives identifica a **BLOCK AND ROLL CLUB DE VOLEY PLAYA** con el número **20312** y el domicilio **C/ de la Muntanya, núm. 101, baix, 08026 Barcelona**. El correo de la ficha coincide con el de la web. El aviso legal describe al titular como club deportivo sin ánimo de lucro, de acuerdo con el artículo 5 de la Ley del deporte de Cataluña, y refleja el destino de las cuotas indicado por el club. [Ficha del registro](https://analisi.transparenciacatalunya.cat/resource/qrgc-u7pk.json?n_m_registre=20312) · [Ley del deporte de Cataluña](https://www.boe.es/buscar/act.php?id=DOGC-f-2000-90007#a5)
+
 ## Información que falta
 
 Completar `src/config/legal.ts` a partir de documentación oficial:
 
-- Denominación completa del titular y responsable del tratamiento. Si existe una entidad deportiva constituida, comprobar su denominación en los estatutos y la inscripción. La junta directiva no es automáticamente una lista de corresponsables; no se han atribuido responsabilidades personales a sus integrantes.
-- NIF de la entidad o del titular real.
-- Domicilio legal. El usuario indicó provisionalmente «carrer de la Muntanya 101, 08026»; hay que contrastarlo con la documentación e identificar la localidad antes de publicarlo. No confundirlo con las pistas de entrenamiento.
-- Registro y número de inscripción. `null` significa desconocido; `""` solo debe utilizarse si se ha confirmado que no procede.
+- NIF de la entidad.
 - Proveedor real de envío de correo. El README menciona Maileroo, pero todavía no está confirmado para el despliegue vigente.
 - Servicio que recibe y conserva los mensajes, cuentas con acceso y contratos aplicables. El correo público es `blocknroll.bcnclub@gmail.com`; no demuestra qué dirección usa `MAIL_TO`.
 - Países de tratamiento y garantías de transferencias internacionales para Vercel y los proveedores reales de envío y recepción. Completar el texto en español, catalán e inglés tras revisar sus contratos, subencargados y configuración; no afirmar que todos los datos permanecen en la UE por defecto.

@@ -8,6 +8,7 @@ interface FormFieldProps {
   type?: HTMLInputTypeAttribute;
   required?: boolean;
   autoComplete?: string;
+  maxLength?: number;
   options?: readonly { value: string; label: string }[];
   error?: string;
 }
@@ -20,6 +21,7 @@ const FormField = ({
   type = "text",
   required,
   autoComplete,
+  maxLength,
   options,
   error,
 }: FormFieldProps) => {
@@ -42,6 +44,7 @@ const FormField = ({
           value={value}
           onChange={(event) => onChange(event.target.value)}
           autoComplete={autoComplete}
+          maxLength={maxLength}
           spellCheck={type === "email" ? false : undefined}
           required={required}
           aria-invalid={error ? true : undefined}
